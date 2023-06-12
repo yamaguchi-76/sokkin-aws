@@ -1,0 +1,28 @@
+@use '../../base/Variable' as *;
+
+.propositionsDetailList {
+  @include mq(tab-min) {
+    max-width: 550px;
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  > .itemList {
+    @include mq(tab-min) {
+      width: 50%;
+    }
+
+    &:first-child,
+    &:nth-child(2) {
+      @include mq(tab-min) {
+        margin-bottom: 6px;
+      }
+    }
+
+    &:not(:last-child) {
+      @include mq(tab) {
+        margin-bottom: 10px;
+      }
+    }
+  }
+}

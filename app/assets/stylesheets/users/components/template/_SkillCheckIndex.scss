@@ -1,0 +1,61 @@
+@use '../../base/Variable' as *;
+
+.skillCheckIndex {
+  @include mq(tab-min) {
+    display: flex;
+  }
+
+  &__title {
+    color: $black;
+    font-size: 24px;
+    font-family: Yu Gothic, YuGothic, 'ヒラギノ角ゴ Pro', 'Hiragino Kaku Gothic Pro', 'Hiragino Sans', Meiryo, メイリオ, 'MS P Gothic', sans-serif;
+    margin-bottom: 30px;
+  }
+
+  &__text {
+    color: $black;
+    font-size: 16px;
+    font-family: Yu Gothic, YuGothic, 'ヒラギノ角ゴ Pro', 'Hiragino Kaku Gothic Pro', 'Hiragino Sans', Meiryo, メイリオ, 'MS P Gothic', sans-serif;
+    line-height: 1.5;
+    margin-bottom: 20px;
+  }
+
+  &__subtitle {
+    color: $black;
+    font-family: Yu Gothic, YuGothic, 'ヒラギノ角ゴ Pro', 'Hiragino Kaku Gothic Pro', 'Hiragino Sans', Meiryo, メイリオ, 'MS P Gothic', sans-serif;
+    font-weight: bold;
+    margin-bottom: 20px;
+
+    > .required {
+      color: $red;
+
+      @include mq(tab) {
+        margin-top: 5px;
+        display: block;
+      }
+    }
+  }
+
+  .openItem__wrapper {
+    @include mq(tab-min) {
+      position: relative;
+    }
+  }
+
+  .generalButton {
+    height: 50px;
+    margin-top: 30px;
+
+    @include mq(tab-min) {
+      width: 180px;
+      font-size: 18px;
+      position: absolute;
+      right: 0;
+    }
+
+    @include mq(tab) {
+      width: 100%;
+      font-size: 16px;
+    }
+  }
+}

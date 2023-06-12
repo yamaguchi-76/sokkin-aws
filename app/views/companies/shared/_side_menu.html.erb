@@ -1,0 +1,35 @@
+<ul class="sideMenu">
+  <li class="sideMenu__item home<%= active_page?(companies_home_path) %>">
+    <%= link_to 'ホーム', companies_home_path %>
+  </li>
+  <li class="sideMenu__item scout<%= active_page?(companies_users_path) %>">
+    <%= link_to 'スカウト', companies_users_path %>
+  </li>
+  <li class="sideMenu__item job2<%= active_page?(new_companies_proposition_path) %>">
+    <%= link_to '案件登録', new_companies_proposition_path %>
+  </li>
+  <li class="sideMenu__item applied<%= active_page?(companies_propositions_path) %>">
+    <%= link_to '登録案件一覧', companies_propositions_path %>
+  </li>
+  <li class="sideMenu__item profile<%= active_page?(companies_proposition_entries_path) %>">
+    <%= link_to '応募者一覧', companies_proposition_entries_path %>
+  </li>
+  <li class="sideMenu__item profile<%= active_page?(companies_scouted_users_path) %>">
+    <%= link_to 'スカウトユーザー一覧', companies_scouted_users_path %>
+  </li>
+  <li class="sideMenu__item attendance<%= active_page?(companies_attendances_path) %>">
+    <%= link_to '勤怠管理', companies_attendances_path %>
+  </li>
+  <li class="sideMenu__item account<%= active_page?(edit_company_registration_path) %>">
+    <%= link_to 'アカウント設定', companies_account_path %>
+  </li>
+  <li class="sideMenu__item useFlow<%= active_page?(companies_usage_flow_url) %>">
+    <%= link_to 'ご利用の流れ', companies_usage_flow_url %>
+  </li>
+  <li class="sideMenu__item contact<%= active_page?(companies_contact_url) %>">
+    <%= link_to 'お問い合わせ', companies_contact_url %>
+  </li>
+  <li class="sideMenu__item logout">
+    <%= link_to 'ログアウト', destroy_company_session_path %>
+  </li>
+</ul>

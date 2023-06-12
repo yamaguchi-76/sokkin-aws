@@ -1,0 +1,178 @@
+<main class="appliedDetailIndex applied openItem">
+  <div class="applyModal">
+    <div class="applyModal__background"></div>
+    <div class="content">
+      <h2 class="applyModal__title">応募画面</h2>
+      <ul class="categoryList">
+        <% @proposition.job_kinds.each do |job| %>
+          <li class="categoryList__item"><%= job.name %></li>
+        <% end %>
+      </ul>
+      <p class="flexText">
+        <% @proposition.work_ranges.each do |job| %>
+          <span class="flexText__text jobRange"><%= job.name %></span>
+        <% end %>
+      </p>
+      <h3 class="applyModal__propositionTitle"><%= @proposition.title %></h3>
+      <h4 class="colonText">業界<span class="right"><%= @proposition.industry.name %></span></h4>
+
+      <p class="applyModal__text">以下の項目を入力後、応募するボタンをクリックしてください。入力なしでも進めます。</p>
+      <%= form_with(model: @proposition_entry, url: entry_users_proposition_path(@proposition.id), method: :post) do |f| %>
+        <%= render "users/shared/error_messages", resource: @proposition_entry %>
+        <div class="infoFormItemGroup">
+          <div class="infoFormItem">
+            <div class="wrapper">
+              <%= f.label :estimated_work_time, class: 'infoFormItem__title' %>
+              <%= f.number_field :estimated_work_time, class: 'formSelect__item' %><span class="formBorderTextBox__text">時間</span>
+            </div>
+          </div>
+          <div class="infoFormItem">
+            <h3 class="infoFormItem__title">ご要望</h3>
+            <%= f.text_area :request, class: 'applyModal__textarea' %>
+          </div>
+        </div>
+        <div class="applyModal__bottom">
+          <%= link_to 'キャンセル', :back, class: 'generalButton bgGray-5 textWhite' %>
+          <%= f.submit '応募する', class: 'generalButton bgBrown textWhite' %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+  <%= render 'users/shared/side_menu' %>
+  <div class="openItem__wrapper">
+    <%= link_to '案件一覧へ戻る', users_propositions_path, class: 'arrowButton back' %>
+    <div class="jobDetail">
+      <dl class="jobDetail__date">
+        <dt class="day"><%= l @proposition.created_at, format: :date_joins_dot %></dt>
+        <dt class="id"><%= @proposition.id %></dt>
+      </dl>
+      <ul class="categoryList">
+        <% @proposition.job_kinds.each do |job| %>
+          <li class="categoryList__item"><%= job.name %></li>
+        <% end %>
+      </ul>
+      <p class="flexText">
+        <% @proposition.work_ranges.each do |job| %>
+          <span class="flexText__text jobRange"><%= job.name %></span>
+        <% end %>
+      </p>
+
+      <h2 class="jobDetail__title"><%= @proposition.title %></h2>
+      <p class="jobDetail__description"><%= @proposition.industry.name %></p>
+
+      <p class="colonText">
+        応募締切<span class="right"><%= l @proposition.application_deadline, format: :date_joins_dot %></span>
+      </p>
+
+      <figure class="jobDetail__image"></figure>
+
+      <div class="simpleContent">
+        <h2 class="simpleContent__title">働き方について</h2>
+        <div class="simpleContent__wrapper">
+          <div class="jobDetailList">
+            <dl class="jobDetailList__item">
+              <dt class="itemList remuneration">報酬単価</dt>
+              <dd class="text"><%= @proposition.unit_price %> 万円/月</dd>
+            </dl>
+            <dl class="jobDetailList__item">
+              <dt class="itemList time">月額想定稼働時間</dt>
+              <dd class="text"><%= @proposition.estimated_work_time_from %> ~ <%= @proposition.estimated_work_time_to %> 時間/月</dd>
+            </dl>
+            <dl class="jobDetailList__item">
+              <%# TODO: figma 上でのフォーマットが yyyy年mm月 となっているので、デザインで揃えてもらう or バックエンド側で調整してもらう / フォーマットがばらついているのはよくない %>
+              <dt class="itemList baggage">稼働開始時期</dt>
+              <dd class="text"><%= l @proposition.operation_start_at, format: :year_month_jp %> 〜</dd>
+            </dl>
+            <dl class="jobDetailList__item">
+              <dt class="itemList schedule">契約期間</dt>
+              <dd class="text"><%= @proposition.contract_period %> ヶ月〜</dd>
+            </dl>
+            <dl class="jobDetailList__item">
+              <dt class="itemList task">勤務条件</dt>
+              <dd class="text"><%= @proposition.work_conditions.map(&:name).join(', ') %></dd>
+            </dl>
+          </div>
+        </div>
+      </div>
+      <div class="simpleContent">
+        <h2 class="simpleContent__title">求めるスキル</h2>
+        <div class="simpleContent__wrapper">
+          <div class="jobDetailList">
+            <dl class="jobDetailList__item">
+              <dt class="itemList desktop">必須スキル</dt>
+              <dd class="text"><%= @proposition.required_skill %></dd>
+            </dl>
+            <dl class="jobDetailList__item">
+              <dt class="itemList handshake">歓迎スキル</dt>
+              <dd class="text"><%= @proposition.welcome_skill %></dd>
+            </dl>
+          </div>
+        </div>
+      </div>
+      <div class="simpleContent">
+        <%# TODO: 内容が空の場合の挙動、どうする？そもそも必須項目？要確認 %>
+        <h2 class="simpleContent__title"><%= t('activerecord.attributes.proposition.background') %></h2>
+        <div class="simpleContent__wrapper">
+          <p class="text"><%= @proposition.background %></p>
+        </div>
+      </div>
+      <div class="simpleContent">
+        <%# TODO: 内容が空の場合の挙動、どうする？そもそも必須項目？要確認 %>
+        <h2 class="simpleContent__title"><%= t('activerecord.attributes.proposition.work_order') %></h2>
+        <div class="simpleContent__wrapper">
+          <p class="text"><%= @proposition.work_order %></p>
+        </div>
+      </div>
+      <div class="simpleContent">
+        <%# TODO: 内容が空の場合の挙動、どうする？そもそも必須項目？要確認 %>
+        <h2 class="simpleContent__title"><%= t('activerecord.attributes.proposition.ng_point') %></h2>
+        <div class="simpleContent__wrapper">
+          <p class="text"><%= @proposition.ng_point %></p>
+        </div>
+      </div>
+      <div class="simpleContent">
+        <%# TODO: 内容が空の場合の挙動、どうする？そもそも必須項目？要確認 %>
+        <h2 class="simpleContent__title">備考</h2>
+        <div class="simpleContent__wrapper">
+          <p class="text"><%= @proposition.note %></p>
+        </div>
+      </div>
+    </div>
+    <div class="appliedDetailIndex__bottom">
+      <% if @proposition_entry.blank? %>
+        <%= link_to '応募へ進む', entry_form_users_proposition_path(@proposition.id), class: 'generalButton bgBrown textWhite' %>
+      <% end %>
+      <%= render 'users/shared/proposition_favorite_area', proposition: @proposition %>
+    </div>
+  </div>
+  <div class="right">
+    <div class="jobDetailRightBox">
+      <ul class="categoryList">
+        <% @proposition.job_kinds.each do |job| %>
+          <li class="categoryList__item"><%= job.name %></li>
+        <% end %>
+      </ul>
+      <p class="flexText">
+        <% @proposition.work_ranges.each do |job| %>
+          <span class="flexText__text jobRange"><%= job.name %></span>
+        <% end %>
+      </p>
+      <h2 class="jobDetailRightBox__title"><%= @proposition.title %></h2>
+      <p class="jobDetail__description"><%= @proposition.industry.name %></p>
+      <div class="jobDetailRightBox__bottom">
+        <% if @proposition_entry.blank? %>
+          <%= link_to '応募へ進む', entry_form_users_proposition_path(@proposition.id), class: 'generalButton bgBrown textWhite' %>
+        <% end %>
+        <%= render 'users/shared/proposition_favorite_area', proposition: @proposition %>
+      </div>
+    </div>
+    <ul class="basicInfoMenu">
+      <li class="basicInfoMenu__item">働き方について</li>
+      <li class="basicInfoMenu__item">求めるスキル</li>
+      <li class="basicInfoMenu__item">背景・課題</li>
+      <li class="basicInfoMenu__item">依頼する業務内容</li>
+      <li class="basicInfoMenu__item">NG項目</li>
+      <li class="basicInfoMenu__item">備考</li>
+    </ul>
+  </div>
+</main>

@@ -1,0 +1,87 @@
+<div class="attendanceIndex openItem">
+  <%= render 'users/shared/side_menu' %>
+  <div class="openItem__wrapper">
+    <h2 class="attendanceIndex__title">勤怠管理</h2>
+    <div class="attendanceIndex__wrapper">
+      <ul class="generalTab">
+        <li class="generalTab__item attendances">
+          <%= link_to '勤怠登録', users_attendance_path(@attendance, year: params[:year], month: params[:month]), class: 'text' %>
+        </li>
+        <li class="generalTab__item attendances"><p class="text active">フィードバック</p></li>
+      </ul>
+
+      <%# TODO: いずれはプルダウンにしたい %>
+      <div class="attendanceIndex__calendar">
+        <% @unit_prices_years.each do |year| %>
+          <p class="item">
+            <%= link_to users_attendance_path(@attendance, year: year[0], month: year[1]) do %>
+              <%= year[0] %>
+            <% end %>
+          </p>
+        <% end %>
+      </div>
+
+      <%= render 'users/attendances/month_tab', monthly_unit_prices: @monthly_unit_prices %>
+
+      <div class="feedBackContents">
+        <div class="wrapper">
+          <div class="attendanceForCompanion">
+            <h3 class="feedBackContents__title required">1. 五段階評価をご入力ください。</h3>
+            <div class="attendanceForCompanion__wrap">
+              <h4 class="title">依頼された上限時間内に業務を遂行することができたか?</h4>
+              <p class="text"><%= @feed_back.within_time_i18n %></p>
+            </div>
+            <div class="attendanceForCompanion__wrap">
+              <h4 class="title">依頼された業務を正確に遂行する事が出来たか？</h4>
+              <p class="text"><%= @feed_back.achieved_i18n %></p>
+            </div>
+            <div class="attendanceForCompanion__wrap">
+              <h4 class="title">お客様とコミュニケーションは適切頻度かつ正確にできたか？</h4>
+              <p class="text"><%= @feed_back.communication_i18n %></p>
+            </div>
+            <div class="attendanceForCompanion__wrap">
+              <h4 class="title">業務内容に関して自身のスキルは十分だったか？</h4>
+              <p class="text"><%= @feed_back.partner_skills_i18n %></p>
+            </div>
+          </div>
+
+          <div class="feedBackContents__wrapper flex">
+            <h3 class="feedBackContents__title required">2. 事務局を入れた3者間で面談を希望しますか?</h3>
+            <%= @feed_back.interview_i18n %>
+          </div>
+
+          <div class="feedBackContents__wrapper">
+            <h3 class="feedBackContents__title required">3. その他要望・相談があれば記載ください。</h3>
+            <%= @feed_back.request %>
+          </div>
+
+          <div class="feedBackContents__wrapper flex">
+            <p class="feedBackContents__text">※企業へは<span class="border">1.五段階評価</span>のみが送信されます。</p>
+          </div>
+        </div>
+
+        <div class="wrapper">
+          <h3 class="feedBackContents__title">企業の評価</h3>
+          <div class="attendanceForCompanion">
+            <div class="attendanceForCompanion__wrap">
+              <h4 class="title">依頼された上限時間内に業務を遂行することができたか?</h4>
+              <p class="text"><%= @client_feed_back&.within_time_i18n %></p>
+            </div>
+            <div class="attendanceForCompanion__wrap">
+              <h4 class="title">依頼された業務を正確に遂行する事が出来たか？</h4>
+              <p class="text"><%= @client_feed_back&.achieved_i18n %></p>
+            </div>
+            <div class="attendanceForCompanion__wrap">
+              <h4 class="title">お客様とコミュニケーションは適切頻度かつ正確にできたか？</h4>
+              <p class="text"><%= @client_feed_back&.communication_i18n %></p>
+            </div>
+            <div class="attendanceForCompanion__wrap">
+              <h4 class="title">業務内容に関して自身のスキルは十分だったか？</h4>
+              <p class="text"><%= @client_feed_back&.partner_skills_i18n %></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

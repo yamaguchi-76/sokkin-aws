@@ -1,0 +1,17 @@
+setup:
+  config:
+    RACK_ENV: production
+    RAILS_ENV: $RAILS_ENV
+    NODE_ENV: production
+    RAILS_LOG_TO_STDOUT: enabled
+    RAILS_SERVE_STATIC_FILES: enabled
+build:
+  docker:
+    web: Dockerfile
+release:
+  image: web
+  command:
+    - rails assets:precompile
+    - bundle exec rails db:migrate
+run:
+  web: bundle exec puma -C config/puma.rb

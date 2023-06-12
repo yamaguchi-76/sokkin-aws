@@ -1,0 +1,64 @@
+<%# TODO: 登録時、ログイン時でクラスを分けたい %>
+<div class="inputFormIndex login openItem">
+  <%= render 'users/shared/side_menu' %>
+  <div class="openItem__wrapper">
+    <h1 class="inputFormIndex__title"><%= first_sign_in? ? 'プロフィール' : '会員登録' %></h1>
+    <div class="inputFormIndex__wrapper">
+      <%= render "users/shared/profile_links" %>
+      <div class="formDetailItem">
+        <div class="basicHead edit">
+          <div class="wrapper">
+            <h3 class="basicHead__title">基本情報</h3>
+            <p class="basicHead__sub">basic info</p>
+          </div>
+          <%= link_to '編集する', edit_users_basic_infos_path, class: 'generalButton outlineBlack textBlack edit' %>
+        </div>
+        <% if current_user.image_url %>
+          <figure class="formDetailItem__image"><%= image_tag current_user.image_url(:small) %></figure>
+        <% end %>
+        <div class="infoFormItemGroup">
+          <div class="infoFormItem basicInfo infoFormItemGroup__box">
+            <div class="wrapper">
+              <h3 class="infoFormItem__title required">氏名</h3>
+              <p class="infoFormItem__text"><%= current_user.full_name %></p>
+            </div>
+          </div>
+          <div class="infoFormItem basicInfo infoFormItemGroup__box">
+            <div class="wrapper">
+              <h3 class="infoFormItem__title required">ふりがな</h3>
+              <p class="infoFormItem__text"><%= current_user.full_name_kana %></p>
+            </div>
+          </div>
+          <div class="infoFormItem basicInfo infoFormItemGroup__box">
+            <div class="wrapper">
+              <h3 class="infoFormItem__title required">電話番号</h3>
+              <p class="infoFormItem__text"><%= current_user.phone_number %></p>
+            </div>
+          </div>
+          <div class="infoFormItem basicInfo infoFormItemGroup__box">
+            <div class="wrapper">
+              <h3 class="infoFormItem__title required">住所</h3>
+              <p class="infoFormItem__text"><%= current_user.address %></p>
+            </div>
+          </div>
+          <div class="infoFormItem basicInfo infoFormItemGroup__box">
+            <div class="wrapper">
+              <h3 class="infoFormItem__title required">性別</h3>
+              <p class="infoFormItem__text"><%= current_user.gender_i18n %></p>
+            </div>
+          </div>
+          <div class="infoFormItem basicInfo infoFormItemGroup__box">
+            <div class="wrapper">
+              <h3 class="infoFormItem__title required">生年月日</h3>
+              <p class="infoFormItem__text">
+                <% if current_user.birthday %>
+                  <%= l current_user.birthday %>
+                <% end %>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

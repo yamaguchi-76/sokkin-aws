@@ -1,0 +1,99 @@
+<div class="attendanceIndex openItem">
+  <%= render 'companies/shared/side_menu' %>
+  <div class="openItem__wrapper">
+    <h2 class="attendanceIndex__title">勤怠管理</h2>
+    <div class="attendanceIndex__wrapper">
+      <ul class="generalTab">
+        <li class="generalTab__item attendances">
+          <%= link_to '勤務状況', companies_attendance_path(@attendance, user_id: @attendance.user_id, year: params[:year], month: params[:month] ), class: 'text' %>
+        </li>
+        <li class="generalTab__item attendances"><p class="text active">フィードバック</p></li>
+      </ul>
+
+      <%# TODO: いずれはプルダウンにしたい %>
+      <div class="attendanceIndex__calendar">
+        <% @years.each do |year| %>
+          <p class="item">
+            <%= link_to companies_attendance_path(@attendance, year: year[0], month: year[1], user_id: params[:user_id]) do %>
+              <%= year[0] %>
+            <% end %>
+          </p>
+        <% end %>
+      </div>
+
+      <%# TODO: いずれはプルダウンにしたい %>
+      <%= render 'companies/attendances/feed_back_month_tab', monthly_unit_prices: @monthly_unit_prices %>
+
+      <div class="feedBackContents">
+        <div class="wrapper">
+          <h3 class="feedBackContents__title required">1. 五段階評価をご入力ください。</h3>
+          <%= form_with(model: @client_feed_back, url: companies_attendance_client_feed_backs_path(@operating_time, attendance_id: @attendance.id), method: :post ) do |f| %>
+            <%= f.hidden_field :user_id, value: params[:user_id] %>
+            <%= f.hidden_field :year, value: params[:year] %>
+            <%= f.hidden_field :month, value: params[:month] %>
+
+            <div class="feedBackSort">
+              <div class="feedBackSort__top">
+                <p class="text">大幅に<br>改善が必要</p>
+                <p class="text">一部改善が<br>必要</p>
+                <p class="text">できた</p>
+                <p class="text">期待以上に<br>できた</p>
+                <p class="text">大幅に期待<br>以上にできた</p>
+              </div>
+              <div class="feedBackSort__left">
+                <p class="title">依頼した上限稼働時間内に業務が遂行されたか？</p>
+                <div class="formGroup">
+                  <%= f.collection_radio_buttons :within_time, ClientFeedBack.within_times_i18n, :first, :last, class: 'formRadio' do |radio| %>
+                    <%= radio.radio_button(class: "formRadio__radio") %>
+                  <% end %>
+                </div>
+              </div>
+              <div class="feedBackSort__left">
+                <p class="title">依頼した業務を正確に遂行されたか？</p>
+                <div class="formGroup">
+                  <%= f.collection_radio_buttons :achieved, ClientFeedBack.achieveds_i18n, :first, :last, class: 'formRadio' do |radio| %>
+                    <%= radio.radio_button(class: "formRadio__radio") %>
+                  <% end %>
+                </div>
+              </div>
+              <div class="feedBackSort__left">
+                <p class="title">パートナーとのコミュニケーションは適切頻度かつ正確にできたか？</p>
+                <div class="formGroup">
+                  <%= f.collection_radio_buttons :communication, ClientFeedBack.communications_i18n, :first, :last, class: 'formRadio' do |radio| %>
+                    <%= radio.radio_button(class: "formRadio__radio") %>
+                  <% end %>
+                </div>
+              </div>
+              <div class="feedBackSort__left">
+                <p class="title">業務内容に関してパートナーのスキルは十分だったか？</p>
+                <div class="formGroup">
+                  <%= f.collection_radio_buttons :partner_skills, ClientFeedBack.partner_skills_i18n, :first, :last, class: 'formRadio' do |radio| %>
+                    <%= radio.radio_button(class: "formRadio__radio") %>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+            <div class="feedBackContents__wrapper flex">
+              <h3 class="feedBackContents__title required">2. 事務局を入れた3者間で面談を希望しますか?</h3>
+              <div class="formGroup">
+                <%= f.collection_radio_buttons :interview, ClientFeedBack.interviews_i18n, :first, :last, class: 'formRadio' do |radio| %>
+                  <%= radio.label(class: "formRadio__text") %>
+                  <%= radio.radio_button(class: "formRadio__radio") %>
+                <% end %>
+              </div>
+            </div>
+            <div class="feedBackContents__wrapper">
+              <h3 class="feedBackContents__title required">3. その他要望・相談があれば記載ください。</h3>
+              <p class="feedBackContents__text">300文字以内で入力してください</p>
+              <%= f.text_area :request, class: 'textArea' %>
+            </div>
+            <div class="feedBackContents__wrapper flex">
+              <p class="feedBackContents__text">※パートナーへは<span class="border">1.五段階評価</span>のみが送信されます。</p>
+              <%= f.submit 'フィードバック送信', class: 'generalButton bgBrown textWhite' %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

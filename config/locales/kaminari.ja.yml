@@ -1,0 +1,8 @@
+ja:
+  helpers:
+    page_entries_info:
+      more_pages:
+        display_entries: "<b>%{total}</b>件中 <b>%{first} ~ %{last}</b>件を表示"
+  views:
+    pagination:
+      truncate: "..."

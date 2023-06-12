@@ -1,0 +1,27 @@
+@use '../../variable' as *;
+
+.categoryList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+
+  @include mq(tab) {
+    overflow: hidden;
+  }
+
+  &__item {
+    width: fit-content;
+    height: fit-content;
+    color: $white;
+    font-family: Yu Gothic, YuGothic, "ヒラギノ角ゴ Pro", "Hiragino Kaku Gothic Pro", "Hiragino Sans", Meiryo, メイリオ, "MS P Gothic", sans-serif;
+    font-size: 14px;
+    background: $brown;
+    padding: 4px 14px;
+    border-radius: 37px;
+    word-break: keep-all;
+
+    @include mq(tab) {
+      font-size: 12px;
+    }
+  }
+}

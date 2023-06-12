@@ -1,0 +1,35 @@
+<div class="signInIndex">
+  <div class="signInIndex__container">
+    <h1 class="signInIndex__title">企業ログイン</h1>
+    <div class="signInIndex__wrapper">
+      <div class="signBox signIn">
+        <div class="signBox__wrapper">
+          <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+            <div class="loginFormItem">
+              <%= f.label :email, class: 'loginFormItem__title' %>
+              <%= f.email_field :email, autofocus: true, autocomplete: 'email', placeholder: '例）abcd@sokkin-match.me', class: 'loginFormItem__item' %>
+            </div>
+
+            <div class="loginFormItem">
+              <%= f.label :password, class: 'loginFormItem__title' %>
+              <%= f.password_field :password, autocomplete: 'current-password', placeholder: '半角英数8桁以上で入力してください', class: 'loginFormItem__item' %>
+            </div>
+
+            <%= f.submit t('devise.shared.links.sign_in'), class: 'generalButton bgBrown textWhite' %>
+
+            <% if devise_mapping.rememberable? %>
+              <label class="agreementCheckBox center">
+                <%= f.check_box :remember_me, class: 'agreementCheckBox__checkbox' %>
+                <span class="agreementCheckBox__text">次回から自動的にログインする</span>
+              </label>
+            <% end %>
+          <% end %>
+
+          <div class="signBox__linkText">
+            <%= link_to 'パスワードを忘れた方はこちら', new_password_path(resource_name), class: 'text' %></li>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

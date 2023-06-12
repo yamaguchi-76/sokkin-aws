@@ -1,0 +1,128 @@
+.feedBackSort {
+  &__top {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+
+    @include mq(tab) {
+      justify-content: space-between;
+    }
+
+    @include mq(tab-min) {
+      padding-left: 270px;
+    }
+
+    > .text {
+      color: $black;
+      font-family: Yu Gothic, YuGothic, 'ヒラギノ角ゴ Pro', 'Hiragino Kaku Gothic Pro', 'Hiragino Sans', Meiryo, メイリオ, 'MS P Gothic', sans-serif;
+      font-size: 12px;
+      line-height: 1.5;
+      text-align: center;
+      position: relative;
+      padding-bottom: 20px;
+
+      &:not(:last-child) {
+        @include mq(tab-min) {
+          margin-right: 10px;
+        }
+      }
+
+      &:after {
+        font-weight: bold;
+        position: absolute;
+        bottom: 0;
+        margin: auto;
+        left: 0;
+        right: 0;
+      }
+
+      &:first-child:after {
+        content: '1';
+      }
+
+      &:nth-child(2):after {
+        content: '2';
+      }
+
+      &:nth-child(3):after {
+        content: '3';
+        bottom: -9px;
+      }
+
+      &:nth-child(4):after {
+        content: '4';
+      }
+
+      &:last-child:after {
+        content: '5';
+      }
+    }
+  }
+
+  &__left {
+    @include mq(tab-min) {
+      display: flex;
+    }
+
+    &:not(:last-child) {
+      margin-bottom: 20px;
+    }
+
+    &:nth-child(2) > .title:before {
+      content: 'Q1.';
+    }
+
+    &:nth-child(3) > .title:before {
+      content: 'Q2.';
+    }
+
+    &:nth-child(4) > .title:before {
+      content: 'Q3.';
+    }
+
+    &:last-child > .title:before {
+      content: 'Q4.';
+    }
+
+    > .title {
+      width: 270px;
+      color: $black;
+      font-size: 14px;
+      line-height: 1.5;
+      font-family: Yu Gothic, YuGothic, 'ヒラギノ角ゴ Pro', 'Hiragino Kaku Gothic Pro', 'Hiragino Sans', Meiryo, メイリオ, 'MS P Gothic', sans-serif;
+
+      @include mq(tab) {
+        width: 100%;
+        font-weight: bold;
+        margin-bottom: 10px;
+      }
+
+      &:before {
+        font-weight: bold;
+      }
+    }
+
+    > .formGroup {
+      margin: 0 0 0 16px;
+
+      @include mq(tab) {
+        justify-content: space-between;
+      }
+
+      > .formRadio__radio {
+        &:nth-child(2) {
+          margin-right: 45px;
+        }
+        &:nth-child(3) {
+          margin-right: 34px;
+        }
+        &:nth-child(4) {
+          margin-right: 34px;
+        }
+        &:nth-child(5) {
+          margin-right: 48px;
+        }
+      }
+    }
+  }
+}

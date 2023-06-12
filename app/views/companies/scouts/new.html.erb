@@ -1,0 +1,28 @@
+<main class="appliedDetailIndex scouts openItem">
+  <div class="applyModal">
+    <div class="applyModal__background"></div>
+    <div class="content">
+      <% if @propositions.blank? %>
+        <h2 class="applyModal__title">スカウト可能な案件はありません</h2>
+        <div class="applyModal__select">
+          <div class="wrapper">
+            <%= link_to '戻る', :back, class: 'generalButton bgBrown textWhite back' %>
+          </div>
+        </div>
+      <% else %>
+        <%= form_with(model: @scout, url: companies_user_scouts_path(user_id: @user.id), method: :post) do |f| %>
+          <h2 class="applyModal__title"><%= f.label 'スカウトする案件を選択する' %></h2>
+          <div class="applyModal__select">
+            <%= f.select :proposition_id, @propositions.map { |record| [record.title, record.id] }.to_h %>
+            <div class="wrapper">
+              <%= link_to 'キャンセル', :back, class: 'generalButton bgGray-5 textWhite' %>
+              <%= f.submit 'スカウトする', class: 'generalButton bgBrown textWhite' %>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+  <%= render 'companies/shared/side_menu' %>
+  <div class="openItem__wrapper"></div>
+</main>

@@ -1,0 +1,68 @@
+.generalTab {
+  display: flex;
+  padding: 0 25px;
+
+  @include mq(tab) {
+    display: block;
+  }
+
+  &__item {
+    width: 49%;
+    height: 47px;
+    line-height: 47px;
+    border-bottom: 1px solid $brown4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    @include mq(tab) {
+      width: 100%;
+    }
+
+    &:first-child {
+      margin-right: 1%;
+    }
+
+    &:hover {
+      opacity: .7;
+      cursor: pointer;
+      transition: .4s ease-in-out;
+    }
+
+    > .text {
+      color: $brown5;
+      font-family: Yu Gothic, YuGothic, 'ヒラギノ角ゴ Pro', 'Hiragino Kaku Gothic Pro', 'Hiragino Sans', Meiryo, メイリオ, 'MS P Gothic', sans-serif;
+      font-size: 16px;
+      font-weight: bold;
+      position: relative;
+
+      &.active:after {
+        content: '';
+        width: 120%;
+        height: 3px;
+        border-bottom: 3px solid $brown5;
+        background: $brown5;
+        display: block;
+        margin: 0 auto;
+        position: absolute;
+        left: -8%;
+        right: 0;
+        bottom: -19px;
+      }
+
+      > .number {
+        width: 18px;
+        height: 18px;
+        line-height: 18px;
+        color: $white;
+        font-family: Yu Gothic, YuGothic, 'ヒラギノ角ゴ Pro', 'Hiragino Kaku Gothic Pro', 'Hiragino Sans', Meiryo, メイリオ, 'MS P Gothic', sans-serif;
+        font-size: 12px;
+        text-align: center;
+        background: $brown;
+        border-radius: 50%;
+        display: inline-block;
+        margin-left: 4px;
+      }
+    }
+  }
+}

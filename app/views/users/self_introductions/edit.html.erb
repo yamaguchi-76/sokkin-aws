@@ -1,0 +1,17 @@
+<%# TODO: 登録時、ログイン時でクラスを分けたい %>
+<div class="inputFormIndex login openItem">
+  <%= render 'users/shared/side_menu' %>
+  <div class="openItem__wrapper">
+    <h1 class="inputFormIndex__title"><%= first_sign_in? ? 'プロフィール' : '会員登録' %></h1>
+    <div class="inputFormIndex__wrapper">
+      <%= render "users/shared/profile_links" %>
+      <div class="formDetailItem">
+        <div class="basicHead">
+          <h3 class="basicHead__title">自己紹介</h3>
+          <p class="basicHead__sub">self-introduction</p>
+        </div>
+        <%= render partial: 'form', locals: { self_introduction: @self_introduction, url: users_self_introductions_path } %>
+      </div>
+    </div>
+  </div>
+</div>

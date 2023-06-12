@@ -1,0 +1,48 @@
+@use '../../base/Variable' as *;
+
+.membershipHeader {
+  height: 100%;
+  background: $white;
+  padding: 30px 16px;
+
+  &__title {
+    color: $black;
+    font-family: Yu Gothic, YuGothic, 'ヒラギノ角ゴ Pro', 'Hiragino Kaku Gothic Pro', 'Hiragino Sans', Meiryo, メイリオ, 'MS P Gothic', sans-serif;
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+
+  &__menu {
+    > .item {
+      font-family: Yu Gothic, YuGothic, 'ヒラギノ角ゴ Pro', 'Hiragino Kaku Gothic Pro', 'Hiragino Sans', Meiryo, メイリオ, 'MS P Gothic', sans-serif;
+      font-size: 16px;
+      font-weight: bold;
+      padding: 10px 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      a {
+        color: $black;
+      }
+
+      &:hover {
+        opacity: .7;
+        cursor: pointer;
+        transition: .4s ease-in-out;
+      }
+
+      &:not(:last-child) {
+        border-bottom: 1px solid $gray3;
+      }
+
+      &:after {
+        content: '';
+        width: 7px;
+        height: 12px;
+        padding-right: 10px;
+        background: url('/common/img/icon/right_arrow.svg') no-repeat;
+      }
+    }
+  }
+}

@@ -1,0 +1,257 @@
+<div class="container mt-5">
+  <% provide(:title, "勤怠管理_編集") %>
+  <%= form_with model: @attendance, url: admins_attendance_path, method: :patch do |f| %>
+    <h3>勤怠情報</h3>
+    <%= f.fields_for :operating_times, (@operating_times) do |operating_time| %>
+      <div class="row">
+        <div class="d-flex align-items-center">
+          <div class="col-md-1 me-2">
+            <div class="form-group d-flex align-items-center">
+              <label class="control-label">ID</label>
+              <%= operating_time.text_field :id, readonly: true, class: "form-control", style: "border: none" %>
+            </div>
+          </div>
+          <div class="form-group d-flex align-items-center">
+            <%= operating_time.label :working_month, class: "control-label d-none" %>
+            <%= operating_time.hidden_field :working_month, value: @monthly_unit_price.month, readonly: true, class: "form-control" %>
+          </div>
+          <div class="col-md-3 me-2">
+            <div class="form-group d-flex align-items-center">
+              <%= operating_time.label :working_days, class: "control-label d-none" %>
+              <%= operating_time.date_field :working_days, max: Date.new(params[:year].to_i, @monthly_unit_price.month, -1), min: Date.new(params[:year].to_i, @monthly_unit_price.month, 1), class: "form-control" %>
+            </div>
+          </div>
+          <div class="col-md-3 me-2">
+            <div class="form-group d-flex align-items-center">
+              <div>
+                <%= operating_time.label :working_hours, class: "control-label d-none" %>
+                <%= operating_time.number_field :working_hours, placeholder: '8', id: 'working_hours', class: "form-control" %>
+              </div>
+              <div style="width: 50px">時間</div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group d-flex align-items-center">
+              <%= operating_time.label :job_description, class: "control-label d-none" %>
+              <%= operating_time.text_field :job_description, placeholder: '30文字以内で業務内容を入力してください。', class: "form-control" %>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+    <div class="d-flex">
+      <div  class="mt-5 me-5">
+        <h3>ユーザーフィードバック</h3>
+        <%= fields_for(@feed_back) do |feed_back| %>
+          <div class="d-flex align-items-center">
+            <div class="form-group mt-3 me-2">
+              <div class="d-flex align-items-center">
+                <label class="me-2">ID</label>
+                <%= feed_back.text_field :id, readonly: true, class: "form-control", style: "border: none; width: 50px" %>
+              </div>
+            </div>
+            <div class="form-group mt-3 me-2">
+              <div class="d-flex align-items-center">
+                <%= feed_back.text_field :year, value: @monthly_unit_price.year, readonly: true, class: "form-control", style: "border: none; width: 100px" %>
+                <label>年</label>
+              </div>
+            </div>
+            <div class="form-group mt-3">
+              <div class="d-flex align-items-center">
+                <%= feed_back.text_field :month, value: @monthly_unit_price.month, readonly: true, class: "form-control", style: "border: none; width: 50px" %>
+                <label>月</label>
+              </div>
+            </div>
+          </div>
+          <div class="form-group mt-3">
+            <label>Q1.依頼された上限時間内に業務を遂行することができたか?</label>
+            <div>
+              <%= feed_back.collection_radio_buttons :within_time, FeedBack.within_times_i18n, :first, :last do |w| %>
+                <div class="d-block">
+                  <%= w.radio_button class: "form-check-input" %>
+                  <%= w.label class: "ms-1 me-2" %>
+                </div>
+              <% end %>
+            </div>
+          </div>
+          <div class="form-group mt-3">
+            <label>Q2.依頼された業務を正確に遂行する事が出来たか？</label>
+            <div>
+              <%= feed_back.collection_radio_buttons :achieved, FeedBack.achieveds_i18n, :first, :last do |a| %>
+                <div class="d-block">
+                  <%= a.radio_button class: "form-check-input" %>
+                  <%= a.label class: "ms-1 me-2" %>
+                </div>
+              <% end %>
+            </div>
+          </div>
+          <div class="form-group mt-3">
+            <label>Q3.お客様とコミュニケーションは適切頻度かつ正確にできたか？</label>
+            <div>
+              <%= feed_back.collection_radio_buttons :communication, FeedBack.communications_i18n, :first, :last do |c| %>
+                <div class="d-block">
+                  <%= c.radio_button class: "form-check-input" %>
+                  <%= c.label class: "ms-1 me-2" %>
+                </div>
+              <% end %>
+            </div>
+          </div>
+          <div class="form-group mt-3">
+            <label>Q4.業務内容に関して自身のスキルは十分だったか？</label>
+            <div>
+              <%= feed_back.collection_radio_buttons :partner_skills, FeedBack.partner_skills_i18n, :first, :last do |p| %>
+                <div class="d-block">
+                  <%= p.radio_button class: "form-check-input" %>
+                  <%= p.label class: "ms-1 me-2" %>
+                </div>
+              <% end %>
+            </div>
+          </div>
+          <div class="form-group mt-3">
+            <label>2.事務局を入れた3者間で面談を希望しますか?</label>
+            <div>
+              <%= feed_back.collection_radio_buttons :interview, FeedBack.interviews_i18n, :first, :last do |i| %>
+                <div class="d-block">
+                  <%= i.radio_button class: "form-check-input" %>
+                  <%= i.label class: "ms-1 me-2" %>
+                </div>
+              <% end %>
+            </div>
+          </div>
+          <div class="form-group mt-3">
+            <label>3.その他要望・相談があれば記載ください。</label>
+            <div>
+              <%= feed_back.text_area :request, class: "form-control" %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+      <div class="mt-5">
+        <h3>企業フィードバック</h3>
+        <%= fields_for(@client_feed_back) do |client_feed_back| %>
+          <div class="d-flex align-items-center">
+            <div class="form-group mt-3">
+              <div class="d-flex align-items-center">
+                <%= client_feed_back.label :id, class: "control-label" %>
+                <%= client_feed_back.text_field :id, readonly: true, class: "form-control", style: "border: none; width: 50px" %>
+              </div>
+            </div>
+            <div class="form-group mt-3">
+              <div class="d-flex align-items-center">
+                <%= client_feed_back.text_field :year, value: @monthly_unit_price.year, readonly: true, class: "form-control", style: "border: none; width: 100px" %>
+                <label>年</label>
+              </div>
+            </div>
+            <div class="form-group mt-3">
+              <div class="d-flex align-items-center">
+                <%= client_feed_back.text_field :month, value: @monthly_unit_price.month, readonly: true, class: "form-control", style: "border: none; width: 50px" %>
+                <label>月</label>
+              </div>
+            </div>
+          </div>
+          <div class="form-group mt-3">
+            <label>Q1.依頼された上限時間内に業務を遂行されたか?</label>
+            <div>
+              <%= client_feed_back.collection_radio_buttons :within_time, FeedBack.within_times_i18n, :first, :last do |w| %>
+                <div class="d-flex align-items-center">
+                  <%= w.radio_button class: "form-check-input" %>
+                  <%= w.label class: "ms-1 me-2" %>
+                </div>
+              <% end %>
+            </div>
+          </div>
+          <div class="form-group mt-3">
+            <label>Q2.依頼された業務を正確に遂行されたか？</label>
+            <div>
+              <%= client_feed_back.collection_radio_buttons :achieved, FeedBack.achieveds_i18n, :first, :last do |a| %>
+                <div class="d-flex align-items-center">
+                  <%= a.radio_button class: "form-check-input" %>
+                  <%= a.label class: "ms-1 me-2" %>
+                </div>
+              <% end %>
+            </div>
+          </div>
+          <div class="form-group mt-3">
+            <label>Q3.お客様とコミュニケーションは適切頻度かつ正確にできたか？</label>
+            <div>
+              <%= client_feed_back.collection_radio_buttons :communication, FeedBack.communications_i18n, :first, :last do |c| %>
+                <div class="d-flex align-items-center">
+                  <%= c.radio_button class: "form-check-input" %>
+                  <%= c.label class: "ms-1 me-2" %>
+                </div>
+              <% end %>
+            </div>
+          </div>
+          <div class="form-group mt-3">
+            <label>Q4.業務内容に関して自身のスキルは十分だったか？</label>
+            <div>
+              <%= client_feed_back.collection_radio_buttons :partner_skills, FeedBack.partner_skills_i18n, :first, :last do |p| %>
+                <div class="d-flex align-items-center">
+                  <%= p.radio_button class: "form-check-input" %>
+                  <%= p.label class: "ms-1 me-2" %>
+                </div>
+              <% end %>
+            </div>
+          </div>
+          <div class="form-group mt-3">
+            <label>3.その他要望・相談があれば記載ください。</label>
+            <div>
+              <%= client_feed_back.text_area :request, class: "form-control" %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+    <div class="mt-5">
+      <h3>勤怠状況、ステータス</h3>
+      <%= f.fields_for :monthly_unit_prices, (@monthly_unit_price) do |monthly_unit_price| %>
+        <div class="d-flex align-items-center">
+          <div class="form-group mt-3 me-2">
+            <div class="form-group d-flex align-items-center">
+              <%= monthly_unit_price.label :id, class: "control-label me-2" %>
+              <%= monthly_unit_price.text_field :id, readonly: true, class: "form-control", style: "border: none; width: 50px" %>
+            </div>
+          </div>
+          <div class="form-group mt-3 me-2">
+            <div class="form-group d-flex align-items-center">
+              <%= monthly_unit_price.text_field :year, value: @monthly_unit_price.year, readonly: true, class: "form-control", style: "border: none; width: 100px" %>
+              <%= monthly_unit_price.label :year, class: "control-label" %>
+            </div>
+          </div>
+          <div class="form-group mt-3 me-2">
+            <div class="form-group d-flex align-items-center">
+              <%= monthly_unit_price.text_field :month, value: @monthly_unit_price.month, readonly: true, class: "form-control", style: "border: none; width: 50px" %>
+              <%= monthly_unit_price.label :month, class: "control-label" %>
+            </div>
+          </div>
+          <%= monthly_unit_price.label :active, class: "control-label d-none" %>
+          <%= monthly_unit_price.hidden_field :active, value: true, readonly: true, class: "form-control" %>
+        </div>
+        <div class="d-flex align-items-center mt-3">
+          <%= monthly_unit_price.label :unit_price, class: "col-sm-3 control-label" %>
+          <%= monthly_unit_price.number_field :unit_price, class: "form-control", style: "width: 200px" %>円
+        </div>
+      <% end %>
+    </div>
+    <div class="mt-5">
+      <h3>支払いステータス</h3>
+      <%= f.fields_for :payment_statuses, (@payment_status) do |payment_status| %>
+        <div class="form-group mt-3 me-2">
+          <div class="form-group d-flex align-items-center">
+            <%= payment_status.label :id, class: "control-label me-2" %>
+            <%= payment_status.text_field :id, readonly: true, class: "form-control", style: "border: none; width: 50px" %>
+          </div>
+        </div>
+        <div class="d-flex align-items-center mt-3">
+          <%= payment_status.label :paid, class: "col-sm-3 control-label" %>
+          <%= payment_status.select :paid, PaymentStatus.paids.map { |k, _| [t("enums.payment_status.paid.#{k}"), k] }.to_h, {}, class: "form-control" %>
+        </div>
+      <% end %>
+    </div>
+    <div class="text-center mt-3">
+      <div class="actions">
+        <%= f.submit "保存", class: "mb-3 btn btn-primary" %>
+      </div>
+    </div>
+  <% end %>
+</div>

@@ -1,0 +1,24 @@
+@use '../../base/Variable' as *;
+
+.loginFormItem {
+  &__title {
+    font-size: 14px;
+    font-family: Yu Gothic, YuGothic, 'ヒラギノ角ゴ Pro', 'Hiragino Kaku Gothic Pro', 'Hiragino Sans', Meiryo, メイリオ, 'MS P Gothic', sans-serif;
+    font-weight: bold;
+    margin-bottom: 8px;
+    display: block;
+  }
+
+  &__item {
+    width: 400px;
+    color: $gray2;
+    font-family: Yu Gothic, YuGothic, 'ヒラギノ角ゴ Pro', 'Hiragino Kaku Gothic Pro', 'Hiragino Sans', Meiryo, メイリオ, 'MS P Gothic', sans-serif;
+    border-radius: 5px;
+    background: $gray;
+    padding: 12px 10px;
+
+    @include mq(tab) {
+      width: 100%;
+    }
+  }
+}

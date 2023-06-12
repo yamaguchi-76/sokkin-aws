@@ -1,0 +1,75 @@
+<div class="accountIndex openItem">
+  <%= render 'users/shared/side_menu' %>
+  <div class="openItem__wrapper">
+    <h1 class="accountIndex__title">アカウント設定</h1>
+    <div class="accountIndex__wrapper">
+      <div class="formDetailItem">
+        <div class="basicHead edit">
+          <div class="wrapper">
+            <h3 class="basicHead__title">個人情報</h3>
+            <p class="basicHead__sub">personal info</p>
+          </div>
+          <%= link_to '編集する', edit_user_registration_path, class: 'generalButton outlineBlack textBlack edit' %>
+        </div>
+
+        <div class="infoFormItemGroup">
+          <div class="infoFormItem personalInfo infoFormItemGroup__box">
+            <div class="wrapper">
+              <h3 class="infoFormItem__title required">メールアドレス</h3>
+              <p class="infoFormItem__text"><%= current_user.email %></p>
+            </div>
+          </div>
+          <div class="infoFormItem personalInfo infoFormItemGroup__box">
+            <div class="wrapper">
+              <h3 class="infoFormItem__title required">パスワード</h3>
+              <p class="infoFormItem__text"><%= current_user.password %></p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="formDetailItem">
+        <div class="basicHead edit">
+          <div class="wrapper">
+            <h3 class="basicHead__title">振込先口座</h3>
+            <p class="basicHead__sub">account</p>
+          </div>
+          <%= link_to '編集する', edit_user_registration_path, class: 'generalButton outlineBlack textBlack edit' %>
+        </div>
+
+        <div class="infoFormItemGroup">
+          <div class="infoFormItem account infoFormItemGroup__box">
+            <div class="wrapper">
+              <h3 class="infoFormItem__title required">金融機関</h3>
+              <p class="infoFormItem__text"><%= @bank_account.bank_name %></p>
+            </div>
+          </div>
+          <div class="infoFormItem account infoFormItemGroup__box">
+            <div class="wrapper">
+              <h3 class="infoFormItem__title required">支店名</h3>
+              <p class="infoFormItem__text"><%= @bank_account.branch_name %></p>
+            </div>
+          </div>
+          <div class="infoFormItem account infoFormItemGroup__box">
+            <div class="wrapper">
+              <h3 class="infoFormItem__title required">口座種別</h3>
+              <p class="infoFormItem__text"><%= @bank_account.account_kind_i18n %></p>
+            </div>
+          </div>
+          <div class="infoFormItem account infoFormItemGroup__box">
+            <div class="wrapper">
+              <h3 class="infoFormItem__title required">口座番号</h3>
+              <p class="infoFormItem__text"><%= @bank_account.account_number %></p>
+            </div>
+          </div>
+          <div class="infoFormItem account infoFormItemGroup__box">
+            <div class="wrapper">
+              <h3 class="infoFormItem__title required">口座名義</h3>
+              <p class="infoFormItem__text"><%= @bank_account.account_holder %></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

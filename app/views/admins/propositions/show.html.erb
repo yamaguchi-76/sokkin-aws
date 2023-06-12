@@ -1,0 +1,146 @@
+<div class="container mt-5">
+  <% provide(:title, "案件詳細") %>
+
+  <table class="table">
+    <tbody>
+      <tr>
+        <th>ID</th>
+        <td><%= @proposition.id %></td>
+      </tr>
+
+      <tr>
+        <th>ステータス</th>
+        <td><%= @proposition.status_i18n %></td>
+      </tr>
+
+      <tr>
+        <% if @proposition.image_url %>
+          <%=  image_tag @proposition.image_url(:proposition_show) %>
+        <% else %>
+          <%= image_tag '/images/default_proposition_image.png' %>
+        <% end %>
+      </tr>
+
+      <tr>
+        <th>業界</th>
+        <td><%= @proposition.industry.name %></td>
+      </tr>
+
+      <tr>
+        <th><%= t('activerecord.attributes.proposition.job_kind') %></th>
+        <td><%= @proposition.job_kinds.map(&:name).join(', ') %></td>
+      </tr>
+
+      <tr>
+        <th><%= t('activerecord.attributes.proposition.work_range') %></th>
+        <td><%= @proposition.work_ranges.map(&:name).join(', ') %></td>
+      </tr>
+
+      <tr>
+        <th><%= t('activerecord.attributes.proposition.title') %></th>
+        <td><%= @proposition.title %></td>
+      </tr>
+
+      <tr>
+        <th><%= t('activerecord.attributes.proposition.estimated_work_time_from') %></th>
+        <td><%= @proposition.estimated_work_time_from %></td>
+      </tr>
+
+      <tr>
+        <th><%= t('activerecord.attributes.proposition.estimated_work_time_to') %></th>
+        <td><%= @proposition.estimated_work_time_to %></td>
+      </tr>
+
+      <tr>
+        <th><%= t('activerecord.attributes.proposition.operation_start_at') %></th>
+        <td><%= @proposition.operation_start_at %></td>
+      </tr>
+
+      <tr>
+        <th><%= t('activerecord.attributes.proposition.contract_period') %></th>
+        <td><%= @proposition.contract_period %></td>
+      </tr>
+
+      <tr>
+        <th><%= t('activerecord.attributes.proposition.work_condition') %></th>
+        <td><%= @proposition.work_conditions.map(&:name).join(', ') %></td>
+      </tr>
+
+      <tr>
+        <th><%= t('activerecord.attributes.proposition.required_skill') %></th>
+        <td><%= @proposition.required_skill %></td>
+      </tr>
+
+      <tr>
+        <th><%= t('activerecord.attributes.proposition.welcome_skill') %></th>
+        <td><%= @proposition.welcome_skill %></td>
+      </tr>
+
+      <tr>
+        <th><%= t('activerecord.attributes.proposition.background') %></th>
+        <td><%= simple_format @proposition.background %></td>
+      </tr>
+
+      <tr>
+        <th><%= t('activerecord.attributes.proposition.work_order') %></th>
+        <td><%= simple_format @proposition.work_order %></td>
+      </tr>
+
+      <tr>
+        <th><%= t('activerecord.attributes.proposition.ng_point') %></th>
+        <td><%= simple_format @proposition.ng_point %></td>
+      </tr>
+
+      <tr>
+        <th><%= t('activerecord.attributes.proposition.note') %></th>
+        <td><%= simple_format @proposition.note %></td>
+      </tr>
+
+      <tr>
+        <th><%= t('activerecord.attributes.proposition.unit_price') %></th>
+        <td><%= @proposition.unit_price %></td>
+      </tr>
+
+      <tr>
+        <th>時給単価</th>
+        <td><%= @proposition.unit_price_per_hour %></td>
+      </tr>
+
+      <tr>
+        <th><%= t('activerecord.attributes.proposition.application_deadline') %></th>
+        <td><%= @proposition.application_deadline %></td>
+      </tr>
+
+    </tbody>
+  </table>
+    <div class="text-center">
+      <%= link_to '編集', edit_admins_proposition_path(@proposition.id), class: "mb-3 btn btn-primary" %>
+      <%= link_to '戻る', admins_propositions_path, class: "mb-3 btn btn-primary" %>
+    </div>
+
+  <h2>応募一覧</h2>
+  <div class="mb-5">
+    <table class="table">
+      <thead>
+      <tr>
+        <th><%= t('activerecord.attributes.id') %></th>
+        <th><%= t('activerecord.attributes.user.full_name') %></th>
+        <th><%= t('activerecord.attributes.educational_background.recent_academic_history') %></th>
+        <th>応募ステータス</th>
+        <th colspan="1"></th>
+      </tr>
+      </thead>
+      <tbody>
+        <% @proposition_entries.each do |entry| %>
+          <tr>
+            <td><%= link_to entry.user.id, admins_user_path(entry.user.id) %></td>
+            <td><%= entry.user.full_name %></td>
+            <td><%= entry.user.educational_background&.recent_academic_history_i18n %></td>
+            <td><%= entry.status_i18n %></td>
+            <td><%= update_entry_status_link(entry) %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

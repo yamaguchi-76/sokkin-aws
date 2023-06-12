@@ -1,0 +1,7 @@
+<%= link_to 'お気に入りから除外',
+  users_proposition_favorite_path(proposition_id: proposition.id, id: current_user.favorites.find_by!(proposition_id: proposition.id).id),
+  id: "js-favorite-button-for-proposition-#{proposition.id}",
+  method: :delete,
+  remote: true,
+  class: 'generalButton outlineBlack bgWhite textBlack unFavorite'
+%>

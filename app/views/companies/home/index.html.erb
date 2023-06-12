@@ -1,0 +1,33 @@
+<div class="homeIndex openItem">
+  <%= render 'companies/shared/side_menu' %>
+  <div class="openItem__wrapper">
+    <h2 class="homeIndex__title">ようこそ、<%= current_company.name %>　様</h2>
+    <p class="homeIndex__leadText">次のステップでSOKKIN MATCHを活用しましょう。</p>
+
+    <div class="companyBox">
+      <h3 class="companyBox__title">案件を登録</h3>
+      <p class="companyBox__text">まずは、案件を登録して、パートナーを募りましょう。案件はSOKKIN MATCH事務局の承認後に、登録が完了します。</p>
+      <%= link_to '案件登録', new_companies_proposition_path, class: 'generalButton bgBlack textWhite' %>
+    </div>
+    <div class="companyBox">
+      <h3 class="companyBox__title">スカウトする</h3>
+      <p class="companyBox__text">条件検索して、気になるパートナーを見つけたら、積極的にスカウトしましょう。</p>
+      <%= link_to 'スカウト', companies_users_path, class: 'generalButton bgBlack textWhite' %>
+    </div>
+    <div class="companyBox">
+      <h3 class="companyBox__title">応募者を見る</h3>
+      <p class="companyBox__text">案件に対してどれだけ応募がきているか、ステータス別に確認してみましょう。</p>
+      <%= link_to '応募者一覧', companies_proposition_entries_path, class: 'generalButton bgBlack textWhite' %>
+    </div>
+    <div class="companyBox">
+      <h3 class="companyBox__title">勤怠の確認やフィードバックを登録</h3>
+      <p class="companyBox__text">パートナーの勤務状況を確認できます。案件終了後、もしくは月末になったらフィードバックを入力しましょう。</p>
+      <%= link_to '勤怠管理', companies_attendances_path, class: 'generalButton bgBlack textWhite' %>
+    </div>
+    <div class="bubbleContent">
+      <%# TODO: お問い合わせ実装後、対応 %>
+      <h3 class="bubbleContent__title">利用方法がご不明な場合は、<%= link_to 'ご利用の流れ', '', class: 'link' %>をご参照ください。</h3>
+      <%= link_to 'ご利用の流れ', users_contact_url, class: 'generalButton bgBrown textWhite' %>
+    </div>
+  </div>
+</div>

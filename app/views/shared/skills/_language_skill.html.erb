@@ -1,0 +1,15 @@
+<div class="skillCheckArea">
+  <h2 class="skillCheckArea__title">語学力</h2>
+  <div class="skillTableForm">
+    <h3 class="skillTableForm__title">実務経験年数</h3>
+    <p class="skillTableForm__content"><%= skill.language_experience_i18n %></p>
+  </div>
+  <div class="skillTableForm">
+    <h3 class="skillTableForm__title">対応可能な業務範囲</h3>
+    <p class="skillTableForm__content">
+      <% skill.language_scopes.each do |scopes| %>
+        <%= scopes.answer %>
+      <% end %>
+    </p>
+  </div>
+</div>

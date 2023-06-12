@@ -1,0 +1,42 @@
+.attendanceForCompanion {
+  &__wrap {
+    padding-top: 12px;
+
+    &:not(:last-of-type) {
+      padding-bottom: 12px;
+      border-bottom: 1px solid $brown;
+    }
+
+    &:first-of-type > .title:before {
+      content: 'Q1.';
+    }
+
+    &:nth-of-type(2) > .title:before {
+      content: 'Q2.';
+    }
+
+    &:nth-of-type(3) > .title:before {
+      content: 'Q3.';
+    }
+
+    &:last-of-type > .title:before {
+      content: 'Q4.';
+    }
+
+    > .title {
+      color: $black;
+      font-family: Yu Gothic, YuGothic, 'ヒラギノ角ゴ Pro', 'Hiragino Kaku Gothic Pro', 'Hiragino Sans', Meiryo, メイリオ, 'MS P Gothic', sans-serif;
+      font-size: 14px;
+      line-height: 1.5;
+      margin-bottom: 10px;
+
+      &:before {
+        font-weight: bold;
+      }
+    }
+
+    > .text {
+      font-weight: bold;
+    }
+  }
+}

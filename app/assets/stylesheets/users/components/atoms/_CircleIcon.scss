@@ -1,0 +1,15 @@
+@use '../../base/Variable' as *;
+
+.circleIcon {
+  width: 37px;
+  height: 37px;
+  border-radius: 50%;
+  display: block;
+
+  &.business {
+    background: $brown2 image-url('users/icon/business_bag.svg') 50% 50% no-repeat;
+  }
+  &.bell {
+    background: $brown2 image-url('users/icon/bell.svg') 50% 50% no-repeat;
+  }
+}

@@ -1,0 +1,76 @@
+<script src="https://ajaxzip3.github.io/ajaxzip3.js" charset="UTF-8"></script>
+<%= javascript_pack_tag ('addressAutoFill') %>
+
+<div class="accountIndex openItem">
+  <%= render 'companies/shared/side_menu' %>
+  <div class="openItem__wrapper">
+    <h1 class="accountIndex__title">アカウント設定</h1>
+
+    <% if resource.errors.any? %>
+      <div class="errorExplanation">
+        <p class="errorExplanation__message">
+          <%= I18n.t("errors.messages.not_saved",
+                     count: resource.errors.count,
+                     resource: resource.class.model_name.human.downcase)
+          %>
+        </p>
+        <ul class="errorExplanation__list">
+          <% resource.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="accountIndex__wrapper">
+      <div class="formDetailItem">
+        <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+          <dl class="inputForm long">
+            <dt class="inputForm__title required">企業名</dt>
+            <dd class="long"><%= f.text_field :name, placeholder: '株式会社SOKKIN', class: 'infoFormItem__item' %></dd>
+            <dt class="inputForm__title required">企業名フリガナ</dt>
+            <dd><%= f.text_field :name_kana, placeholder: 'カブシキカイシャソッキン', class: 'infoFormItem__item' %></dd>
+            <dt class="inputForm__title required">ホームページ</dt>
+            <dd><%= f.text_field :homepage, placeholder: 'https://www.sokkin.me', class: 'infoFormItem__item' %></dd>
+            <dt class="inputForm__title required">郵便番号</dt>
+            <dd class="postal">
+              <%= f.text_field :postal_code, placeholder: '0000000', class: 'infoFormItem__item' %>
+              <div class="generalButton bgBlack textWhite" id="company_address_auto_fill">
+                住所検索
+              </div>
+            </dd>
+            
+            <dt class="inputForm__title required">住所</dt>
+            <dd><%= f.text_field :address, placeholder: '東京都新宿区1-1-1', class: 'infoFormItem__item' %></dd>
+            <dt class="inputForm__title required">所属部署</dt>
+            <dd><%= f.text_field :belonging_department, placeholder: 'マーケティング部', class: 'infoFormItem__item' %></dd>
+            <dt class="inputForm__title required">担当者名</dt>
+            <dd class="short">
+              <span class="lastName"><%= f.label :person_in_charge_last_name, class: 'infoFormItem__title' %></span>
+              <%= f.text_field :person_in_charge_last_name, placeholder: '山田', class: 'infoFormItem__item' %>
+              <span class="firstName"><%= f.label :person_in_charge_first_name, class: 'infoFormItem__title' %></span>
+              <%= f.text_field :person_in_charge_first_name, placeholder: '太郎', class: 'infoFormItem__item' %>
+            </dd>
+            <dt class="inputForm__title required">担当者名フリガナ</dt>
+            <dd class="short">
+              <%= f.label 'セイ', class: 'infoFormItem__title' %>
+              <%= f.text_field :person_in_charge_last_name_kana, placeholder: 'ヤマダ', class: 'infoFormItem__item' %>
+              <span class="firstNameKana"><%= f.label 'メイ', class: 'infoFormItem__title' %></span>
+              <%= f.text_field :person_in_charge_first_name_kana, placeholder: 'タロウ', class: 'infoFormItem__item' %>
+            </dd>
+            <dt class="inputForm__title required">電話番号</dt>
+            <dd><%= f.text_field :phone_number, placeholder: '0300000000', class: 'infoFormItem__item' %></dd>
+            <dt class="inputForm__title required">メールアドレス</dt>
+            <dd><%= f.email_field :email, autofocus: true, autocomplete: 'email', placeholder: 'aaa@sokkin.me', class: 'infoFormItem__item' %></dd>
+            <dt class="inputForm__title required">ログインパスワード</dt>
+            <dd><%= f.password_field :password, autocomplete: "new-password", class: 'infoFormItem__item' %></dd>
+            <div class="buttonGroup">
+              <%= link_to '戻る', companies_account_path, class: 'generalButton bgGray-5 textWhite' %>
+              <%= f.submit '更新', class: 'generalButton bgBrown textWhite' %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

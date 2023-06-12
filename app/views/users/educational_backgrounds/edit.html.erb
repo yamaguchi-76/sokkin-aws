@@ -1,0 +1,17 @@
+<%# TODO: 登録時、ログイン時でクラスを分けたい %>
+<div class="inputFormIndex login openItem">
+  <%= render 'users/shared/side_menu' %>
+  <div class="openItem__wrapper">
+    <h1 class="inputFormIndex__title"><%= first_sign_in? ? 'プロフィール' : '会員登録' %></h1>
+    <div class="inputFormIndex__wrapper">
+      <%= render "users/shared/profile_links" %>
+      <div class="formDetailItem">
+        <div class="basicHead">
+          <h3 class="basicHead__title">学歴</h3>
+          <p class="basicHead__sub">editEducational background</p>
+        </div>
+        <%= render partial: 'form', locals: { educational_background: @educational_background, url: users_educational_backgrounds_path } %>
+      </div>
+    </div>
+  </div>
+</div>

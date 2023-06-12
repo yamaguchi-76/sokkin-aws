@@ -1,0 +1,7 @@
+@use '../../base/Variable' as *;
+
+.formBorderTextBoxGroup {
+  .formBorderTextBox:last-child {
+    margin-left: 20px;
+  }
+}

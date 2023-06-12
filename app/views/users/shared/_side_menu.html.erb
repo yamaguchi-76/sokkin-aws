@@ -1,0 +1,38 @@
+<ul class="sideMenu">
+  <li class="sideMenu__item home<%= active_page?(users_home_path) %>">
+    <%= link_to 'ホーム', users_home_path %>
+  </li>
+  <li class="sideMenu__item job<%= active_page?(users_propositions_path) %>">
+    <%= link_to '案件を探す', users_propositions_path %>
+  </li>
+  <li class="sideMenu__item profile<%= active_page?(users_basic_infos_path) %>">
+    <%= link_to 'プロフィール', users_basic_infos_path %>
+  </li>
+  <% if current_user.skill.nil? %>
+    <li class="sideMenu__item skill<%= active_page?(skill_diagnose_users_skills_path) %>">
+      <%= link_to 'スキル診断', skill_diagnose_users_skills_path %>
+    </li>
+  <% else %>
+    <li class="sideMenu__item skill<%= active_page?(skill_diagnose_edit_users_skill_path(current_user.skill)) %>">
+      <%= link_to 'スキル診断', skill_diagnose_edit_users_skill_path(current_user.skill) %>
+    </li>
+  <% end %>
+  <li class="sideMenu__item applied<%= active_page?(users_proposition_entries_path) %>">
+    <%= link_to '応募済み案件', users_proposition_entries_path %>
+  </li>
+  <li class="sideMenu__item attendance<%= active_page?(users_attendances_path) %>">
+    <%= link_to '勤怠管理', users_attendances_path %>
+  </li>
+  <li class="sideMenu__item account<%= active_page?(users_account_url) %>">
+    <%= link_to 'アカウント設定', users_account_url %>
+  </li>
+  <li class="sideMenu__item useFlow<%= active_page?(users_usage_flow_path) %>">
+    <%= link_to 'ご利用の流れ', users_usage_flow_url %>
+  </li>
+  <li class="sideMenu__item contact<%= active_page?(users_contact_url) %>">
+    <%= link_to 'お問い合わせ', users_contact_url %>
+  </li>
+  <li class="sideMenu__item logout">
+    <%= link_to 'ログアウト', destroy_user_session_path %>
+  </li>
+</ul>

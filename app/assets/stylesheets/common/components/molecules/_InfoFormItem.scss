@@ -1,0 +1,187 @@
+.infoFormItem {
+  > .wrapper {
+    display: flex;
+    align-items: center;
+
+    @include mq(tab) {
+      display: block;
+    }
+
+    .postalcode {
+      @include mq(tab-min) {
+        width: 115px;
+        height: 45px;
+        line-height: 45px;
+        margin-left: 41px;
+      }
+    }
+
+    .font {
+      color: $black;
+      font-size: 14px;
+      font-family: Yu Gothic, YuGothic, 'ヒラギノ角ゴ Pro', 'Hiragino Kaku Gothic Pro', 'Hiragino Sans', Meiryo, メイリオ, 'MS P Gothic', sans-serif;
+      font-weight: bold;
+    }
+
+    .item:last-child {
+      @include mq(tab) {
+        margin-top: 10px;
+      }
+    }
+  }
+
+  &__title {
+    color: $black;
+    font-size: 14px;
+    font-family: Yu Gothic, YuGothic, 'ヒラギノ角ゴ Pro', 'Hiragino Kaku Gothic Pro', 'Hiragino Sans', Meiryo, メイリオ, 'MS P Gothic', sans-serif;
+    font-weight: bold;
+
+    @include mq(tab) {
+      width: 100%;
+      display: flex;
+
+      &:not(.preview) {
+        margin-bottom: 16px;
+      }
+    }
+
+    &.preview {
+      width: fit-content;
+    }
+
+    &.wide {
+      @include mq(tab-min) {
+        margin-top: 8px;
+      }
+    }
+
+    &.height {
+      line-height: 1.5;
+    }
+
+    &.required:after {
+      content: '*';
+      color: $red;
+    }
+  }
+
+  &__subTitle {
+    color: $black;
+    font-size: 14px;
+    font-weight: bold;
+
+    @include mq(tab) {
+      display: block;
+      margin-bottom: 8px;
+    }
+  }
+
+  &__item {
+    height: 45px;
+    line-height: 45px;
+    color: $black;
+    font-size: 14px;
+    padding: 0 10px;
+    border: 1px solid $gray3;
+    border-radius: 5px;
+
+    @include mq(tab) {
+      width: 100%;
+    }
+
+    &.textarea {
+      width: 500px;
+      height: 150px;
+      line-height: 1.0;
+      padding: 10px;
+      resize: none;
+
+      @include mq(tab) {
+        width: 100%;
+      }
+    }
+
+    &.middle {
+      width: 220px;
+
+      @include mq(tab) {
+        width: 100%;
+      }
+    }
+
+    &.middle2 {
+      width: 148px;
+
+      @include mq(tab) {
+        width: 100%;
+      }
+    }
+
+    &.wide {
+      width: 495px;
+    }
+
+    &.wide2 {
+      width: 497px;
+    }
+
+    &.wide3 {
+      width: 695px;
+    }
+
+    &.wide4 {
+      width: 440px;
+    }
+
+    &.wide,
+    &.wide2,
+    &.wide3,
+    &.wide4 {
+      @include mq(tab) {
+        width: 100%;
+      }
+    }
+
+    &.wide3 {
+      width: 481px;
+
+      @include mq(tab) {
+        width: 100%;
+      }
+    }
+  }
+
+  &__label {
+    color: $black;
+    font-size: 14px;
+    font-family: Yu Gothic, YuGothic, 'ヒラギノ角ゴ Pro', 'Hiragino Kaku Gothic Pro', 'Hiragino Sans', Meiryo, メイリオ, 'MS P Gothic', sans-serif;
+    font-weight: bold;
+
+    @include mq(tab) {
+      display: block;
+      margin-bottom: 5px;
+    }
+  }
+
+  &__select {
+    border-bottom: 1px solid $brown;
+  }
+
+  &__itemText {
+    color: $black;
+    font-family: Yu Gothic, YuGothic, 'ヒラギノ角ゴ Pro', 'Hiragino Kaku Gothic Pro', 'Hiragino Sans', Meiryo, メイリオ, 'MS P Gothic', sans-serif;
+  }
+
+  &__text {
+    color: $black;
+    font-family: Yu Gothic, YuGothic, 'ヒラギノ角ゴ Pro', 'Hiragino Kaku Gothic Pro', 'Hiragino Sans', Meiryo, メイリオ, 'MS P Gothic', sans-serif;
+    font-size: 14px;
+    text-align: center;
+    margin-right: 10px;
+
+    .link {
+      color: $brown;
+      text-decoration: underline;
+    }
+  }
+}

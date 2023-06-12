@@ -1,0 +1,33 @@
+<div class="propositionsIndex openItem">
+  <%= render 'companies/shared/side_menu' %>
+  <div class="openItem__wrapper">
+    <div class="propositionsIndex__title">
+      <h2 class="title">スカウトユーザー一覧</h2>
+      <%# TODO: 新規案件を登録ボタン / 劣後対応 %>
+    </div>
+    <div class="propositionsIndex__detail">
+      <p class="count">全<span class="big"><%= @scouts.count %></span>件</p>
+      <div class="flex">
+      </div>
+    </div>
+
+    <table class="propositionsList">
+      <thead>
+      <tr>
+        <th>スカウト日</th>
+        <th>ユーザーID</th>
+        <th>案件タイトル</th>
+      </tr>
+      </thead>
+      <tbody>
+      <% @scouts.each do |scout| %>
+        <tr>
+          <td><%= l scout.created_at, format: :date_joins_dot %></td>
+          <td><%= link_to_if scout.user.active?, scout.user_id, companies_user_path(scout.user_id), class: 'link' %></td>
+          <td><%= scout.proposition.title %></td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

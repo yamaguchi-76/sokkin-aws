@@ -1,0 +1,110 @@
+<%= javascript_pack_tag ('totalAmount') %>
+<%= javascript_pack_tag ('controlMonthTabStatus') %>
+
+<div class="attendanceIndex openItem">
+  <%= render 'users/shared/side_menu' %>
+  <div class="openItem__wrapper">
+    <h2 class="attendanceIndex__title">勤怠管理</h2>
+    <%# TODO: モバイル or PC でクラスを分けたいです… %>
+    <%= link_to '案件詳細を見る', users_proposition_path(@proposition_contracts.ids), class: 'generalButton bgBlack textWhite pc' %>
+    <%= link_to '案件詳細を見る', users_proposition_path(@proposition_contracts.ids), class: 'attendanceIndex__link sp' %>
+    <div class="attendanceIndex__wrapper">
+      <ul class="generalTab">
+        <li class="generalTab__item attendances"><p class="text active">勤怠登録</p></li>
+        <li class="generalTab__item feedback">
+          <%= link_to 'フィードバック', new_users_attendance_feed_back_path(@attendance, year: params[:year], month: params[:month]), class: 'text' %>
+        </li>
+      </ul>
+
+      <%# TODO: いずれはプルダウンにしたい %>
+      <div class="attendanceIndex__calendar">
+        <% @unit_prices_years.each do |year| %>
+          <p class="item">
+            <%= link_to users_attendance_path(@attendance, year: year[0], month: year[1]) do %>
+              <%= year[0] %>
+            <% end %>
+          </p>
+        <% end %>
+      </div>
+
+      <%# TODO: select を使用せずに表現する %>
+      <ul class="monthTab">
+        <% unless @monthly_unit_prices.blank? %>
+          <li class="monthTab__item common">
+            <%= link_to_if @monthly_unit_prices.exists?(month: 1), "1月", users_attendance_operating_times_path(@attendance, year: params[:year], month: 1) %>
+          </li>
+          <li class="monthTab__item common">
+            <%= link_to_if @monthly_unit_prices.exists?(month: 2), "2月", users_attendance_operating_times_path(@attendance, year: params[:year], month: 2) %>
+          </li>
+          <li class="monthTab__item common">
+            <%= link_to_if @monthly_unit_prices.exists?(month: 3), "3月", users_attendance_operating_times_path(@attendance, year: params[:year], month: 3) %>
+          </li>
+          <li class="monthTab__item common">
+            <%= link_to_if @monthly_unit_prices.exists?(month: 4), "4月", users_attendance_operating_times_path(@attendance, year: params[:year], month: 4) %>
+          </li>
+          <li class="monthTab__item common">
+            <%= link_to_if @monthly_unit_prices.exists?(month: 5), "5月", users_attendance_operating_times_path(@attendance, year: params[:year], month: 5) %>
+          </li>
+          <li class="monthTab__item common">
+            <%= link_to_if @monthly_unit_prices.exists?(month: 6), "6月", users_attendance_operating_times_path(@attendance, year: params[:year], month: 6) %>
+          </li>
+          <li class="monthTab__item common">
+            <%= link_to_if @monthly_unit_prices.exists?(month: 7), "7月", users_attendance_operating_times_path(@attendance, year: params[:year], month: 7) %>
+          </li>
+          <li class="monthTab__item common">
+            <%= link_to_if @monthly_unit_prices.exists?(month: 8), "8月", users_attendance_operating_times_path(@attendance, year: params[:year], month: 8) %>
+          </li>
+          <li class="monthTab__item common">
+            <%= link_to_if @monthly_unit_prices.exists?(month: 9), "9月", users_attendance_operating_times_path(@attendance, year: params[:year], month: 9) %>
+          </li>
+          <li class="monthTab__item common">
+            <%= link_to_if @monthly_unit_prices.exists?(month: 10), "10月", users_attendance_operating_times_path(@attendance, year: params[:year], month: 10) %>
+          </li>
+          <li class="monthTab__item common">
+            <%= link_to_if @monthly_unit_prices.exists?(month: 11), "11月", users_attendance_operating_times_path(@attendance, year: params[:year], month: 11) %>
+          </li>
+          <li class="monthTab__item common">
+            <%= link_to_if @monthly_unit_prices.exists?(month: 12), "12月", users_attendance_operating_times_path(@attendance, year: params[:year], month: 12) %>
+          </li>
+        <% end %>
+      </ul>
+      <div class="attendanceContents">
+        <%= form_with(model: @operating_time, url: users_attendance_update_operating_times_path, method: :patch ) do |f| %>
+          <div class="attendanceContents__wrap">
+            <% @operating_times.each.with_index(1) do |operating_time, idx| %>
+              <%= fields_for 'operating_times[]', operating_time do |o| %>
+                <div class="attendanceWorkingTime edit">
+                  <div class="left">
+                    <%= o.hidden_field :id, value: o.object.id %>
+                    <%= o.date_field :working_days, max: Date.new(params[:year].to_i, @monthly_unit_price.month, -1), min: Date.new(params[:year].to_i, @monthly_unit_price.month, 1), class: 'attendanceWorkingTime__calendar' %>
+                    <%= o.number_field :working_hours, placeholder: '8', class: 'attendanceWorkingTime__number' %>
+                    <p class="attendanceWorkingTime__text">
+                      時間 × ¥
+                      <span class="price conversionYen price-<%= o.object.id %>">
+                        <%= @monthly_unit_price.unit_price %>
+                      </span>
+                      =
+                      <span class="bold">
+                        ¥
+                        <span class="conversionYen amount bold amount-<%= o.object.id %>">
+                          <%= @monthly_unit_price.unit_price * operating_time.working_hours %>
+                        </span>
+                      </span>
+                    </p>
+                  </div>
+                  <%= o.text_area :job_description, placeholder: '30文字以内で業務内容を入力してください。', class: 'attendanceBlock__textarea' %>
+                </div>
+              <% end %>
+            <% end %>
+          </div>
+          <div class="attendanceContents__bottom">
+            <div class="bg">
+              <%= f.submit '更新する', class: 'generalButton bgBrown textWhite' %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+   </div>
+ </div>
+</div>

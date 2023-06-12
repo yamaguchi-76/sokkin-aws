@@ -1,0 +1,40 @@
+$black: #353547;
+$gray: #F7F7F7;
+$gray2: #979797;
+$gray3: #D4D4D4;
+$gray4: #707070;
+$gray5: #ADADAD;
+$white: #FFF;
+$brown: #A6826C;
+$brown2: #E7E1DE;
+$brown3: #E8E0DC;
+$brown4: #DCCBAD;
+$brown5: #887043;
+$red: #A70F0F;
+
+$breakpoint: (
+        sp: 'screen and (max-width: 350px)',
+        sp-min: 'screen and (min-width: 351px)',
+        tab: 'screen and (max-width: 767px)',
+        tab-min: 'screen and (min-width: 768px)',
+        pc: 'screen and (max-width: 1200px)',
+        pc-min: 'screen and (min-width: 1201px)',
+);
+
+@mixin mq($bp) {
+  @media #{map-get($breakpoint, $bp)} {
+    @content;
+  }
+}
+
+.pc {
+  @include mq(tab) {
+    display: none !important;
+  }
+}
+
+.sp {
+  @include mq(tab-min) {
+    display: none !important;
+  }
+}

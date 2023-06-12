@@ -1,0 +1,299 @@
+<%= javascript_pack_tag ('propositionsJudgeActive') %>
+<%= javascript_pack_tag ('modal') %>
+
+<div class="propositionsIndex openItem">
+  <%= render 'users/shared/side_menu' %>
+  <div class="openItem__wrapper">
+    <h2 class="propositionsIndex__title">案件一覧</h2>
+    <ul class="generalTab">
+      <li class="generalTab__item"><span class="text">案件</span></li>
+      <li class="generalTab__item scout">
+        <p class="text">あなたへのスカウト
+          <span class="number">
+            <%= @scout_propositions.count %>
+          </span>
+        </p>
+      </li>
+      <li class="generalTab__item favorite">
+        <p class="text">お気に入り
+          <span class="number">
+            <%= @favorite_propositions.count %>
+          </span>
+        </p>
+      </li>
+    </ul>
+    <div id="normal-proposition-list">
+      <%= render 'users/shared/modal' do %>
+        <%= render 'search_form_modal', q: @q %>
+      <% end %>
+      <%= search_form_for @q, url: users_propositions_path, class: 'searchBoxContent' do |f| %>
+        <div class="wrapper">
+          <%= f.label :job_kind, class: 'searchBoxContent__title' %>
+          <div class="formGroup">
+            <%= f.collection_check_boxes :job_kinds_id_eq_any, JobKind.all, :id, :name, class: 'formCheckBox' do |checkbox| %>
+              <div class="formCheckBox">
+                <%= checkbox.check_box(class: "formCheckBox__item") %>
+                <%= checkbox.label(class: "formCheckBox__text") %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+
+        <div class="wrapper spDisplayNone">
+          <%= f.label :work_range, class: 'searchBoxContent__title' %>
+          <div class="formGroup">
+            <%= f.collection_check_boxes :work_ranges_id_eq_any, WorkRange.all, :id, :name, class: 'formCheckBox' do |checkbox| %>
+              <div class="formCheckBox">
+                <%= checkbox.check_box(class: "formCheckBox__item") %>
+                <%= checkbox.label(class: "formCheckBox__text") %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+
+        <div class="flexRowWrapper">
+          <div class="wrapper spDisplayNone">
+            <%= f.label :industry_id, class: 'searchBoxContent__title' %>
+            <%= f.select :industry_name_eq_any, Industry.pluck(:name), { include_blank: "業界を選択してください" }, class: 'borderBottomFiled selectField__industry' %>
+          </div>
+
+          <div class="wrapper spDisplayNone">
+            <%= f.label :unit_price, class: 'searchBoxContent__title' %>
+            <%= f.number_field :unit_price_gteq, class: 'borderBottomFiled numberField__unitPrice' %>&emsp;万円 ~&emsp;
+            <%= f.number_field :unit_price_lteq, class: 'borderBottomFiled numberField__unitPrice' %>&emsp;万円
+          </div>
+        </div>
+
+        <div class="wrapper spDisplayNone">
+          <%= f.label :working_hour_per_month, class: 'searchBoxContent__title' %>
+          <%= f.number_field :estimated_work_time_from_gteq, class: 'borderBottomFiled numberField__workingHourPerMonth' %>&emsp;時間 ~&emsp;
+          <%= f.number_field :estimated_work_time_to_lteq, class: 'borderBottomFiled numberField__workingHourPerMonth' %>&emsp;時間
+        </div>
+
+        <div class="wrapper spDisplayNone">
+          <%= f.label :contract_period, class: 'searchBoxContent__title' %>
+          <%= f.number_field :contract_period_gteq, class: 'borderBottomFiled numberField__contractPeriod' %>&emsp;ヶ月 ~&emsp;
+          <%= f.number_field :contract_period_lteq, class: 'borderBottomFiled numberField__contractPeriod' %>&emsp;ヶ月
+        </div>
+
+        <%= f.submit '検索', class: 'generalButton search bgBlack textWhite' %>
+
+        <div class="generalButton modalOpen tabDisplayNone outlineBlack">
+          詳細検索
+        </div>
+      <% end %>
+      
+      <div class="propositionsDetail">
+        <h3 class="propositionsDetail__title">全<span class="big"><%= @propositions.total_count %></span>件</h3>
+        <%# TODO: 劣後対応 / 並び替え %>
+        <%#<div class="propositionsDetail__select">
+        <span class="text">1〜20件を表示</span>
+        おすすめ順
+      </div>%>
+      </div>
+
+      <% @propositions.each do |proposition| %>
+        <div class="propositionsList">
+          <% if proposition.created_at.between?(Time.now.ago(1.week), Time.now) %>
+            <p class="propositionsList__tag backgroundBrown">
+              NEW
+            </p>
+          <% elsif proposition.application_deadline.between?(Time.now, Time.now.since(1.week)) %>
+            <p class="propositionsList__tag backgroundRed">
+              締め切り間近
+            </p>
+          <% end %>
+          <p class="propositionsList__createdDay"><%= l proposition.created_at, format: :date_joins_dot %></p>
+          <ul class="categoryList">
+            <% proposition.job_kinds.each do |job_kind| %>
+              <li class="categoryList__item"><%= job_kind.name %></li>
+            <% end %>
+          </ul>
+          <p class="flexText">
+            <% proposition.work_ranges.each do |work_range| %>
+              <span class="flexText__text jobRange"><%= work_range.name %></span>
+            <% end %>
+          </p>
+          <h3 class="propositionsList__title"><%= proposition.title %></h3>
+          <h4 class="colonText">業界<span class="right"><%= proposition.industry.name %></span></h4>
+          <ul class="propositionsDetailList">
+            <li class="itemList remuneration">報酬単価：<%= proposition.unit_price %> 万円/月</li>
+            <li class="itemList time">月額想定稼働時間：<%= proposition.estimated_work_time_from %> ~ <%= proposition.estimated_work_time_to %> 時間/月</li>
+            <li class="itemList baggage">稼働開始時期：
+              <% if proposition.operation_start_at %>
+                <%= l proposition.operation_start_at, format: :year_month_joins_dot %> 〜
+              <% end %>
+            </li>
+            <li class="itemList schedule">契約期間：<%= proposition.contract_period %> ヶ月〜</li>
+          </ul>
+          <div class="propositionsList__bottom">
+            <p class="colonText">応募締切
+              <span class="right">
+                <% if proposition.application_deadline %>
+                  <%= l proposition.application_deadline, format: :date_joins_dot %>
+                <% end %>
+              </span>
+            </p>
+            <div class="flex favorite">
+              <%= link_to '詳細を見る', users_proposition_path(proposition.id), class: 'generalButton bgBlack textWhite' %>
+              <%# NOTE: PC/SP で文字の違いを実現するために users/shared/proposition_favorite_area を使わずに個別で書いています %>
+              <% if current_user.favorite?(proposition) %>
+                <%= render 'users/shared/proposition_unfavorite', proposition: proposition %>
+              <% else %>
+                <%= link_to 'お気に入り',
+                  users_proposition_favorites_path(proposition_id: proposition.id),
+                  id: "js-favorite-button-for-proposition-#{proposition.id}",
+                  method: :post,
+                  remote: true,
+                  class: 'generalButton outlineBrown textBrown favorite sp'
+                %>
+                <%= link_to 'お気に入り登録',
+                  users_proposition_favorites_path(proposition_id: proposition.id),
+                  id: "js-favorite-button-for-proposition-#{proposition.id}",
+                  method: :post,
+                  remote: true,
+                  class: 'generalButton outlineBrown textBrown favorite pc'
+                %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+      <div class="pagenationContainer" >
+        <div class="spPagenation" >
+          <%= render 'shared/pagenation', records: @propositions, window_size: 1 %>
+        </div>
+        <div class="tabAndPcPagenation" >
+          <%= render 'shared/pagenation', records: @propositions, window_size: 2 %>
+        </div>
+      </div>
+    </div>
+
+    <div id="favorite-proposition-list">
+      <div class="propositionsDetail">
+        <h3 class="propositionsDetail__title">全<span class="big"><%= @favorite_propositions.count %></span>件</h3>
+        <%# TODO: 劣後対応 / 並び替え %>
+        <%#<div class="propositionsDetail__select">
+        <span class="text">1〜20件を表示</span>
+        おすすめ順
+      </div>%>
+      </div>
+
+      <% @favorite_propositions.each do |proposition| %>
+        <div class="propositionsList">
+          <p class="propositionsList__createdDay"><%= l proposition.created_at, format: :date_joins_dot %></p>
+          <ul class="categoryList">
+            <% proposition.job_kinds.each do |job_kind| %>
+              <li class="categoryList__item"><%= job_kind.name %></li>
+            <% end %>
+          </ul>
+          <p class="flexText">
+            <% proposition.work_ranges.each do |work_range| %>
+              <span class="flexText__text jobRange"><%= work_range.name %></span>
+            <% end %>
+          </p>
+          <h3 class="propositionsList__title"><%= proposition.title %></h3>
+          <h4 class="colonText">業界<span class="right"><%= proposition.industry.name %></span></h4>
+          <ul class="propositionsDetailList">
+            <li class="itemList remuneration">報酬単価：<%= proposition.unit_price %> 万円/月</li>
+            <li class="itemList time">月額想定稼働時間：<%= proposition.estimated_work_time_from %> ~ <%= proposition.estimated_work_time_to %> 時間/月</li>
+            <li class="itemList baggage">稼働開始時期：
+              <% if proposition.operation_start_at %>
+                <%= l proposition.operation_start_at, format: :year_month_joins_dot %> 〜
+              <% end %>
+            </li>
+            <li class="itemList schedule">契約期間：<%= proposition.contract_period %> ヶ月〜</li>
+          </ul>
+          <div class="propositionsList__bottom">
+            <p class="colonText">応募締切
+              <span class="right">
+                <% if proposition.application_deadline %>
+                  <%= l proposition.application_deadline, format: :date_joins_dot %>
+                <% end %>
+              </span>
+            </p>
+            <div class="flex favorite">
+              <%= link_to '詳細を見る', users_proposition_path(proposition.id), class: 'generalButton bgBlack textWhite' %>
+              <%# NOTE: PC/SP で文字の違いを実現するために users/shared/proposition_favorite_area を使わずに個別で書いています %>
+              <% if current_user.favorite?(proposition) %>
+                <%= render 'users/shared/proposition_unfavorite', proposition: proposition %>
+              <% else %>
+                <%= link_to 'お気に入り',
+                            users_proposition_favorites_path(proposition_id: proposition.id),
+                            id: "js-favorite-button-for-proposition-#{proposition.id}",
+                            method: :post,
+                            remote: true,
+                            class: 'generalButton outlineBrown textBrown favorite sp'
+                %>
+                <%= link_to 'お気に入り登録',
+                            users_proposition_favorites_path(proposition_id: proposition.id),
+                            id: "js-favorite-button-for-proposition-#{proposition.id}",
+                            method: :post,
+                            remote: true,
+                            class: 'generalButton outlineBrown textBrown favorite pc'
+                %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+
+    <div id="scout-proposition-list">
+      <div class="propositionsDetail">
+        <h3 class="propositionsDetail__title">全<span class="big"><%= @scout_propositions.count %></span>件</h3>
+        <%# TODO: 劣後対応 / 並び替え %>
+        <%#<div class="propositionsDetail__select">
+        <span class="text">1〜20件を表示</span>
+        おすすめ順
+      </div>%>
+      </div>
+
+      <% @scout_propositions.each do |proposition| %>
+        <div class="propositionsList">
+          <p class="propositionsList__createdDay"><%= l proposition.created_at, format: :date_joins_dot %></p>
+          <ul class="categoryList">
+            <% proposition.job_kinds.each do |job_kind| %>
+              <li class="categoryList__item"><%= job_kind.name %></li>
+            <% end %>
+          </ul>
+          <p class="flexText">
+            <% proposition.work_ranges.each do |work_range| %>
+              <span class="flexText__text jobRange"><%= work_range.name %></span>
+            <% end %>
+          </p>
+          <h3 class="propositionsList__title"><%= proposition.title %></h3>
+          <h4 class="colonText">業界<span class="right"><%= proposition.industry.name %></span></h4>
+          <ul class="propositionsDetailList">
+            <li class="itemList remuneration">報酬単価：<%= proposition.unit_price %> 万円/月</li>
+            <li class="itemList time">月額想定稼働時間：<%= proposition.estimated_work_time_from %> ~ <%= proposition.estimated_work_time_to %> 時間/月</li>
+            <li class="itemList baggage">稼働開始時期：
+              <% if proposition.operation_start_at %>
+                <%= l proposition.operation_start_at, format: :year_month_joins_dot %> 〜
+              <% end %>
+            </li>
+            <li class="itemList schedule">契約期間：<%= proposition.contract_period %> ヶ月〜</li>
+          </ul>
+          <div class="propositionsList__bottom">
+            <p class="colonText">応募締切
+              <span class="right">
+                <% if proposition.application_deadline %>
+                  <%= l proposition.application_deadline, format: :date_joins_dot %>
+                <% end %>
+              </span>
+            </p>
+            <div class="flex favorite">
+              <%= link_to '詳細を見る', users_proposition_path(proposition.id), class: 'generalButton bgBlack textWhite' %>
+              <%= link_to '興味なし',
+                          not_interested_users_scout_path(proposition.id),
+                          method: :patch,
+                          class: 'generalButton outlineBlack bgWhite textBlack unFavorite'
+              %>
+
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

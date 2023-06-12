@@ -1,0 +1,49 @@
+<nav class="p-sidenav">
+  <h1 class="p-sidenav__title">
+    <%= link_to admins_home_path do %>
+      管理画面
+    <% end %>
+  </h1>
+  <ul class="p-sidenav__links">
+    <li class="p-sidenav__links-item">
+      <%= link_to admins_home_path do %>
+        <i class="fa-fw fas fa-home mr-2"></i> トップ
+      <% end %>
+    </li>
+    <li class="p-sidenav__links-item">
+      <%= link_to admins_companies_path do %>
+        <i class="fa-fw fas fa-users mr-2"></i> 企業一覧
+      <% end %>
+    </li>
+    <li class="p-sidenav__links-item">
+      <%= link_to admins_propositions_path do %>
+        <i class="fa-fw fas fa-university mr-2"></i> 案件一覧
+      <% end %>
+    </li>
+    <li class="p-sidenav__links-item">
+      <%= link_to admins_scouts_path do %>
+        <i class="fa-fw fas fa-university mr-2"></i> スカウト一覧
+      <% end %>
+    </li>
+    <li class="p-sidenav__links-item">
+      <%= link_to admins_users_path do %>
+        <i class="fa-fw fas fa-comments mr-2"></i> ユーザー一覧
+      <% end %>
+    </li>
+    <li class="p-sidenav__links-item">
+      <%= link_to admins_proposition_entries_path do %>
+        <i class="fa-fw fas fa-user-secret mr-2"></i> 応募者一覧
+      <% end %>
+    </li>
+    <li class="p-sidenav__links-item">
+      <%= link_to admins_attendances_path do %>
+        <i class="fa-fw fas fa-cogs mr-2"></i> 勤怠管理_契約一覧
+      <% end %>
+    </li>
+    <li class="p-sidenav__links-item">
+      <%= link_to destroy_admin_session_path do %>
+        <i class="fa-fw fas fa-cogs mr-2"></i> ログアウト
+      <% end %>
+    </li>
+  </ul>
+</nav>

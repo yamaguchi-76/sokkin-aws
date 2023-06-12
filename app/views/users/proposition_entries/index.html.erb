@@ -1,0 +1,152 @@
+<%= javascript_pack_tag ('propositionEntriesJudgeActive') %>
+
+<div class="propositionsIndex openItem">
+  <%= render 'users/shared/side_menu' %>
+  <div class="openItem__wrapper">
+    <h2 class="propositionsIndex__title">応募済み案件</h2>
+    <ul class="generalTab">
+      <li class="generalTab__item pending">
+        <p class="text">
+          選考中
+          <span class="number"><%= @pending_proposition_entries.count %></span>
+        </p>
+      </li>
+      <li class="generalTab__item contracting">
+        <p class="text">
+          成約
+          <span class="number"><%= @contracting_proposition_entries.count %></span>
+        </p>
+      </li>
+      <li class="generalTab__item rejected">
+        <p class="text">
+          お見送り
+          <span class="number"><%= @rejected_proposition_entries.count %></span>
+        </p>
+      </li>
+    </ul>
+    <div class="propositionsDetail">
+      <%# TODO: 要仕様確認・バックエンド側で対応いただくことも検討 %>
+      <h3 class="propositionsDetail__title default">全<span class="big"><%= @entries.count %></span>件</h3>
+      <h3 class="propositionsDetail__title pending">全<span class="big"><%= @pending_proposition_entries.count %></span>件</h3>
+      <h3 class="propositionsDetail__title contracting">全<span class="big"><%= @contracting_proposition_entries.count %></span>件</h3>
+      <h3 class="propositionsDetail__title rejected">全<span class="big"><%= @rejected_proposition_entries.count %></span>件</h3>
+    </div>
+
+    <% @pending_proposition_entries.each do |proposition_entry| %>
+      <% proposition = proposition_entry.proposition %>
+      <div class="propositionsList pending">
+        <% if proposition_entry.before_interview? %>
+          <p class="propositionsList__tag backgroundBlack">
+            面談前
+          </p>
+        <% elsif proposition_entry.considering? %>
+          <p class="propositionsList__tag backgroundRed">
+            選考中
+          </p>
+        <% end %>
+        <p class="propositionsList__createdDay"><%= l proposition.created_at, format: :date_joins_dot %></p>
+        <ul class="categoryList">
+          <% proposition.job_kinds.each do |job_kind| %>
+            <li class="categoryList__item"><%= job_kind.name %></li>
+          <% end %>
+        </ul>
+        <p class="flexText">
+          <% proposition.work_ranges.each do |work_range| %>
+            <span class="flexText__text jobRange"><%= work_range.name %></span>
+          <% end %>
+        </p>
+        <h3 class="propositionsList__title"><%= proposition.title %></h3>
+        <h4 class="colonText">業界<span class="right"><%= proposition.industry.name %></span></h4>
+
+        <ul class="propositionsDetailList">
+          <li class="itemList remuneration">報酬単価：<%= proposition.unit_price %> 万円/月</li>
+          <li class="itemList time">月額想定稼働時間：<%= proposition.estimated_work_time_from %> ~ <%= proposition.estimated_work_time_to %> 時間/月</li>
+          <li class="itemList baggage">稼働開始時期：
+            <% if proposition.operation_start_at %>
+              <%= l proposition.operation_start_at, format: :year_month_joins_dot %> 〜
+            <% end %>
+          </li>
+          <li class="itemList schedule">契約期間：<%= proposition.contract_period %> ヶ月〜</li>
+        </ul>
+        <div class="propositionsList__bottom">
+          <p class="colonText">応募日<span class="right"><%= l proposition_entry.created_at, format: :date_joins_dot %></span></p>
+          <div class="flex">
+            <%= link_to '詳細を見る', users_proposition_path(proposition.id), class: 'generalButton bgBlack textWhite' %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+
+    <%# 契約中 %>
+    <% @contracting_proposition_entries.each do |proposition_entry| %>
+      <% proposition = proposition_entry.proposition %>
+      <div class="propositionsList contracting">
+        <p class="propositionsList__createdDay"><%= l proposition.created_at, format: :date_joins_dot %></p>
+        <ul class="categoryList">
+          <% proposition.job_kinds.each do |job_kind| %>
+            <li class="categoryList__item"><%= job_kind.name %></li>
+          <% end %>
+        </ul>
+        <p class="flexText">
+          <% proposition.work_ranges.each do |work_range| %>
+            <span class="flexText__text jobRange"><%= work_range.name %></span>
+          <% end %>
+        </p>
+        <h3 class="propositionsList__title"><%= proposition.title %></h3>
+        <h4 class="colonText">業界<span class="right"><%= proposition.industry.name %></span></h4>
+        <ul class="propositionsDetailList">
+          <li class="itemList remuneration">報酬単価：<%= proposition.unit_price %> 万円/月</li>
+          <li class="itemList time">月額想定稼働時間：<%= proposition.estimated_work_time_from %> ~ <%= proposition.estimated_work_time_to %> 時間/月</li>
+          <li class="itemList baggage">稼働開始時期：
+            <% if proposition.operation_start_at %>
+              <%= l proposition.operation_start_at, format: :year_month_joins_dot %> 〜
+            <% end %>
+          </li>
+          <li class="itemList schedule">契約期間：<%= proposition.contract_period %> ヶ月〜</li>
+        </ul>
+        <div class="propositionsList__bottom">
+          <p class="colonText">応募日<span class="right"><%= l proposition_entry.created_at, format: :date_joins_dot %></span></p>
+          <div class="flex">
+            <%= link_to '詳細を見る', users_proposition_path(proposition.id), class: 'generalButton bgBlack textWhite' %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+
+    <%# お見送り %>
+    <% @rejected_proposition_entries.each do |proposition_entry| %>
+      <% proposition = proposition_entry.proposition %>
+      <div class="propositionsList rejected">
+        <p class="propositionsList__createdDay"><%= l proposition.created_at, format: :date_joins_dot %></p>
+        <ul class="categoryList">
+          <% proposition.job_kinds.each do |job_kind| %>
+            <li class="categoryList__item"><%= job_kind.name %></li>
+          <% end %>
+        </ul>
+        <p class="flexText">
+          <% proposition.work_ranges.each do |work_range| %>
+            <span class="flexText__text jobRange"><%= work_range.name %></span>
+          <% end %>
+        </p>
+        <h3 class="propositionsList__title"><%= proposition.title %></h3>
+        <h4 class="colonText">業界<span class="right"><%= proposition.industry.name %></span></h4>
+        <ul class="propositionsDetailList">
+          <li class="itemList remuneration">報酬単価：<%= proposition.unit_price %> 万円/月</li>
+          <li class="itemList time">月額想定稼働時間：<%= proposition.estimated_work_time_from %> ~ <%= proposition.estimated_work_time_to %> 時間/月</li>
+          <li class="itemList baggage">稼働開始時期：
+            <% if proposition.operation_start_at %>
+              <%= l proposition.operation_start_at, format: :year_month_joins_dot %> 〜
+            <% end %>
+          </li>
+          <li class="itemList schedule">契約期間：<%= proposition.contract_period %> ヶ月〜</li>
+        </ul>
+        <div class="propositionsList__bottom">
+          <p class="colonText">応募日<span class="right"><%= l proposition_entry.created_at, format: :date_joins_dot %></span></p>
+          <div class="flex">
+            <%= link_to '詳細を見る', users_proposition_path(proposition.id), class: 'generalButton bgBlack textWhite' %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

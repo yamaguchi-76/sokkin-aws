@@ -1,0 +1,46 @@
+<%= javascript_pack_tag ('admins/scout') %>
+
+<div class="container mt-5">
+  <% provide(:title, "スカウト作成") %>
+
+  <%= form_with(model: @scout, url: admins_scouts_path, class: "form-horizontal") do |form| %>
+    <% if @scout.errors.any? %>
+      <div id="error_explanation">
+        <ul>
+          <% @scout.errors.each do |error| %>
+            <li><%= error.full_message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <h4 class="mt-5 mb-5">案件選択</h4>
+    <table class="table">
+      <tr>
+        <td>
+          <%= form.select :proposition_id, @propositions.map { |record| ["#{record.id}.#{record.title}", record.id] } %>
+        </td>
+      </tr>
+    </table>
+
+    <h4 class="mt-5 mb-5">ユーザー選択</h4>
+    <div class="scroll-table">
+      <table class="table">
+        <tr>
+          <td>
+            <%= form.collection_check_boxes :user_id, @users, :id, :check_box_label do |checkbox| %>
+              <div>
+                <%= checkbox.check_box(class: "user-checkbox") %>
+                <%= checkbox.label(class: "") %>
+              </div>
+            <% end %>
+          </td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="actions text-center mt-3">
+      <%= form.submit "登録する", id: "submit-button", class: "mb-3 btn btn-primary" %>
+    </div>
+  <% end %>
+</div>

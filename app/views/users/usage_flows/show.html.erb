@@ -1,0 +1,15 @@
+<div class="usageFlowIndex openItem">
+  <%= render 'users/shared/side_menu' %>
+  <div class="openItem__wrapper">
+    <h2 class="usageFlowIndex__title">ご利用の流れ</h2>
+    <figure class="usageFlowIndex__image">
+      <%= image_tag 'users/flow/pc.png', class: 'pc' %>
+      <%= image_tag 'users/flow/sp.png', class: 'sp' %>
+    </figure>
+    <div class="bubbleContent">
+      <h3 class="bubbleContent__title">ご不明点がある場合は、<br class="sp">お問い合わせフォームよりご連絡ください。</h3>
+      <%= link_to 'お問い合わせ', users_contact_url, class: 'generalButton bgBrown textWhite' %>
+    </div>
+  </div>
+</main>
+

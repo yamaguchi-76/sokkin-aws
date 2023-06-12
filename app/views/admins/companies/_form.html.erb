@@ -1,0 +1,74 @@
+<%= form_with(model: company, url: url, class: "form-horizontal") do |form| %>
+<table class="table">
+  <% if company.errors.any? %>
+    <div class="errorExplanation">
+      <ul class="errorExplanation__list">
+        <% company.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <tr>
+    <th>メールアドレス</th>
+    <td><%= form.text_field :email, class: "form-control" %></td>
+  </tr>
+  <tr>
+    <th>パスワード</th>
+    <td><%= form.password_field :password, class: "form-control" %></td>
+  </tr>
+  <tr>
+    <th>パスワード（確認用）</th>
+    <td><%= form.password_field :password_confirmation, class: "form-control" %></td>
+  </tr>
+  <tr>
+    <th>企業名</th>
+    <td><%= form.text_field :name, class: "form-control" %></td>
+  </tr>
+  <tr>
+    <th>企業名カナ</th>
+    <td><%= form.text_field :name_kana, class: "form-control" %></td>
+  </tr>
+  <tr>
+    <th>電話番号</th>
+    <td><%= form.telephone_field :phone_number, class: "form-control" %></td>
+  </tr>
+  <tr>
+    <th>姓</th>
+    <td><%= form.text_field :person_in_charge_last_name, class: "form-control" %></td>
+  </tr>
+  <tr>
+    <th>姓カナ</th>
+    <td><%= form.text_field :person_in_charge_last_name_kana, class: "form-control" %></td>
+  </tr>
+  <tr>
+    <th>名</th>
+    <td><%= form.text_field :person_in_charge_first_name, class: "form-control" %></td>
+  </tr>
+  <tr>
+    <th>名カナ</th>
+    <td><%= form.text_field :person_in_charge_first_name_kana, class: "form-control" %></td>
+  </tr>
+  <tr>
+    <th>所属部署</th>
+    <td><%= form.text_field :belonging_department, class: "form-control" %></td>
+  </tr>
+  <tr>
+    <th>住所</th>
+    <td><%= form.text_field :address, class: "form-control" %></td>
+  </tr>
+  <tr>
+    <th>郵便番号</th>
+    <td><%= form.number_field :postal_code, class: "form-control" %></td>
+  </tr>
+  <tr>
+    <th>ホームページ</th>
+    <td><%= form.text_field :homepage, class: "form-control" %></td>
+  </tr>
+
+</table>
+<div class="actions text-center mt-3">
+  <%= form.submit "登録する", class: "mb-3 btn btn-lg btn-primary" %>
+</div>
+<% end %>

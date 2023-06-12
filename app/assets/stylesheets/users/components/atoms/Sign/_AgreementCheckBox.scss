@@ -1,0 +1,61 @@
+@use '../../../base/Variable' as *;
+
+.agreementCheckBox {
+  &:hover {
+    cursor: pointer;
+  }
+
+  &__checkbox {
+    width: 25px;
+    height: 25px;
+    appearance: none;
+    outline: none;
+    text-align: center;
+    position: relative;
+    cursor: pointer;
+
+    &:before {
+      content: '';
+      width: 25px;
+      height: 25px;
+      display: block;
+      background: $white;
+      border: 1px solid $gray3;
+    }
+
+    &:after {
+      content: '';
+      display: block;
+      width: 8px;
+      height: 16px;
+      position: absolute;
+      left: 10px;
+      top: 2px;
+      border-right: 1px solid $black;
+      border-bottom: 1px solid $black;
+      transform: rotate(45deg);
+      opacity: 0;
+    }
+
+    &:checked:after {
+      opacity: 1;
+    }
+  }
+
+  &__text {
+    color: $black;
+    font-family: Yu Gothic, YuGothic, 'ヒラギノ角ゴ Pro', 'Hiragino Kaku Gothic Pro', 'Hiragino Sans', Meiryo, メイリオ, 'MS P Gothic', sans-serif;
+    font-size: 12px;
+    margin-left: 10px;
+
+    @include mq(tab) {
+      font-size: 14px;
+    }
+
+    > .bold {
+      color: $black;
+      font-weight: bold;
+      text-decoration: underline;
+    }
+  }
+}

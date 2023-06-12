@@ -1,0 +1,48 @@
+.hamburger {
+  width: 22px;
+  height: 14px;
+  cursor: pointer;
+  position: relative;
+
+  &__border {
+    height: 2px;
+    background: $brown;
+    display: block;
+    margin: auto;
+    transition: .3s ease-in-out;
+    position: absolute;
+    right: 0;
+
+    &:first-child {
+      width: 100%;
+      top: 0;
+
+      &.show {
+        width: 100%;
+        bottom: 0;
+        transform: rotate(45deg);
+      }
+    }
+
+    &:nth-child(2) {
+      width: 17px;
+      bottom: 0;
+      top: 0;
+
+      &.show {
+        display: none;
+      }
+    }
+
+    &:last-child {
+      width: 12px;
+      bottom: 0;
+
+      &.show {
+        width: 100%;
+        top: 0;
+        transform: rotate(-45deg);
+      }
+    }
+  }
+}

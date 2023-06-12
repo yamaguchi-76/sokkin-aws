@@ -1,0 +1,112 @@
+<%= form_with(model: current_user, url: url, method: :patch) do |f| %>
+  <%= render "users/shared/error_messages", resource: current_user %>
+  <div class="infoFormItemGroup">
+    <%= f.fields_for current_user.employment_status do |employment_status_form| %>
+      <div class="infoFormItem editEmployment infoFormItemGroup__box">
+        <div class="wrapper">
+          <%= employment_status_form.label :status, class: 'infoFormItem__title required' %>
+          <div class="formGroup">
+            <%= employment_status_form.collection_radio_buttons :status, EmploymentStatus.statuses_i18n, :first, :last, class: '' do |radio| %>
+              <div class="formRadio">
+                <%= radio.radio_button(class: "formRadio__radio") %>
+                <%= radio.label(class: "formRadio__text") %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <div class="infoFormItem editEmployment infoFormItemGroup__box">
+        <div class="wrapper">
+          <%= employment_status_form.label :company_name, class: 'infoFormItem__title required' %>
+          <%= employment_status_form.text_field :company_name, placeholder: '例) 株式会社ABCD', class: 'infoFormItem__item wide' %>
+        </div>
+      </div>
+      <div class="infoFormItem editEmployment infoFormItemGroup__box">
+        <div class="wrapper">
+          <%= employment_status_form.label :industry_category, class: 'infoFormItem__title required' %>
+          <%= employment_status_form.text_field :industry_category, placeholder: '例) ITコンサルティング', class: 'infoFormItem__item wide' %>
+        </div>
+      </div>
+      <div class="infoFormItem editEmployment infoFormItemGroup__box">
+        <div class="wrapper">
+          <%= employment_status_form.label :job_kind, class: 'infoFormItem__title required' %>
+          <%= employment_status_form.select :job_kind_id, JobKind.all.map { |record| [record.name, record.id] }.to_h, { include_blank: '職種を選択してください'}, class: 'formSelect__item' %>
+        </div>
+      </div>
+      <div class="infoFormItem editEmployment infoFormItemGroup__box">
+        <div class="wrapper">
+          <%= employment_status_form.label :job_title, class: 'infoFormItem__title required' %>
+          <%= employment_status_form.text_field :job_title, placeholder: '例) 部長', class: 'infoFormItem__item wide' %>
+        </div>
+      </div>
+      <div class="infoFormItem editEmployment infoFormItemGroup__box">
+        <div class="wrapper">
+          <%= employment_status_form.label :yearly_income, class: 'infoFormItem__title' %>
+          <%= employment_status_form.number_field :yearly_income, placeholder: '例) 500', class: 'formBorderTextBox__item middle' %><span class="formBorderTextBox__text">万円</span>
+        </div>
+      </div>
+      <div class="infoFormItem editEmployment infoFormItemGroup__box">
+        <div class="wrapper">
+          <%= employment_status_form.label :working_hours, class: 'infoFormItem__title' %>
+          <div class="formBorderTextBox__text">週<%= employment_status_form.number_field :working_hours, placeholder: '例) 5', class: 'formBorderTextBox__item small' %>日</div>
+          <div class="formBorderTextBox__text">1日<%= employment_status_form.number_field :working_days_of_the_week, placeholder: '例) 8', class: 'formBorderTextBox__item small' %>時間</div>
+        </div>
+      </div>
+      <div class="infoFormItem editEmployment infoFormItemGroup__box">
+        <div class="wrapper">
+          <%= employment_status_form.label :business_experience, class: 'infoFormItem__title' %>
+          <%= employment_status_form.text_area :business_experience, placeholder: '具体的な業務内容や、実績などをご記入ください', class: 'infoFormItem__item textarea' %>
+        </div>
+      </div>
+      <div class="infoFormItem editEmployment infoFormItemGroup__box">
+        <div class="wrapper">
+          <%= employment_status_form.label :employment_start_date, class: 'infoFormItem__title required' %>
+          <div class="formSelect">
+            <%== sprintf(employment_status_form.date_select(:employment_start_date,
+              {
+                :use_month_numbers => true,
+                discard_day: true,
+                :date_separator => '%s',
+                :start_year => 1943,
+                :end_year => Time.now.year,
+                :prompt => { month: '--', year: '--' },
+              },
+              { class: "formSelect__item middle" }), '年') + '月' %>
+          </div>
+        </div>
+      </div>
+      <div class="infoFormItem editEmployment infoFormItemGroup__box">
+        <div class="wrapper">
+          <%= employment_status_form.label :employment_end_date, class: 'infoFormItem__title' %>
+          <div class="formSelect">
+            <%== sprintf(employment_status_form.date_select(:employment_end_date,
+              {
+                :use_month_numbers => true,
+                discard_day: true,
+                :date_separator => '%s',
+                :start_year => 1943,
+                :end_year => Time.now.year,
+                :prompt => { month: '--', year: '--' }
+              },
+              { class: "formSelect__item middle" }), '年') + '月' %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+
+    <div class="formModalGroup">
+      <%= f.fields_for :past_employment_statuses do |past_employment_status| %>
+        <%= render 'past_employment_status_input', f: past_employment_status %>
+      <% end %>
+      <%= link_to_add_association '過去の職歴を追加する',
+        f,
+        :past_employment_statuses,
+        partial: 'past_employment_status_input',
+        class: 'formModalGroup__add',
+        data: { association_insertion_method: 'prepend' }
+      %>
+    </div>
+  </div>
+
+  <%= f.submit "登録", class: 'generalButton bgBrown textWhite' %>
+<% end %>

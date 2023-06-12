@@ -1,0 +1,100 @@
+<%= javascript_pack_tag ('companies/smoothScroll') %>
+
+<div class="propositionsDetailIndex openItem">
+  <%= render 'companies/shared/side_menu' %>
+  <div class="openItem__wrapper">
+    <%= link_to '登録案件一覧へ戻る', companies_propositions_path, class: 'arrowButton back' %>
+    <p class="propositionsDetailIndex__id">案件ID:<%= @proposition.id %></p>
+    <h2 class="propositionsDetailIndex__jobName"><%= @proposition.title %></h2>
+    <section class="propositionsDetailIndex__content">
+      <div class="basicHead">
+        <h3 class="basicHead__title">基本情報</h3>
+        <p class="basicHead__sub">basic info</p>
+      </div>
+      <dl>
+        <dt>職種</dt>
+        <dd>
+          <% @proposition.job_kinds.each do |job| %>
+            <%= job.name %>
+          <% end %>
+        </dd>
+        <dt>職域</dt>
+        <dd>
+          <% @proposition.work_ranges.each do |job| %>
+            <%= job.name %>
+          <% end %>
+        </dd>
+        <dt>案件名</dt>
+        <dd><%= @proposition.title %></dd>
+        <dt>業界</dt>
+        <dd><%= @proposition.industry.name %></dd>
+        <% if @proposition.image.url %>
+          <dt>画像</dt>
+          <dd class="image"><%= image_tag @proposition.image_url(:proposition_show) %></dd>
+        <% else %>
+          <%= image_tag '/images/default_proposition_image.png' %>
+        <% end %>
+        <dt>応募締め切り<br>(掲載期限)</dt>
+        <dd><%= l @proposition.application_deadline, format: :date_joins_dot %></dd>
+      </dl>
+    </section>
+
+    <section class="propositionsDetailIndex__content">
+      <div class="basicHead">
+        <h3 class="basicHead__title">働き方について</h3>
+        <p class="basicHead__sub">work style</p>
+      </div>
+      <dl>
+        <dt>月額想定稼働時間</dt>
+        <dd><%= @proposition.estimated_work_time_from %> ~ <%= @proposition.estimated_work_time_to %> 時間</dd>
+        <dt>稼働開始時期</dt>
+        <dd><%= l @proposition.operation_start_at, format: :year_month_jp %></dd>
+        <dt>契約期間</dt>
+        <dd><%= @proposition.contract_period %>ヶ月〜</dd>
+        <dt>勤務条件</dt>
+        <dd><%= @proposition.work_conditions.map(&:name).join(', ') %></dd>
+      </dl>
+    </section>
+
+    <section class="propositionsDetailIndex__content">
+      <div class="basicHead">
+        <h3 class="basicHead__title">求めるスキル</h3>
+        <p class="basicHead__sub">skill</p>
+      </div>
+      <dl>
+        <dt>必須スキル</dt>
+        <dd><%= @proposition.required_skill %></dd>
+        <dt>歓迎スキル</dt>
+        <dd><%= @proposition.welcome_skill %></dd>
+      </dl>
+    </section>
+
+    <section class="propositionsDetailIndex__content">
+      <div class="basicHead">
+        <h3 class="basicHead__title">募集背景や業務内容など</h3>
+        <p class="basicHead__sub">background and  description</p>
+      </div>
+      <dl>
+        <dt>背景・課題</dt>
+        <dd><%= simple_format @proposition.background %></dd>
+        <dt>依頼業務</dt>
+        <dd><%= simple_format @proposition.work_order %></dd>
+        <% if @proposition.ng_point %>
+          <dt>NG項目</dt>
+          <dd><%= simple_format @proposition.ng_point %></dd>
+        <% end %>
+        <% if @proposition.note %>
+          <dt>備考</dt>
+          <dd><%= simple_format @proposition.note %></dd>
+        <% end %>
+        <dt></dt>
+       </dl>
+    </section>
+  </div>
+  <ul class="basicInfoMenu">
+    <li class="basicInfoMenu__item">基本情報</li>
+    <li class="basicInfoMenu__item">働き方について</li>
+    <li class="basicInfoMenu__item">求めるスキル</li>
+    <li class="basicInfoMenu__item">募集背景や業務内容など</li>
+  </ul>
+</div>

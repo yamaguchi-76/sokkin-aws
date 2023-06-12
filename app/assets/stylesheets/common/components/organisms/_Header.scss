@@ -1,0 +1,57 @@
+.header {
+  height: 60px;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid $brown3;
+  padding: 0 30px;
+
+  @include mq(tab) {
+    height: 50px;
+    padding: 0 16px;
+  }
+
+  > .wrapper {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .profileIcon {
+      width: 40px;
+      height: 40px;
+
+      img {
+        width: 40px;
+        height: 40px;
+      }
+    }
+
+    .profileModal {
+      z-index: 4;
+    }
+
+    > .right {
+      display: flex;
+      align-items: center;
+      position: relative;
+
+      .hamburger {
+        margin-left: 20px;
+
+        @include mq(tab-min) {
+          display: none;
+        }
+      }
+    }
+  }
+
+  &__logo {
+    @include mq(tab) {
+      width: 143px;
+    }
+
+    a {
+      display: block;
+    }
+  }
+}

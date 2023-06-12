@@ -1,0 +1,55 @@
+@use '../../base/Variable' as *;
+
+.jobDetailList {
+  margin: 0 0 -13px -13px;
+
+  &__item {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    margin-left: 13px;
+
+    @include mq(tab) {
+      display: block;
+    }
+
+    &:not(:last-child) {
+      margin-bottom: 27px;
+    }
+
+    > .itemList {
+      min-width: 170px;
+      color: $black;
+      font-size: 16px;
+      font-family: Yu Gothic, YuGothic, 'ヒラギノ角ゴ Pro', 'Hiragino Kaku Gothic Pro', 'Hiragino Sans', Meiryo, メイリオ, 'MS P Gothic', sans-serif;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+
+      @include mq(tab) {
+        margin-bottom: 10px;
+      }
+
+      &.height {
+        line-height: 1.5;
+      }
+
+      &.speechBubble:before {
+        width: 15px;
+        height: 15px;
+        background: url('/common/img/icon/speechBubble.svg') no-repeat;
+      }
+    }
+
+    > .text {
+      color: $black;
+      font-size: 16px;
+      font-family: Yu Gothic, YuGothic, 'ヒラギノ角ゴ Pro', 'Hiragino Kaku Gothic Pro', 'Hiragino Sans', Meiryo, メイリオ, 'MS P Gothic', sans-serif;
+
+      &.height {
+        line-height: 1.5;
+      }
+    }
+  }
+}

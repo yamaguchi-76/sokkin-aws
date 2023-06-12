@@ -1,0 +1,1072 @@
+.infoFormItemGroup {
+  + .generalButton {
+    height: 50px;
+    font-size: 18px;
+
+    @include mq(tab-min) {
+      width: 180px;
+      margin: 42px 0 0 450px;
+    }
+
+    @include mq(tab) {
+      width: 100%;
+      font-size: 16px;
+      margin: 30px auto 0;
+    }
+
+    &.gray {
+      @include mq(tab) {
+        margin-top: 20px;
+      }
+
+      @include mq(tab-min) {
+        display: none;
+      }
+    }
+  }
+
+  &__box {
+    @include mq(tab-min) {
+      width: 630px;
+    }
+
+    &:not(.preview):not(:last-child) {
+      margin-bottom: 20px;
+
+      @include mq(tab-min) {
+        margin-bottom: 25px;
+      }
+    }
+
+    &.basicInfo,
+    &.educational,
+    &.employment,
+    &.multipleWork,
+    &.selfIntroduce,
+    &.personalInfo,
+    &.account {
+      > .wrapper {
+        @include mq(tab) {
+          display: flex;
+        }
+
+        .infoFormItem__title {
+          @include mq(tab) {
+            width: fit-content;
+          }
+        }
+      }
+    }
+
+    // 基本情報
+    &.basicInfo {
+      // 氏名
+      &:first-of-type .infoFormItem__title {
+        margin: 0 94px 0 12px;
+
+        @include mq(tab-min) {
+          margin-right: 94px;
+        }
+      }
+
+      // ふりがな
+      &:nth-of-type(2) .infoFormItem__title {
+        margin: 0 66px 0 12px;
+
+        @include mq(tab-min) {
+          margin-right: 66px;
+        }
+      }
+
+      // 電話番号
+      &:nth-of-type(3) .infoFormItem__title {
+        margin: 0 66px 0 12px;
+
+        @include mq(tab-min) {
+          margin-right: 66px;
+        }
+      }
+
+      // 郵便番号
+      &:nth-of-type(4) .infoFormItem__title {
+        margin: 0 94px 0 12px;
+
+        @include mq(tab-min) {
+          margin-right: 94px;
+        }
+      }
+
+      // 住所
+      &:nth-of-type(5) .infoFormItem__title {
+        margin: 0 94px 0 12px;
+
+        @include mq(tab-min) {
+          margin-right: 94px;
+        }
+      }
+
+      // 性別
+      &:nth-of-type(6) .infoFormItem__title {
+        margin: 0 86px 0 12px;
+
+        @include mq(tab-min) {
+          margin-right: 86px;
+        }
+      }
+
+      // 生年月日
+      &:last-of-type .infoFormItem__title {
+        margin: 0 66px 0 12px;
+
+        @include mq(tab-min) {
+          margin-right: 66px;
+        }
+      }
+    }
+
+    // 基本情報・編集
+    &.editBasicInfo {
+      // 氏名
+      &:first-of-type .item {
+        &:first-of-type {
+          @include mq(tab-min) {
+            margin-left: 58px;
+          }
+
+          .infoFormItem__item {
+            @include mq(tab-min) {
+              margin-left: 22px;
+            }
+          }
+        }
+
+        &:last-child {
+          @include mq(tab-min) {
+            margin-left: 20px;
+          }
+
+          .infoFormItem__item {
+            @include mq(tab-min) {
+              margin-left: 16px;
+            }
+          }
+        }
+      }
+
+      // ふりがな
+      &:nth-of-type(2) .item {
+        &:first-of-type {
+          @include mq(tab-min) {
+            margin-left: 30px;
+          }
+
+          .infoFormItem__item {
+            @include mq(tab-min) {
+              margin-left: 8px;
+            }
+          }
+        }
+
+        &:last-child {
+          @include mq(tab-min) {
+            margin-left: 17px;
+          }
+
+          .infoFormItem__item {
+            @include mq(tab-min) {
+              margin-left: 5px;
+            }
+          }
+        }
+      }
+
+      // 電話番号
+      &:nth-of-type(3) .item {
+        @include mq(tab-min) {
+          margin-left: 71px;
+        }
+      }
+
+      // 郵便番号
+      &:nth-of-type(4) .item {
+        display: flex;
+        @include mq(tab-min) {
+          margin-left: 71px;
+        }
+        & > * {
+          &:first-child {
+            max-width: 200px;
+          }
+          &:last-child {
+            width: 115px;
+            height: 45px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-left: 30px;
+          }
+        }
+      }
+
+      // 住所
+      &:nth-of-type(5) .item {
+        @include mq(tab-min) {
+          margin-left: 97px;
+        }
+      }
+
+      // 性別
+      &:nth-of-type(6) .formGroup {
+        @include mq(tab-min) {
+          margin-left: 86px;
+        }
+      }
+
+      // 生年月日
+      &:last-of-type .formSelect {
+        @include mq(tab-min) {
+          margin-left: 66px;
+        }
+
+        .formSelect__item:not(:first-child) {
+          margin-left: 10px;
+        }
+      }
+    }
+
+    // 学歴
+    &.educational {
+      // 最終学歴, 卒業年数
+      &:first-of-type .infoFormItem__title,
+      &:last-of-type .infoFormItem__title {
+        margin: 0 39px 0 0;
+
+        @include mq(tab-min) {
+          margin-right: 52px;
+        }
+      }
+
+      // 学校名, 学部名
+      &:nth-of-type(2) .infoFormItem__title,
+      &:nth-of-type(3) .infoFormItem__title {
+        margin: 0 53px 0 0;
+
+        @include mq(tab-min) {
+          margin-right: 66px;
+        }
+      }
+    }
+
+    // 学歴・編集
+    &.editEducational {
+      // 最終学歴
+      &:first-of-type .infoFormItem__title {
+        @include mq(tab-min) {
+          width: 130px;
+          margin-right: 80px;
+        }
+      }
+
+      // 学校名, 学部名
+      &:nth-of-type(2) .infoFormItem__title,
+      &:nth-of-type(3) .infoFormItem__title {
+        @include mq(tab-min) {
+          margin-right: 100px;
+        }
+      }
+
+      // 卒業年数
+      &:last-of-type .infoFormItem__title {
+        @include mq(tab-min) {
+          margin-right: 80px;
+        }
+      }
+    }
+
+    // 就業状況
+    &.employment {
+      // 現在の就業形態
+      &:first-of-type .infoFormItem__title {
+        margin: 0 30px 0 0;
+
+        @include mq(tab-min) {
+          margin-right: 35px;
+        }
+      }
+
+      // 現在の会社名
+      &:nth-of-type(2) .infoFormItem__title {
+        margin: 0 44px 0 0;
+
+        @include mq(tab-min) {
+          margin-right: 50px;
+        }
+      }
+
+      // 現在の業種
+      &:nth-of-type(3) .infoFormItem__title {
+        margin: 0 58px 0 0;
+
+        @include mq(tab-min) {
+          margin-right: 63px;
+        }
+      }
+
+      // 現在の職種
+      &:nth-of-type(4) .infoFormItem__title {
+        margin: 0 58px 0 0;
+
+        @include mq(tab-min) {
+          margin-right: 63px;
+        }
+      }
+
+      // 役割
+      &:nth-of-type(5) .infoFormItem__title {
+        margin: 0 100px 0 0;
+
+        @include mq(tab-min) {
+          margin-right: 104px;
+        }
+      }
+
+      // 年収
+      &:nth-of-type(6) .infoFormItem__title {
+        margin: 0 100px 0 0;
+
+        @include mq(tab-min) {
+          margin-right: 104px;
+        }
+      }
+
+      // 現在の月間稼働時間
+      &:nth-of-type(7) .infoFormItem__title {
+        margin: 0 42px 0 0;
+
+        @include mq(tab-min) {
+          margin-right: 46px;
+        }
+      }
+
+      // 経験業務内容
+      &:nth-of-type(8) .infoFormItem__title {
+        margin: 0 42px 0 0;
+
+        @include mq(tab-min) {
+          margin-right: 46px;
+        }
+      }
+
+      // 就業開始年月
+      &:nth-of-type(9) .infoFormItem__title {
+        margin: 0 42px 0 0;
+
+        @include mq(tab-min) {
+          margin-right: 46px;
+        }
+      }
+
+      // 就業終了年月
+      &:nth-of-type(10) .infoFormItem__title {
+        margin: 0 42px 0 0;
+
+        @include mq(tab-min) {
+          margin-right: 46px;
+        }
+      }
+
+      &.border {
+        padding-top: 30px;
+        border-top: 1px solid $gray3;
+
+        .wrapper {
+          &:not(:last-of-type) {
+            margin-bottom: 20px;
+
+            @include mq(tab-min) {
+              margin-bottom: 25px;
+            }
+          }
+
+          // 過去の会社名
+          &:first-of-type .infoFormItem__title {
+            margin: 0 42px 0 0;
+
+            @include mq(tab-min) {
+              margin-right: 46px;
+            }
+          }
+
+          // 過去の担当顧客や業種
+          &:nth-of-type(2) .infoFormItem__title {
+            margin: 0 15px 0 0;
+
+            @include mq(tab-min) {
+              margin-right: 25px;
+            }
+          }
+
+          // 就業開始年月
+          &:nth-of-type(3) .infoFormItem__title {
+            margin: 0 42px 0 0;
+
+            @include mq(tab-min) {
+              margin-right: 46px;
+            }
+          }
+
+          // 就業終了年月
+          &:last-of-type .infoFormItem__title {
+            margin: 0 42px 0 0;
+
+            @include mq(tab-min) {
+              margin-right: 46px;
+            }
+          }
+        }
+      }
+    }
+
+    // 就業状況・編集
+    &.editEmployment {
+      // 就業状況
+      &:first-of-type .infoFormItem__title {
+        @include mq(tab-min) {
+          margin-right: 71px;
+        }
+      }
+
+      // 現在の会社名
+      &:nth-of-type(2) .infoFormItem__title {
+        @include mq(tab-min) {
+          margin-right: 43px;
+        }
+      }
+
+      // 現在の業種
+      &:nth-of-type(3) .infoFormItem__title {
+        @include mq(tab-min) {
+          margin-right: 57px;
+        }
+      }
+
+      // 現在の職種
+      &:nth-of-type(4) .infoFormItem__title {
+        @include mq(tab-min) {
+          margin-right: 57px;
+        }
+      }
+
+      // 役職
+      &:nth-of-type(5) .infoFormItem__title {
+        @include mq(tab-min) {
+          margin-right: 100px;
+        }
+      }
+
+      // 年収
+      &:nth-of-type(6) {
+        .infoFormItem__title {
+          @include mq(tab-min) {
+            margin-right: 100px;
+          }
+        }
+
+        .formBorderTextBox__text {
+          margin-left: 6px;
+
+          @include mq(tab-min) {
+            display: block;
+          }
+        }
+      }
+
+      // 現在の稼働日数
+      &:nth-of-type(7) {
+        .infoFormItem__title {
+          @include mq(tab-min) {
+            margin-right: 30px;
+          }
+        }
+
+        .formBorderTextBox__text {
+          display: flex;
+          align-items: center;
+
+          @include mq(tab) {
+            display: inline-block;
+          }
+
+          + .formBorderTextBox__text {
+            margin-left: 20px;
+          }
+
+          .formBorderTextBox__item {
+            margin: 0 6px;
+          }
+        }
+      }
+
+      // 経験業務内容
+      &:nth-of-type(8) .infoFormItem__title {
+        @include mq(tab-min) {
+          margin-right: 38px;
+        }
+      }
+
+      // 就業開始年月
+      &:nth-of-type(9) {
+        .infoFormItem__title {
+          @include mq(tab-min) {
+            margin-right: 38px;
+          }
+        }
+
+        .formSelect__item + .formSelect__item {
+          margin-left: 16px;
+        }
+      }
+
+      // 就業終了年月
+      &:nth-of-type(10) {
+        .infoFormItem__title {
+          @include mq(tab-min) {
+            margin-right: 38px;
+          }
+        }
+
+        .formSelect__item + .formSelect__item {
+          margin-left: 16px;
+        }
+      }
+    }
+
+    // 就業状況・モーダル
+    &.pastEmployment {
+      @include mq(tab-min) {
+        display: flex;
+        align-items: center;
+      }
+
+      // 過去の会社名
+      &:first-of-type .infoFormItem__title {
+        @include mq(tab-min) {
+          margin-right: 41px;
+        }
+      }
+
+      // 過去の担当顧客や業種
+      &:nth-of-type(2) .infoFormItem__title {
+        @include mq(tab-min) {
+          margin-right: 20px;
+        }
+      }
+
+      // 就業開始年月
+      &:nth-of-type(3) .infoFormItem__title {
+        @include mq(tab-min) {
+          margin-right: 40px;
+        }
+      }
+
+      // 就業終了年月
+      &:last-of-type .infoFormItem__title {
+        @include mq(tab-min) {
+          margin-right: 40px;
+        }
+      }
+    }
+
+    // 複業経験
+    &.multipleWork {
+      // 複業経験
+      &:first-of-type .infoFormItem__title {
+        margin: 0 40px 0 0;
+
+        @include mq(tab-min) {
+          margin-right: 59px;
+        }
+      }
+
+      // 会社名
+      &:nth-of-type(2) .infoFormItem__title {
+        margin: 0 54px 0 0;
+
+        @include mq(tab-min) {
+          margin-right: 74px;
+        }
+      }
+
+      // 業種
+      &:nth-of-type(3) .infoFormItem__title {
+        margin: 0 68px 0 0;
+
+        @include mq(tab-min) {
+          margin-right: 88px;
+        }
+      }
+
+      // 月収
+      &:nth-of-type(4) .infoFormItem__title {
+        margin: 0 68px 0 0;
+
+        @include mq(tab-min) {
+          margin-right: 88px;
+        }
+      }
+
+      // 稼働時間
+      &:nth-of-type(5) .infoFormItem__title {
+        margin: 0 40px 0 0;
+
+        @include mq(tab-min) {
+          margin-right: 59px;
+        }
+      }
+
+      // 複業開始年月
+      &:nth-of-type(6) .infoFormItem__title {
+        margin: 0 11px 0 0;
+
+        @include mq(tab-min) {
+          margin-right: 31px;
+        }
+      }
+
+      // 複業時の就業終了年月
+      &:nth-of-type(7) .infoFormItem__title {
+        margin: 0 11px 0 0;
+
+        @include mq(tab-min) {
+          margin-right: 31px;
+        }
+      }
+
+      // 業務内容
+      &:last-of-type .infoFormItem__title {
+        margin: 0 40px 0 0;
+
+        @include mq(tab-min) {
+          margin-right: 60px;
+        }
+      }
+    }
+
+    // 複業経験・修正
+    &.editMultipleWork:first-of-type .infoFormItem__title {
+      @include mq(tab-min) {
+        margin-right: 71px;
+      }
+    }
+
+    // 複業経験・モーダル
+    &.multipleWorkModal {
+      @include mq(tab-min) {
+        width: 100%;
+      }
+
+      // 会社名
+      &:first-of-type {
+        .infoFormItem__title {
+          @include mq(tab-min) {
+            margin-right: 75px;
+          }
+        }
+
+        .infoFormItem__item {
+          @include mq(tab-min) {
+            width: 440px;
+          }
+        }
+      }
+
+      // 職種
+      &:nth-of-type(2) {
+        .infoFormItem__title {
+          @include mq(tab-min) {
+            margin-right: 91px;
+          }
+        }
+
+        .formSelect__item {
+          @include mq(tab) {
+            width: 100%;
+          }
+        }
+      }
+
+      // 月収
+      &:nth-of-type(3) .infoFormItem__title {
+        @include mq(tab-min) {
+          margin-right: 91px;
+        }
+      }
+
+      // 稼働時間
+      &:nth-of-type(4) .infoFormItem__title {
+        @include mq(tab-min) {
+          margin-right: 63px;
+        }
+      }
+
+      // 複業開始年月
+      &:nth-of-type(5) .infoFormItem__title {
+        @include mq(tab-min) {
+          margin-right: 40px;
+        }
+      }
+
+      // 複業時の就業終了年月
+      &:nth-of-type(6) .infoFormItem__title {
+        @include mq(tab-min) {
+          margin-right: 41px;
+        }
+      }
+
+      // 業務内容
+      &:nth-of-type(7) .infoFormItem__title {
+        @include mq(tab-min) {
+          width: 73px;
+          margin-right: 66px;
+        }
+      }
+    }
+
+    // 自己紹介
+    &.selfIntroduce {
+      // 自己PR
+      &:first-of-type {
+        .infoFormItem__title {
+          margin: 0 106px 0 0;
+
+          @include mq(tab-min) {
+            margin-right: 106px;
+          }
+        }
+
+        .infoFormItem__text {
+          @include mq(tab-min) {
+            max-width: 450px;
+            text-align: left;
+            word-break: break-word;
+            margin: 0;
+          }
+        }
+      }
+
+      // 希望単価
+      &:nth-of-type(2) .infoFormItem__title {
+        margin: 0 97px 0 0;
+
+        @include mq(tab-min) {
+          margin-right: 97px;
+        }
+      }
+
+      // 希望稼働時間
+      &:nth-of-type(3) .infoFormItem__title {
+        margin: 0 69px 0 0;
+
+        @include mq(tab-min) {
+          margin-right: 69px;
+        }
+      }
+
+      // 希望勤務日数
+      &:nth-of-type(4) .infoFormItem__title {
+        margin: 0 69px 0 0;
+
+        @include mq(tab-min) {
+          margin-right: 69px;
+        }
+      }
+
+      // 対面ミーティング
+      &:nth-of-type(5) .infoFormItem__title {
+        margin: 0 37px 0 0;
+
+        @include mq(tab-min) {
+          margin-right: 37px;
+        }
+      }
+
+      // 対応ステータス
+      &:nth-of-type(6) .infoFormItem__title {
+        margin: 0 50px 0 0;
+
+        @include mq(tab-min) {
+          margin-right: 50px;
+        }
+      }
+
+      // 対応条件
+      &:nth-of-type(7) .infoFormItem__title {
+        margin: 0 92px 0 0;
+
+        @include mq(tab-min) {
+          margin-right: 92px;
+        }
+      }
+
+      // インボイス登録
+      &:nth-of-type(8) .infoFormItem__title {
+        margin: 0 49px 0 0;
+
+        @include mq(tab-min) {
+          margin-right: 49px;
+        }
+      }
+
+      // インボイス登録番号
+      &:nth-of-type(9) .infoFormItem__title {
+        margin: 0 22px 0 0;
+
+        @include mq(tab-min) {
+          margin-right: 22px;
+        }
+      }
+
+      // ポートフォリオ
+      &:last-of-type .infoFormItem__title {
+        margin: 0 50px 0 0;
+
+        @include mq(tab-min) {
+          margin-right: 50px;
+        }
+      }
+    }
+
+    // 自己紹介・修正
+    &.editSelfIntroduce {
+      // 自己 PR
+      &:first-of-type {
+        .wrapper {
+          display: flex;
+          align-items: flex-start;
+
+          @include mq(tab) {
+            display: block;
+          }
+        }
+
+        .infoFormItem__title {
+          @include mq(tab-min) {
+            margin-right: 75px;
+          }
+        }
+      }
+
+      // 希望単価
+      &:nth-of-type(2) .infoFormItem__title {
+        @include mq(tab-min) {
+          margin-right: 68px;
+        }
+      }
+
+      // 希望稼働時間
+      &:nth-of-type(3) .infoFormItem__title {
+        @include mq(tab-min) {
+          margin-right: 40px;
+        }
+      }
+
+      // 希望勤務日数
+      &:nth-of-type(4) .infoFormItem__title {
+        @include mq(tab-min) {
+          margin-right: 40px;
+        }
+      }
+
+      // 対面ミーティング
+      &:nth-of-type(5) .infoFormItem__title {
+        @include mq(tab-min) {
+          margin-right: 10px;
+        }
+      }
+
+      // 対応ステータス
+      &:nth-of-type(6) .infoFormItem__title {
+        @include mq(tab-min) {
+          width: 170px;
+          margin-right: 14px;
+        }
+      }
+
+      // 対応条件
+      &:nth-of-type(7) .infoFormItem__title {
+        @include mq(tab-min) {
+          width: 98px;
+          margin-right: 65px;
+        }
+      }
+
+      // インボイス登録
+      &:nth-of-type(8) .infoFormItem__title {
+        @include mq(tab-min) {
+          margin-right: 30px;
+        }
+      }
+
+      // インボイス登録番号
+      &:nth-of-type(9) .infoFormItem__title {
+        @include mq(tab-min) {
+          width: 80px;
+          margin-right: 48px;
+        }
+      }
+
+      // ポートフォリオ
+      &:nth-of-type(10) .infoFormItem__title {
+        @include mq(tab-min) {
+          width: 104px;
+          margin-right: 21px;
+        }
+      }
+    }
+
+    // 個人情報
+    &.personalInfo {
+      // メールアドレス
+      &:first-of-type .infoFormItem__title {
+        margin: 0 31px 0 0;
+
+        @include mq(tab-min) {
+          margin-right: 31px;
+        }
+      }
+
+      // パスワード
+      &:last-of-type .infoFormItem__title {
+        margin: 0 59px 0 0;
+
+        @include mq(tab-min) {
+          margin-right: 59px;
+        }
+      }
+    }
+
+    // 個人情報・修正
+    &.editPersonalInfo {
+      // メールアドレス
+      &:first-of-type .infoFormItem__title {
+        margin: 0 0 10px;
+
+        @include mq(tab-min) {
+          width: 117px;
+          margin-right: 68px;
+        }
+      }
+
+      // パスワード
+      &:nth-of-type(2) .infoFormItem__title {
+        margin: 0 0 10px;
+
+        @include mq(tab-min) {
+          width: 86px;
+          margin-right: 96px;
+        }
+      }
+    }
+
+    // 振込先口座
+    &.account {
+      // 金融機関
+      &:first-of-type .infoFormItem__title {
+        margin: 0 73px 0 0;
+
+        @include mq(tab-min) {
+          margin-right: 73px;
+        }
+      }
+
+      // 支店名
+      &:nth-of-type(2) .infoFormItem__title {
+        margin: 0 87px 0 0;
+
+        @include mq(tab-min) {
+          margin-right: 87px;
+        }
+      }
+
+      // 口座種別
+      &:nth-of-type(3) .infoFormItem__title {
+        margin: 0 73px 0 0;
+
+        @include mq(tab-min) {
+          margin-right: 73px;
+        }
+      }
+
+      // 口座番号
+      &:nth-of-type(4) .infoFormItem__title {
+        margin: 0 73px 0 0;
+
+        @include mq(tab-min) {
+          margin-right: 73px;
+        }
+      }
+
+      // 口座名義
+      &:last-of-type .infoFormItem__title {
+        margin: 0 73px 0 0;
+
+        @include mq(tab-min) {
+          margin-right: 73px;
+        }
+      }
+    }
+
+    // 振込先口座・修正
+    &.editAccount {
+      // 金融機関
+      &:first-of-type .infoFormItem__title {
+        margin: 0 0 10px;
+
+        @include mq(tab-min) {
+          width: 70px;
+          margin-right: 112px;
+        }
+      }
+
+      // 支店名
+      &:nth-of-type(2) .infoFormItem__title {
+        margin: 0 0 10px;
+
+        @include mq(tab-min) {
+          width: 55px;
+          margin-right: 126px;
+        }
+      }
+
+      // 口座種別
+      &:nth-of-type(3) .infoFormItem__title {
+        margin: 0 0 10px;
+
+        @include mq(tab-min) {
+          width: 70px;
+          margin-right: 110px;
+        }
+      }
+
+      // 口座番号
+      &:nth-of-type(4) .infoFormItem__title {
+        margin: 0 0 10px;
+
+        @include mq(tab-min) {
+          width: 70px;
+          margin-right: 112px;
+        }
+      }
+
+      // 口座名義
+      &:last-of-type .infoFormItem__title {
+        margin: 0 0 10px;
+
+        @include mq(tab-min) {
+          width: 70px;
+          margin-right: 112px;
+        }
+      }
+    }
+  }
+}

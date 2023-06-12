@@ -1,0 +1,101 @@
+.generalButton {
+  font-family: Yu Gothic, YuGothic, 'ヒラギノ角ゴ Pro', 'Hiragino Kaku Gothic Pro', 'Hiragino Sans', Meiryo, メイリオ, 'MS P Gothic', sans-serif;
+  font-weight: bold;
+  text-align: center;
+  border-radius: 5px;
+  cursor: pointer;
+
+  &.textWhite {
+    color: $white;
+  }
+
+  &.textBrown {
+    color: $brown;
+  }
+
+  &.textBlack {
+    color: $black;
+  }
+
+  &.bgBlack {
+    background: $black;
+  }
+
+  &.bgBrown {
+    background: $brown;
+  }
+
+  &.bgWhite {
+    background: $white;
+  }
+
+  &.bgGray {
+    background: $gray;
+
+    &-5 {
+      background: $gray5;
+    }
+  }
+
+  &.outlineBrown {
+    border: 1px solid $brown;
+  }
+
+  &.outlineBlack {
+    border: 1px solid $black;
+  }
+
+  &.google:before {
+    content: '';
+    width: 23px;
+    height: 22px;
+    background: image-url('common/icon/google.svg');
+    margin-right: 3px;
+  }
+
+  &.facebook:before {
+    content: '';
+    width: 22px;
+    height: 22px;
+    background: image-url('common/icon/facebook.svg');
+    margin-right: 3px;
+  }
+
+  &.favorite,
+  &.edit,
+  &.search {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &.favorite:before {
+    content: '';
+    width: 16px;
+    height: 15px;
+    background: image-url('common/icon/favorite.svg');
+    margin-right: 8px;
+  }
+
+  &.search:before {
+    content: '';
+    width: 16px;
+    height: 15px;
+    background: image-url('common/icon/search.svg');
+    margin-right: 8px;
+  }
+
+  &.edit:before {
+    content: '';
+    width: 16px;
+    height: 15px;
+    background: image-url('common/icon/pencil.svg');
+    margin-right: 8px;
+  }
+
+  &:disabled,
+  &[disabled] {
+    opacity: .4;
+    cursor: not-allowed;
+  }
+}

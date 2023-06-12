@@ -1,0 +1,143 @@
+.propositionsDetailIndex {
+  @include mq(tab-min) {
+    display: flex;
+  }
+
+  .openItem__wrapper {
+    @include mq(tab-min) {
+      width: 1100px;
+    }
+  }
+
+  &__id {
+    color: $black;
+    font-family: Yu Gothic, YuGothic, 'ヒラギノ角ゴ Pro', 'Hiragino Kaku Gothic Pro', 'Hiragino Sans', Meiryo, メイリオ, 'MS P Gothic', sans-serif;
+    font-size: 16px;
+    font-weight: bold;
+    margin: 15px 0;
+
+    &.title {
+      font-size: 24px;
+      margin: 0 0 30px;
+    }
+  }
+
+  &__jobName {
+    color: $black;
+    font-family: Yu Gothic, YuGothic, 'ヒラギノ角ゴ Pro', 'Hiragino Kaku Gothic Pro', 'Hiragino Sans', Meiryo, メイリオ, 'MS P Gothic', sans-serif;
+    font-size: 24px;
+    font-weight: bold;
+    line-height: 1.5;
+    margin-bottom: 30px;
+  }
+
+  &__submitTitle {
+    color: $black;
+    font-family: Yu Gothic, YuGothic, 'ヒラギノ角ゴ Pro', 'Hiragino Kaku Gothic Pro', 'Hiragino Sans', Meiryo, メイリオ, 'MS P Gothic', sans-serif;
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+
+  &__submitText {
+    color: $black;
+    font-family: Yu Gothic, YuGothic, 'ヒラギノ角ゴ Pro', 'Hiragino Kaku Gothic Pro', 'Hiragino Sans', Meiryo, メイリオ, 'MS P Gothic', sans-serif;
+    font-size: 14px;
+    margin-bottom: 20px;
+  }
+
+  &__content:not(:last-of-type) {
+    margin-bottom: 70px;
+  }
+
+  .basicHead {
+    margin-bottom: 30px;
+  }
+
+  dl {
+    overflow: hidden;
+
+    dt {
+      width: 130px;
+      font-weight: bold;
+      float: left;
+      margin-right: 37px;
+
+      &:not(:last-of-type) {
+        margin-bottom: 20px;
+      }
+    }
+
+    dd {
+      font-family: Yu Gothic, YuGothic, 'ヒラギノ角ゴ Pro', 'Hiragino Kaku Gothic Pro', 'Hiragino Sans', Meiryo, メイリオ, 'MS P Gothic', sans-serif;
+
+      &:not(:last-of-type) {
+        margin-bottom: 20px;
+      }
+
+      &.image {
+        width: 300px;
+        height: 167px;
+      }
+
+      > .text {
+        color: $black;
+        font-size: 14px;
+        background: none;
+      }
+
+      .image {
+        width: 300px;
+        height: 167px;
+      }
+
+      .link {
+        color: $brown;
+        text-decoration: underline;
+      }
+    }
+
+    + .skillCheckArea {
+      margin-top: 20px;
+    }
+
+  }
+
+  .basicInfoMenu {
+    width: 280px;
+    height: fit-content;
+
+    @include mq(tab) {
+      width: 100%;
+      margin-bottom: 30px;
+    }
+
+    &.submit {
+      @include mq(tab) {
+        display: none;
+      }
+    }
+  }
+
+  .skillCheckArea__title {
+    font-size: 14px;
+    margin-bottom: 10px;
+  }
+
+  .skillCheckArea__title,
+  .skillTableForm__title,
+  .skillTableForm__content {
+    font-weight: bold;
+  }
+
+  .buttonGroup {
+    margin: 52px 0 0 400px;
+
+    .generalButton {
+      width: 180px;
+      height: 50px;
+      line-height: 50px;
+      font-size: 18px;
+    }
+  }
+}

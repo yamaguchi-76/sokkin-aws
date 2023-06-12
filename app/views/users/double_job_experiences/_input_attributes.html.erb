@@ -1,0 +1,70 @@
+<div class="formModal nested-fields">
+  <div class="formModal__cross">
+    <%= link_to_remove_association "×", f %>
+  </div>
+  <div class="formModal__content">
+    <div class="infoFormItem multipleWorkModal infoFormItemGroup__box">
+      <%= f.label '会社名', class: 'infoFormItem__title required' %>
+      <%= f.text_field :company_name, placeholder: '例) 株式会社ABCD', class: 'infoFormItem__item' %>
+    </div>
+
+    <div class="infoFormItem multipleWorkModal infoFormItemGroup__box">
+      <%= f.label '職種', class: 'infoFormItem__title required' %>
+      <%= f.select :job_kind_id, JobKind.all.map { |record| [record.name, record.id] }.to_h, { include_blank: '職種を選択してください'}, class: 'formSelect__item' %>
+    </div>
+
+    <div class="infoFormItem multipleWorkModal infoFormItemGroup__box">
+      <%= f.label '月収', class: 'infoFormItem__title required' %>
+      <%= f.number_field :monthly_income, placeholder: '例) 30', class: 'formBorderTextBox__item' %>
+      <span class="formBorderTextBox__text">万円</span>
+    </div>
+
+    <div class="infoFormItem multipleWorkModal infoFormItemGroup__box">
+      <%= f.label '稼働時間', class: 'infoFormItem__title required' %>
+      <span class="formBorderTextBox__text">1日</span>
+      <%= f.number_field :working_hours, placeholder: '例) 8', class: 'formBorderTextBox__item' %>
+      <span class="formBorderTextBox__text">時間</span>
+    </div>
+
+    <div class="infoFormItem multipleWorkModal infoFormItemGroup__box">
+      <div class="wrapper">
+        <%= f.label '複業開始年月', class: 'infoFormItem__title required' %>
+        <div class="formSelectGroup">
+          <%== sprintf(f.date_select(:employment_start_date,
+            {
+              :use_month_numbers => true,
+              discard_day: true,
+              :date_separator => '%s',
+              :start_year => 1943,
+              :end_year => Time.now.year,
+              :prompt => { month: '--', year: '--' },
+            },
+            { class: "formSelect__item middle" }), '<span class="formBorderTextBox__text">年</span>') + '<span class="formBorderTextBox__text">月</span>' %>
+        </div>
+      </div>
+    </div>
+
+    <div class="infoFormItem multipleWorkModal infoFormItemGroup__box">
+      <div class="wrapper">
+        <label class="infoFormItem__title height">複業時の<br>就業終了年月</label>
+        <%== sprintf(f.date_select(:employment_end_date,
+          {
+            :use_month_numbers => true,
+            discard_day: true,
+            :date_separator => '%s',
+            :start_year => 1943,
+            :end_year => Time.now.year,
+            :prompt => { month: '--', year: '--' },
+          },
+          { class: "formSelect__item middle" }), '<span class="formBorderTextBox__text">年</span>') + '<span class="formBorderTextBox__text">月</span>' %>
+      </div>
+    </div>
+
+    <div class="infoFormItem multipleWorkModal infoFormItemGroup__box">
+      <div class="wrapper">
+        <%= f.label '業務内容', class: 'infoFormItem__title required' %>
+        <%= f.text_area :business_experience, placeholder: '具体的な業務内容や、実績などをご記入ください', class: 'infoFormItem__item textarea' %>
+      </div>
+    </div>
+  </div>
+</div>

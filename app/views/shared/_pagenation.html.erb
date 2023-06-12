@@ -1,0 +1,8 @@
+<% if records.total_pages > 1 %>
+  <div class="pagenationWarrper" >
+    <div class="pageEntriesInfo" >
+      <%= page_entries_info records %>
+    </div>
+    <%= paginate records, window: window_size %>
+  </div>
+<% end %>

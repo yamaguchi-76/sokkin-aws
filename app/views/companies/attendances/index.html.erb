@@ -1,0 +1,31 @@
+<div class="attendanceIndex openItem">
+  <%= render 'companies/shared/side_menu' %>
+  <div class="openItem__wrapper">
+    <h2 class="attendanceIndex__title mb-30">勤怠管理</h2>
+    <div class="attendanceIndex__wrapper">
+      <table class="propositionsList">
+        <thead>
+          <th colspan="2">案件名</th>
+        </thead>
+        <tbody>
+          <% @attendance.each do |attendance| %>
+            <tr>
+              <td>
+                <% if attendance&.monthly_unit_prices.present? %>
+                  <%= link_to attendance.proposition.title,
+                              companies_attendance_path(attendance.id,
+                              year: Date.today.year,
+                              month: Date.today.month),
+                              class: 'link' %>
+                <% else %>
+                  <%= attendance.proposition.title %>
+                <% end %>
+              </td>
+              <td><%= link_to '案件詳細を見る', companies_proposition_path(attendance.proposition.id), class: 'link' %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

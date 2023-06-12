@@ -1,0 +1,70 @@
+.attendanceBlock {
+  background: $gray;
+  padding: 15px 30px;
+
+  @include mq(tab) {
+    padding: 20px;
+  }
+
+  &__title {
+    color: $black;
+    font-family: Yu Gothic, YuGothic, 'ヒラギノ角ゴ Pro', 'Hiragino Kaku Gothic Pro', 'Hiragino Sans', Meiryo, メイリオ, 'MS P Gothic', sans-serif;
+    font-size: 16px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+
+    &:before {
+      content: '';
+      width: 19px;
+      height: 19px;
+      background: image-url('users/icon/baggage_time.svg') no-repeat;
+      margin-right: 8px;
+    }
+  }
+
+  &__text {
+    color: $black;
+    font-family: Yu Gothic, YuGothic, 'ヒラギノ角ゴ Pro', 'Hiragino Kaku Gothic Pro', 'Hiragino Sans', Meiryo, メイリオ, 'MS P Gothic', sans-serif;
+    font-size: 14px;
+  }
+
+  &__textarea {
+    width: 100%;
+    height: 60px;
+    padding: 10px;
+    border: 1px solid $gray3;
+    border-radius: 5px;
+    resize: none;
+  }
+
+  &__flex {
+    display: flex;
+    flex-wrap: wrap;
+
+    &:not(:first-child) {
+      margin-bottom: 10px;
+    }
+
+    &:first-child > .colonText {
+      width: 40%;
+    }
+
+    > .colonText:not(:last-child) {
+      margin-right: 26px;
+    }
+  }
+
+  .generalButton {
+    width: 150px;
+    height: 40px;
+    line-height: 40px;
+    margin: 10px 0 0 278px;
+
+    @include mq(tab) {
+      width: 100%;
+      margin: 20px 0 0;
+    }
+  }
+}

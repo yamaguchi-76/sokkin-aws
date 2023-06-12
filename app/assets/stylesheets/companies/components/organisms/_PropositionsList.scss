@@ -1,0 +1,44 @@
+.propositionsList {
+  width: 100%;
+
+  thead {
+    border-bottom: 1px solid $gray3;
+
+    th {
+      color: $black;
+      font-family: Yu Gothic, YuGothic, 'ヒラギノ角ゴ Pro', 'Hiragino Kaku Gothic Pro', 'Hiragino Sans', Meiryo, メイリオ, 'MS P Gothic', sans-serif;
+      font-size: 14px;
+      font-weight: bold;
+      text-align: left;
+      padding-bottom: 15px;
+
+      &:not(:last-of-type) {
+        padding-right: 50px;
+      }
+
+      &.long {
+        width: 70%;
+      }
+
+      &.request {
+        width: 294px;
+      }
+    }
+  }
+
+  tr:not(:last-of-type) {
+    border-bottom: 1px solid $gray3;
+  }
+
+  tbody td {
+    padding: 15px 0;
+    font-family: Yu Gothic, YuGothic, 'ヒラギノ角ゴ Pro', 'Hiragino Kaku Gothic Pro', 'Hiragino Sans', Meiryo, メイリオ, 'MS P Gothic', sans-serif;
+
+    > .link {
+      color: $brown;
+      font-size: 14px;
+      font-weight: bold;
+      text-decoration: underline;
+    }
+  }
+}

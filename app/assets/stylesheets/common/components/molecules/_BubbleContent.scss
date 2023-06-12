@@ -1,0 +1,83 @@
+.bubbleContent {
+  @include mq(tab-min) {
+    display: flex;
+    align-items: center;
+  }
+
+  &__title {
+    color: $black;
+    font-family: Yu Gothic, YuGothic, 'ヒラギノ角ゴ Pro', 'Hiragino Kaku Gothic Pro', 'Hiragino Sans', Meiryo, メイリオ, 'MS P Gothic', sans-serif;
+    font-size: 16px;
+    font-weight: bold;
+    background: $gray;
+    padding: 16px 20px;
+    border-radius: 5px;
+    position: relative;
+
+    @include mq(tab) {
+      line-height: 1.5;
+      text-align: center;
+      margin-bottom: 24px;
+    }
+
+    @include mq(tab-min) {
+      display: flex;
+      align-items: center;
+      margin-right: 30px;
+    }
+
+    &:before {
+      content: '';
+      width: 27px;
+      height: 27px;
+      background: image-url('users/icon/light_bulb.svg') 50% 0 no-repeat;
+      margin-right: 13px;
+
+      @include mq(tab) {
+        display: block;
+        margin: 0 auto 5px;
+      }
+    }
+
+    &:after {
+      content: '';
+      width: 0;
+      height: 0;
+      border-left: 15px solid transparent;
+      border-right: 15px solid transparent;
+      border-top: 15px solid $gray;
+      position: absolute;
+      right: -18px;
+      bottom: 0;
+      margin: auto;
+
+      @include mq(tab) {
+        left: 0;
+        right: 0;
+        bottom: -14px;
+      }
+
+      @include mq(tab-min) {
+        top: 0;
+        transform: rotate(-90deg);
+      }
+    }
+
+    > .link {
+      color: $black;
+      font-weight: bold;
+      text-decoration: underline;
+    }
+  }
+
+  > .generalButton {
+    width: 180px;
+    height: 50px;
+    line-height: 50px;
+
+    @include mq(tab) {
+      width: 100%;
+      display: block;
+    }
+  }
+}

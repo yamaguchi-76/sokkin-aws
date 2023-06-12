@@ -1,0 +1,48 @@
+<div class="formModal nested-fields">
+  <div class="formModal__cross">
+    <%= link_to_remove_association "×", f %>
+  </div>
+  <div class="formModal__content">
+    <div class="infoFormItem pastEmployment infoFormItemGroup__box">
+      <%= f.label '過去の会社名', class: 'infoFormItem__title required' %>
+      <%= f.text_field :company_name, placeholder: '例) 株式会社ABCD', class: 'infoFormItem__item wide4' %>
+    </div>
+
+    <div class="infoFormItem pastEmployment infoFormItemGroup__box">
+      <label class="infoFormItem__title height required">過去の担当顧客や<br class="pc">業種</label>
+      <%= f.text_field :previous_client_or_industry, placeholder: '例) 株式会社AABB、マーケティング職', class: 'infoFormItem__item wide4' %>
+    </div>
+
+    <div class="infoFormItem pastEmployment infoFormItemGroup__box">
+      <%= f.label '就業開始年月', class: 'infoFormItem__title required' %>
+      <div class="formSelectGroup">
+        <%== sprintf(f.date_select(:employment_start_date,
+          {
+            :use_month_numbers => true,
+            discard_day: true,
+            :date_separator => '%s',
+            :start_year => 1943,
+            :end_year => Time.now.year,
+            :prompt => { month: '--', year: '--' },
+          },
+          { class: "formSelect__item middle" }), '年') + '月' %>
+      </div>
+    </div>
+
+    <div class="infoFormItem pastEmployment infoFormItemGroup__box">
+      <%= f.label '就業終了年月', class: 'infoFormItem__title required' %>
+      <div class="formSelectGroup">
+        <%== sprintf(f.date_select(:employment_end_date,
+          {
+            :use_month_numbers => true,
+            discard_day: true,
+            :date_separator => '%s',
+            :start_year => 1943,
+            :end_year => Time.now.year,
+            :prompt => { month: '--', year: '--' },
+          },
+          { class: "formSelect__item middle" }), '年') + '月' %>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,9 @@
+<div class="container mt-5">
+  <% provide(:title, "案件作成") %>
+
+  <%= render 'form', proposition: @proposition, url: admins_propositions_path, method: :post %>
+
+  <div class="text-center">
+    <%= link_to '戻る', admins_propositions_path, class: "mb-3 btn btn-primary" %>
+  </div>
+</div>

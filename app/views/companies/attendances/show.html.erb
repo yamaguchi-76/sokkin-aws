@@ -1,0 +1,93 @@
+<%= javascript_pack_tag ('controlMonthTabStatus') %>
+
+<% if @attendance.present? %>
+  <div class="attendanceIndex openItem">
+    <%= render 'companies/shared/side_menu' %>
+    <div class="openItem__wrapper">
+      <h2 class="attendanceIndex__title">勤怠管理</h2>
+      <%# TODO: 勤怠登録がない状態だとエラーページに飛ぶ %>
+      <div class="attendanceIndex__wrapper">
+        <ul class="generalTab">
+        <li class="generalTab__item attendances"><p class="text active">勤務状況</p></li>
+          <li class="generalTab__item feedback">
+            <%= link_to 'フィードバック', new_companies_attendance_client_feed_back_path(@attendance, year: params[:year], month: params[:month], user_id: params[:user_id]), class: 'text' %>
+          </li>
+        </ul>
+
+        <%# TODO: いずれはプルダウンにしたい %>
+        <div class="attendanceIndex__calendar">
+          <% @years.each do |year| %>
+            <p class="item">
+              <%= link_to companies_attendance_path(@attendance, year: year[0], month: year[1], user_id: params[:user_id]) do %>
+                <%= year[0] %>
+              <% end %>
+            </p>
+          <% end %>
+        </div>
+
+        <%# TODO: いずれはプルダウンにしたい %>
+        <%= render 'companies/attendances/month_tab', monthly_unit_prices: @monthly_unit_prices %>
+
+        <% calculated_unit_price = (@monthly_unit_price&.unit_price && !@monthly_unit_price.unit_price.zero?) ? (@monthly_unit_price.unit_price / 0.7).floor : 0 %>
+        <div class="attendanceContents">
+          <div class="attendanceContents__wrap">
+            <div class="attendanceBlock wide">
+              <h2 class="attendanceBlock__title">勤務状況</h2>
+              <% if @operating_times.present? %>
+                <div class="attendanceBlock__flex">
+                  <p class="colonText">支払いステータス<span class="right fontGothic"><%= @payment_status.paid_i18n %></span></p>
+                  <p class="colonText">稼働日数<span class="right fontGothic"><%= @operating_times.count %>日</span></p>
+                  <p class="colonText">勤務時間<span class="right fontGothic"><%= @operating_times.sum { |hash| hash[:working_hours]} %>時間</span></p>
+                  <p class="colonText">
+                    報酬
+                    <span class="right fontGothic">
+                      ¥
+                      <span class="conversionYen">
+                        <%= (calculated_unit_price * @operating_times.sum { |hash| hash[:working_hours] }).to_s(:delimited) %>
+                      </span>
+                    </span>
+                  </p>
+                </div>
+              <% else %>
+                <p class="attendanceBlock__text">勤怠状況がありません</p>
+              <% end %>
+            </div>
+
+            <div class="wrap">
+              <% if @operating_times.present? %>
+                <% @operating_times.each do |operating_time| %>
+                  <div class="attendanceText">
+                    <p class="attendanceText__item"><%= operating_time.working_days.strftime('%Y/%m/%d') %></p>
+                    <p class="attendanceText__item">
+                      <%= operating_time.working_hours %>
+                      時間 × ¥
+                      <span class="conversionYen">
+                        <%= calculated_unit_price.to_s(:delimited) %>
+                      </span>
+                      =
+                      <span class="bold">
+                        ¥
+                      </span>
+                      <span class="conversionYen bold">
+                        <%= (calculated_unit_price * operating_time.working_hours).to_s(:delimited) %>
+                      </span>
+                    </p>
+                    <p class="attendanceText__item"><%= operating_time.job_description %></p>
+                  </div>
+                <% end %>
+              <% else %>
+                <div class="attendanceText">
+                  <p class="attendanceText__item">勤怠がありません</p>
+                </div>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<% else %>
+  <div class="attendanceText">
+    <p class="attendanceText__item">勤怠がありません</p>
+  </div>
+<% end %>

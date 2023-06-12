@@ -1,0 +1,17 @@
+<h3>アプリ制作</h3>
+<table class="table">
+  <thead>
+    <tr>
+      <th>実務経験年数</th>
+      <td><%= skill.application_production_experience_i18n %></td>
+    </tr>
+    <tr>
+      <th>対応可能な業務範囲</th>
+      <td>
+        <% skill.application_production_scopes.each do |scopes| %>
+          <%= scopes.answer %>
+        <% end %>
+      </td>
+    </tr>
+  </thead>
+</table>

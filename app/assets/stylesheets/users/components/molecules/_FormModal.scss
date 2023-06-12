@@ -1,0 +1,37 @@
+@use '../../base/Variable' as *;
+
+.formModal {
+  width: 630px;
+  box-shadow: 0 2px 7px rgba($brown, 0.23);
+  border-radius: 5px;
+  position: relative;
+  padding: 40px 30px;
+
+  @include mq(tab) {
+    width: 100%;
+    padding: 30px 20px;
+  }
+
+  &__cross {
+    width: 16px;
+    height: 16px;
+    position: absolute;
+    right: 12px;
+    top: 10px;
+    cursor: pointer;
+
+    &:hover {
+      opacity: .7;
+      transition: 0.4s ease-in-out;
+    }
+
+    > a {
+      width: 16px;
+      height: 16px;
+      color: $gray4;
+      font-size: 24px;
+      display: block;
+      margin-top: -6px;
+    }
+  }
+}

@@ -1,0 +1,6 @@
+<p><%= @user.full_name %>様</p>
+
+<p><%= @proposition.title %> の案件についてスカウトが届きました。</p>
+<p>ご興味がございましたら、下記URLから応募をお願いいたします。</p>
+
+<p><%= link_to @proposition.title, users_proposition_url(@proposition.id) %></p>

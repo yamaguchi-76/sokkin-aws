@@ -1,0 +1,27 @@
+.usageFlowIndex {
+  @include mq(tab) {
+    padding-bottom: 40px;
+  }
+
+  @include mq(tab-min) {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__title {
+    color: $black;
+    font-family: Yu Gothic, YuGothic, 'ヒラギノ角ゴ Pro', 'Hiragino Kaku Gothic Pro', 'Hiragino Sans', Meiryo, メイリオ, 'MS P Gothic', sans-serif;
+    font-size: 24px;
+    margin-bottom: 30px;
+  }
+
+  .openItem__wrapper {
+    @include mq(tab-min) {
+      width: 1100px;
+    }
+  }
+
+  &__image {
+    margin-bottom: 40px;
+  }
+}

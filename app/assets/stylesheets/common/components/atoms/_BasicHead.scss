@@ -1,0 +1,35 @@
+.basicHead {
+  color: $brown;
+  border-left: 1px solid $brown;
+  padding-left: 16px;
+
+  &.edit {
+    display: flex;
+    justify-content: space-between;
+
+    > .generalButton {
+      width: 160px;
+      height: 40px;
+      line-height: 40px;
+
+      @include mq(tab) {
+        width: 100%;
+        position: absolute;
+        margin: auto;
+        bottom: -70px;
+        left: 0;
+        right: 0;
+      }
+    }
+  }
+
+  &__title {
+    font-size: 20px;
+    margin-bottom: 6px;
+  }
+
+  &__sub {
+    font-size: 12px;
+    margin-left: 6px;
+  }
+}

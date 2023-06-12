@@ -1,0 +1,101 @@
+@use '../../base/Variable' as *;
+
+.jobDetail {
+  width: 781px;
+  position: relative;
+
+  @include mq(tab) {
+    width: 100%;
+  }
+
+  &:after {
+    width: 110px;
+    height: 30px;
+    line-height: 30px;
+    border-radius: 3px;
+    color: $white;
+    text-align: center;
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+
+  &.waitResult:after {
+    content: '選考待ち';
+    background: $red;
+  }
+
+  &__date {
+    color: $black;
+    font-size: 14px;
+    display: flex;
+    align-items: baseline;
+    margin-bottom: 17px;
+
+    > .day {
+      font-family: Avenir, serif;
+      font-weight: 500;
+      margin-right: 10px;
+    }
+
+    > .id {
+      font-family: Yu Gothic, YuGothic, 'ヒラギノ角ゴ Pro', 'Hiragino Kaku Gothic Pro', 'Hiragino Sans', Meiryo, メイリオ, 'MS P Gothic', sans-serif;
+      font-weight: bold;
+    }
+  }
+
+  &__title {
+    color: $black;
+    font-family: Yu Gothic, YuGothic, 'ヒラギノ角ゴ Pro', 'Hiragino Kaku Gothic Pro', 'Hiragino Sans', Meiryo, メイリオ, 'MS P Gothic', sans-serif;
+    font-size: 24px;
+    margin-bottom: 15px;
+
+    @include mq(tab) {
+      line-height: 1.5;
+    }
+  }
+
+  &__description {
+    color: $black;
+    font-family: Yu Gothic, YuGothic, 'ヒラギノ角ゴ Pro', 'Hiragino Kaku Gothic Pro', 'Hiragino Sans', Meiryo, メイリオ, 'MS P Gothic', sans-serif;
+    font-size: 18px;
+    margin-bottom: 17px;
+  }
+
+  > .colonText {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+
+  &__image {
+    background: $gray2;
+    margin-bottom: 10px;
+
+    @include mq(tab) {
+      width: 100%;
+      min-height: 191.67px;
+    }
+
+    @include mq(tab-min) {
+      width: 781px;
+      height: 434px;
+    }
+  }
+
+  .categoryList {
+    margin-bottom: 10px;
+  }
+
+  .flexText {
+    margin-bottom: 12px;
+  }
+
+  .simpleContent {
+    padding: 30px 0 35px;
+
+    &:not(:last-of-type) {
+      border-bottom: 1px solid $gray3;
+    }
+  }
+}

@@ -1,0 +1,109 @@
+@use '../../base/Variable' as *;
+
+.attendanceIndex {
+  @include mq(tab) {
+    padding: 0 0 110px;
+  }
+
+  @include mq(tab-min) {
+    display: flex;
+  }
+
+  .openItem__wrapper {
+    position: relative;
+
+    @include mq(tab-min) {
+      width: 1100px;
+    }
+
+    > .generalButton {
+      width: 138px;
+      height: 40px;
+      line-height: 40px;
+      display: block;
+
+      @include mq(tab-min) {
+        position: absolute;
+        right: 0;
+      }
+    }
+  }
+
+  &__calendar {
+    width: fit-content;
+    color: $black;
+    font-size: 14px;
+    font-family: Yu Gothic, YuGothic, 'ヒラギノ角ゴ Pro', 'Hiragino Kaku Gothic Pro', 'Hiragino Sans', Meiryo, メイリオ, 'MS P Gothic', sans-serif;
+    display: flex;
+
+    @include mq(tab) {
+      width: 100%;
+      margin: 20px 0;
+    }
+
+    @include mq(tab-min) {
+      position: absolute;
+      right: 0;
+      margin-top: 18px;
+    }
+
+    > .item {
+      &:not(:last-child) {
+        margin-right: 4px;
+      }
+
+      > a {
+        color: $black;
+        padding: 8px;
+        border: 1px solid $brown;
+        border-radius: 5px;
+      }
+    }
+  }
+
+  &__title {
+    color: $black;
+    font-family: Yu Gothic, YuGothic, 'ヒラギノ角ゴ Pro', 'Hiragino Kaku Gothic Pro', 'Hiragino Sans', Meiryo, メイリオ, 'MS P Gothic', sans-serif;
+    font-size: 24px;
+
+    &.mb-30 {
+      margin-bottom: 30px;
+    }
+  }
+
+  &__link {
+    color: $brown;
+    text-decoration: underline;
+    margin-top: 20px;
+    display: block;
+    position: absolute;
+    right: 16px;
+  }
+
+  .generalTab {
+    margin-top: 62px;
+
+    @include mq(tab) {
+      width: 100%;
+      display: flex;
+    }
+  }
+
+  .attendanceContents {
+    @include mq(tab) {
+      margin-top: 20px;
+    }
+  }
+
+  .attendanceTable {
+    margin-top: 60px;
+  }
+
+  .monthTab {
+    margin-top: 60px;
+
+    @include mq(tab) {
+      margin: 20px 0;
+    }
+  }
+}

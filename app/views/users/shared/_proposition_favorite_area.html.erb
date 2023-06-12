@@ -1,0 +1,5 @@
+<% if current_user.favorite?(proposition) %>
+  <%= render 'users/shared/proposition_unfavorite', proposition: proposition %>
+<% else %>
+  <%= render 'users/shared/proposition_favorite', proposition: proposition %>
+<% end %>

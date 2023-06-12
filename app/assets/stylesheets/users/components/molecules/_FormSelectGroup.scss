@@ -1,0 +1,9 @@
+@use '../../base/Variable' as *;
+
+.formSelectGroup {
+  display: flex;
+
+  .formSelect:not(:last-of-type) {
+    margin-right: 20px;
+  }
+}

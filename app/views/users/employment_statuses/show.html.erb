@@ -1,0 +1,109 @@
+<%# TODO: 登録時、ログイン時でクラスを分けたい %>
+<div class="inputFormIndex login openItem">
+  <%= render 'users/shared/side_menu' %>
+  <div class="openItem__wrapper">
+    <h1 class="inputFormIndex__title"><%= first_sign_in? ? 'プロフィール' : '会員登録' %></h1>
+    <div class="inputFormIndex__wrapper">
+      <%= render "users/shared/profile_links" %>
+      <div class="formDetailItem">
+        <div class="basicHead edit">
+          <div class="wrapper">
+            <h3 class="basicHead__title">就業状況</h3>
+            <p class="basicHead__sub">work</p>
+          </div>
+          <%= link_to '編集する', edit_users_employment_statuses_path, class: 'generalButton outlineBlack textBlack edit' %>
+        </div>
+        <p class="formDetailItem__text">
+          ※個人情報に関わるため、企業側へ情報は開示されません。<br>
+          おすすめ案件をご紹介する際などの参考情報として利用させていただきます。
+        </p>
+        <div class="infoFormItemGroup">
+          <div class="infoFormItem employment infoFormItemGroup__box">
+            <div class="wrapper">
+              <h3 class="infoFormItem__title required">現在の就業形態</h3>
+              <p class="infoFormItem__text"><%= @employment_status.status_i18n %></p>
+            </div>
+          </div>
+          <div class="infoFormItem employment infoFormItemGroup__box">
+            <div class="wrapper">
+              <h3 class="infoFormItem__title required">現在の会社名</h3>
+              <p class="infoFormItem__text"><%= @employment_status.company_name %></p>
+            </div>
+          </div>
+          <div class="infoFormItem employment infoFormItemGroup__box">
+            <div class="wrapper">
+              <h3 class="infoFormItem__title required">現在の業種</h3>
+              <p class="infoFormItem__text"><%= @employment_status.industry_category %></p>
+            </div>
+          </div>
+          <div class="infoFormItem employment infoFormItemGroup__box">
+            <div class="wrapper">
+              <h3 class="infoFormItem__title required">現在の職種</h3>
+              <p class="infoFormItem__text">
+                <% if @employment_status.job_kind %>
+                  <%= @employment_status.job_kind.name %>
+                <% end %>
+              </p>
+            </div>
+          </div>
+          <div class="infoFormItem employment infoFormItemGroup__box">
+            <div class="wrapper">
+              <h3 class="infoFormItem__title required">役割</h3>
+              <p class="infoFormItem__text"><%= @employment_status.job_title %></p>
+            </div>
+          </div>
+          <div class="infoFormItem employment infoFormItemGroup__box">
+            <div class="wrapper">
+              <h3 class="infoFormItem__title required">年収</h3>
+              <p class="infoFormItem__text"><%= @employment_status.yearly_income %></p>
+            </div>
+          </div>
+          <div class="infoFormItem employment infoFormItemGroup__box">
+            <div class="wrapper">
+              <h3 class="infoFormItem__title height required">現在の<br>月間稼働時間</h3>
+              <p class="infoFormItem__text">週<%= @employment_status.working_hours %>日　1日<%= @employment_status.working_days_of_the_week %>時間</p>
+            </div>
+          </div>
+          <div class="infoFormItem employment infoFormItemGroup__box">
+            <div class="wrapper">
+              <h3 class="infoFormItem__title required">経験業務内容</h3>
+              <p class="infoFormItem__text"><%= @employment_status.business_experience %></p>
+            </div>
+          </div>
+          <div class="infoFormItem employment infoFormItemGroup__box">
+            <div class="wrapper">
+              <h3 class="infoFormItem__title required">就業開始年月</h3>
+              <p class="infoFormItem__text"><%= @employment_status.employment_start_date %></p>
+            </div>
+          </div>
+          <div class="infoFormItem employment infoFormItemGroup__box">
+            <div class="wrapper">
+              <h3 class="infoFormItem__title required">就業終了年月</h3>
+              <p class="infoFormItem__text"><%= @employment_status.employment_end_date %></p>
+            </div>
+          </div>
+          <div class="infoFormItem employment border infoFormItemGroup__box">
+            <%  @past_employment_statuses.each do |past_employment_status| %>
+              <div class="wrapper">
+                <h3 class="infoFormItem__title required">過去の会社名</h3>
+                <p class="infoFormItem__text"><%= past_employment_status.company_name %></p>
+              </div>
+              <div class="wrapper">
+                <h3 class="infoFormItem__title height required">過去の担当顧客や<br>業種</h3>
+                <p class="infoFormItem__text"><%= past_employment_status.company_name %></p>
+              </div>
+              <div class="wrapper">
+                <h3 class="infoFormItem__title required">就業開始年月</h3>
+                <p class="infoFormItem__text"><%= past_employment_status.employment_start_date %></p>
+              </div>
+              <div class="wrapper">
+                <h3 class="infoFormItem__title required">就業終了年月</h3>
+                <p class="infoFormItem__text"><%= past_employment_status.employment_end_date %></p>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,26 @@
+<div class="container mt-5">
+  <% provide(:title, "応募者一覧") %>
+
+  <table class="table">
+    <thead>
+    <tr>
+      <th><%= t('activerecord.attributes.proposition_entry.user_id') %></th>
+      <th><%= t('activerecord.attributes.user.full_name') %></th>
+      <th><%= t('activerecord.attributes.proposition.title') %></th>
+      <th><%= t('activerecord.attributes.company.name') %></th>
+      <th><%= t('activerecord.attributes.proposition_entry.status') %></th>
+    </tr>
+    </thead>
+    <tbody>
+    <% @proposition_entries.each do |entry| %>
+      <tr>
+        <td><%= link_to entry.user.id, admins_user_path(entry.user.id) %></td>
+        <td><%= entry.user.full_name %></td>
+        <td><%= link_to entry.proposition.title, admins_proposition_path(entry.proposition) %></td>
+        <td><%= entry.proposition.company.name %></td>
+        <td><%= entry.status_i18n %></td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+</div>

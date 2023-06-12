@@ -1,0 +1,31 @@
+@use '../../base/Variable' as *;
+
+.formModalGroup {
+  .formModal:not(:first-of-type) {
+    margin: 25px 0;
+  }
+
+  &__add {
+    color: $brown;
+    font-weight: bold;
+    text-align: right;
+    margin-top: 30px;
+    display: block;
+    cursor: pointer;
+
+    &:hover {
+      opacity: .7;
+      transition: .4s ease-in-out;
+    }
+
+    &:before {
+      content: '+';
+      margin-right: 7px;
+      text-decoration: none;
+    }
+
+    > .border {
+      text-decoration: underline;
+    }
+  }
+}

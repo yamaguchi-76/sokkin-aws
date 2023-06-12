@@ -1,0 +1,33 @@
+<div class="scoutIndex openItem">
+  <%= render 'companies/shared/side_menu' %>
+  <div class="openItem__wrapper">
+    <h2 class="scoutIndex__title">スカウト</h2>
+
+    <%= render 'search' %>
+
+    <table class="propositionsList">
+      <thead>
+        <tr>
+          <th>ユーザーID</th>
+          <th>職種</th>
+          <th>年齢</th>
+          <th>希望単価/時間</th>
+          <th>希望稼働時間/日</th>
+          <th>希望勤務日数/月</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @users.each do |user| %>
+          <tr>
+            <td><%= link_to user.id, companies_user_path(user.id), class: 'link' %></td>
+            <td><%= user.employment_status&.job_kind&.name %></td>
+            <td><%= user.age %></td>
+            <td><%= user.self_introduction&.show_desired_unit_price_to_b %>円</td>
+            <td><%= user.self_introduction&.desired_working_hours %>時間</td>
+            <td><%= user.self_introduction&.desired_working_days %>日</td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -1,0 +1,73 @@
+<div class="container mt-5">
+  <% provide(:title, "企業詳細") %>
+
+  <table class="table">
+    <tbody>
+      <tr>
+        <th>id</th>
+        <td><%= @company.id %></td>
+      </tr>
+      <tr>
+        <th>企業名</th>
+        <td><%= @company.name %></td>
+      </tr>
+      <tr>
+        <th>企業名カナ</th>
+        <td><%= @company.name_kana %></td>
+      </tr>
+      <tr>
+        <th>email</th>
+        <td><%= @company.email %></td>
+      </tr>
+      <tr>
+        <th>電話番号</th>
+        <td><%= @company.phone_number %></td>
+      </tr>
+      <tr>
+        <th>担当者名 性</th>
+        <td><%= @company.person_in_charge_last_name %></td>
+      </tr>
+      <tr>
+        <th>担当者名 名</th>
+        <td><%= @company.person_in_charge_first_name %></td>
+      </tr>
+      <tr>
+        <th>担当者名 性カナ</th>
+        <td><%= @company.person_in_charge_last_name_kana %></td>
+      </tr>
+      <tr>
+        <th>担当者名 名カナ</th>
+        <td><%= @company.person_in_charge_first_name_kana %></td>
+      </tr>
+      <tr>
+        <th>所属部署</th>
+        <td><%= @company.belonging_department %></td>
+      </tr>
+      <tr>
+        <th>住所</th>
+        <td><%= @company.address %></td>
+      </tr>
+      <tr>
+        <th>郵便番号</th>
+        <td><%= @company.postal_code %></td>
+      </tr>
+      <tr>
+        <th>ホームページ</th>
+        <td><%= @company.homepage %></td>
+      </tr>
+      <tr>
+        <th>作成日時</th>
+        <td><%= @company.created_at.strftime('%Y/%m/%d') %></td>
+      </tr>
+      <tr>
+        <th>更新日時</th>
+        <td><%= @company.updated_at.strftime('%Y/%m/%d') %></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="text-center">
+    <%= link_to '編集', edit_admins_company_path(@company), class: "mb-3 btn btn-primary" %>
+    <%= link_to '戻る', admins_companies_path, class: "mb-3 btn btn-primary" %>
+  </div>
+</div>

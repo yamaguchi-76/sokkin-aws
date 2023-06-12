@@ -1,0 +1,61 @@
+.monthTab {
+  display: flex;
+  align-items: center;
+  list-style: none;
+
+  @include mq(tab) {
+    flex-wrap: wrap;
+    margin: 0 0 -8px 0;
+  }
+
+  &__item {
+    font-size: 16px;
+    font-family: Yu Gothic, YuGothic, 'ヒラギノ角ゴ Pro', 'Hiragino Kaku Gothic Pro', 'Hiragino Sans', Meiryo, メイリオ, 'MS P Gothic', sans-serif;
+    text-align: center;
+    border-radius: 5px;
+
+    @include mq(tab) {
+      padding: 8px;
+      margin: 0 0 8px 0;
+      background: $brown2;
+    }
+
+    @include mq(tab-min) {
+      width: 88px;
+      height: 40px;
+      line-height: 40px;
+      border-radius: 3px 3px 0 0;
+    }
+
+    &:not(:last-child) {
+      margin-right: 4px;
+    }
+
+    a {
+      display: block;
+    }
+
+    &.common {
+      color: $white;
+      background: $gray2;
+
+      > a {
+        color: $white;
+        background: $black;
+
+        @include mq(tab-min) {
+          border-radius: 5px;
+        }
+      }
+    }
+
+    &.now {
+      background: $brown2;
+      font-weight: bold;
+
+      > a {
+        color: $black;
+      }
+    }
+  }
+}

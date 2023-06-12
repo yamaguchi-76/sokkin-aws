@@ -1,0 +1,83 @@
+<div class="accountIndex openItem">
+  <%= render 'users/shared/side_menu' %>
+  <div class="openItem__wrapper">
+    <h1 class="accountIndex__title">アカウント設定</h1>
+    <div class="accountIndex__wrapper">
+      <div class="formDetailItem">
+        <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+          <%= render "users/shared/error_messages", resource: resource %>
+          <div class="basicHead">
+            <h3 class="basicHead__title">個人情報</h3>
+            <p class="basicHead__sub">personal info</p>
+          </div>
+          <div class="infoFormItemGroup">
+            <div class="infoFormItem editPersonalInfo infoFormItemGroup__box">
+              <div class="wrapper">
+                <%= f.label :email, class: 'infoFormItem__title required' %>
+                <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'infoFormItem__item' %>
+              </div>
+            </div>
+            <div class="infoFormItem editPersonalInfo infoFormItemGroup__box">
+              <div class="wrapper">
+                <%= f.label :password, class: 'infoFormItem__title required' %>
+                <%= f.password_field :password, autocomplete: "new-password", class: 'infoFormItem__item' %>
+              </div>
+            </div>
+            <%= f.submit "更新", class: 'generalButton bgBrown textWhite' %>
+            <%= link_to '戻る', users_account_url, class: 'generalButton bgGray-5 textWhite sp' %>
+          </div>
+        <% end %>
+      </div>
+      
+      <div class="formDetailItem">
+        <%= form_with(model: current_user.bank_account, url: users_bank_account_path, method: :patch) do |f| %>
+          <div class="basicHead">
+            <h3 class="basicHead__title">振込先口座</h3>
+            <p class="basicHead__sub">account</p>
+          </div>
+          <div class="infoFormItemGroup">
+            <div class="infoFormItem editAccount infoFormItemGroup__box">
+              <div class="wrapper">
+                <%= f.label '金融機関', class: 'infoFormItem__title required' %>
+                <%= f.text_field :bank_name, class: 'infoFormItem__item' %>
+              </div>
+            </div>
+            <div class="infoFormItem editAccount infoFormItemGroup__box">
+              <div class="wrapper">
+                <%= f.label '支店名', class: 'infoFormItem__title required' %>
+                <%= f.text_field :branch_name, class: 'infoFormItem__item' %>
+              </div>
+            </div>
+            <div class="infoFormItem editAccount infoFormItemGroup__box">
+              <div class="wrapper">
+                <%= f.label '口座種別', class: 'infoFormItem__title required' %>
+                <div class="formGroup">
+                  <%= f.collection_radio_buttons :account_kind, BankAccount.account_kinds_i18n, :first, :last do |radio| %>
+                    <div class="formRadio">
+                      <%= radio.radio_button(class: "formRadio__radio") %>
+                      <%= radio.label(class: "formRadio__text") %>
+                    </div>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+            <div class="infoFormItem editAccount infoFormItemGroup__box">
+              <div class="wrapper">
+                <%= f.label '口座番号', class: 'infoFormItem__title required' %>
+                <%= f.text_field :account_number, class: 'infoFormItem__item' %>
+              </div>
+            </div>
+            <div class="infoFormItem editAccount infoFormItemGroup__box">
+              <div class="wrapper">
+                <%= f.label '口座名義', class: 'infoFormItem__title required' %>
+                <%= f.text_field :account_holder, class: 'infoFormItem__item' %>
+              </div>
+            </div>
+            <%= f.submit "更新", class: 'generalButton bgBrown textWhite' %>
+            <%= link_to '戻る', users_account_url, class: 'generalButton bgGray-5 textWhite sp' %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

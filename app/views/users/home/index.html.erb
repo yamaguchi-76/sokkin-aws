@@ -1,0 +1,86 @@
+<div class="homeIndex openItem">
+  <%= render 'users/shared/side_menu' %>
+  <div class="openItem__wrapper">
+    <h2 class="homeIndex__title"><%= "ようこそ、#{current_user.full_name} 様" %></h2>
+    <section class="homeIndex__content">
+      <div class="basicHead">
+        <h3 class="basicHead__title">今週の好条件な案件</h3>
+        <p class="basicHead__sub">weekly goodness</p>
+      </div>
+      <div class="jobListCarousel">
+        <% @high_price_propositions.each do |proposition| %>
+          <div class="jobListCarousel__item">
+            <figure class="image">
+              <% if proposition.image.url %>
+                <%= image_tag proposition.image_url(:proposition_thumbnail) %>
+              <% else %>
+                <%= image_tag '/images/default_proposition_image.png' %>
+              <% end %>
+            </figure>
+            <div class="wrap">
+              <p class="createDay"><%= l proposition.created_at, format: :date_joins_dot  %></p>
+              <ul class="categoryList">
+                <% proposition.job_kinds.each do |job_kind| %>
+                  <li class="categoryList__item"><%= job_kind.name %></li>
+                <% end %>
+              </ul>
+              <h3 class="title"><%= proposition.title %></h3>
+              <h4 class="colonText">業界<span class="right"><%= proposition.industry.name %></span></h4>
+              <p class="itemList schedule"><%= proposition.formatted_contract_period %></p>
+              <p class="itemList remuneration"><%= proposition.formatted_unit_price %></p>
+              <p class="colonText">応募締切
+                <span class="right">
+                  <% if proposition.application_deadline %>
+                    <%= l proposition.application_deadline, format: :date_joins_dot %>
+                  <% end %>
+                </span>
+              </p>
+              <%= link_to '案件詳細を見る', users_proposition_path(proposition.id), class: 'generalButton bgBlack textWhite' %>
+              <%= render 'users/shared/proposition_favorite_area', proposition: proposition %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </section>
+    <section class="homeIndex__content">
+      <div class="basicHead">
+        <h3 class="basicHead__title">新着案件</h3>
+        <p class="basicHead__sub">new</p>
+      </div>
+      <div class="jobListCarousel">
+        <% @new_propositions.each do |proposition| %>
+          <div class="jobListCarousel__item">
+            <figure class="image">
+              <% if proposition.image.url %>
+                <%= image_tag proposition.image_url(:proposition_thumbnail) %>
+              <% else %>
+                <%= image_tag '/images/default_proposition_image.png' %>
+              <% end %>
+            </figure>
+            <div class="wrap">
+              <p class="createDay"><%= l proposition.created_at, format: :date_joins_dot  %></p>
+              <ul class="categoryList">
+                <% proposition.job_kinds.each do |job_kind| %>
+                  <li class="categoryList__item"><%= job_kind.name %></li>
+                <% end %>
+              </ul>
+              <h3 class="title"><%= proposition.title %></h3>
+              <h4 class="colonText">業界<span class="right"><%= proposition.industry.name %></span></h4>
+              <p class="itemList schedule"><%= proposition.formatted_contract_period %></p>
+              <p class="itemList remuneration"><%= proposition.formatted_unit_price %></p>
+              <p class="colonText">応募締切
+                <span class="right">
+                  <% if proposition.application_deadline %>
+                    <%= l proposition.application_deadline, format: :date_joins_dot %>
+                  <% end %>
+                </span>
+              </p>
+              <%= link_to '案件詳細を見る', users_proposition_path(proposition.id), class: 'generalButton bgBlack textWhite' %>
+              <%= render 'users/shared/proposition_favorite_area', proposition: proposition %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </section>
+  </div>
+</div>

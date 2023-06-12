@@ -1,0 +1,8 @@
+<%# TODO: 登録ページ (000系) のみの場合、submit というクラスを出す %>
+<ul class="basicInfoMenu">
+  <li class="basicInfoMenu__item<%= active_page?(edit_users_basic_infos_path, users_basic_infos_path) %>"><%= link_to '基本情報', edit_users_basic_infos_path, class: 'link' %></li>
+  <li class="basicInfoMenu__item<%= active_page?(edit_users_educational_backgrounds_path, users_educational_backgrounds_path) %>"><%= link_to '学歴', edit_users_educational_backgrounds_path, class: 'link' %></li>
+  <li class="basicInfoMenu__item<%= active_page?(edit_users_employment_statuses_path, users_employment_statuses_path) %>"><%= link_to '就業状況', edit_users_employment_statuses_path, class: 'link' %></li>
+  <li class="basicInfoMenu__item<%= active_page?(users_double_job_experiences_edit_path, users_double_job_experiences_path) %>"><%= link_to '複業経験', users_double_job_experiences_edit_path, class: 'link' %></li>
+  <li class="basicInfoMenu__item<%= active_page?(edit_users_self_introductions_path, users_self_introductions_path) %>"><%= link_to '自己紹介', edit_users_self_introductions_path, class: 'link' %></li>
+</ul>

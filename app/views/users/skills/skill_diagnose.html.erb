@@ -1,0 +1,42 @@
+<div class="skillCheckIndex login openItem">
+  <%= render 'users/shared/side_menu' %>
+  <div class="openItem__wrapper">
+    <h2 class="skillCheckIndex__title">スキル診断</h2>
+    <div class="skillCheckIndex__wrapper">
+      <p class="skillCheckIndex__text">
+        スキル診断を受験することで、クライアントにあなたのスキルを証明することができます。<br class="pc">さらに、クライアントの目にも留まりやすくなりますので、是非受験してみてください。
+      </p>
+      <h3 class="skillCheckIndex__subtitle">スキル診断を受ける職種を選択してください。<br class="sp"><span class="required">※複数選択可</span></h3>
+
+      <%= form_with(model: @skill, url: skill_diagnose_create_users_skills_path, method: :post ) do |f| %>
+        <div class="formGroup">
+          <div class="formCheckBox">
+            <%= f.check_box :planner, { class: 'formCheckBox__item' }, true, false %>
+            <%= f.label 'プランナー', class: 'formCheckBox__text' %>
+          </div>
+          <div class="formCheckBox">
+            <%= f.check_box :media_consultant, { class: 'formCheckBox__item' }, true, false %>
+            <%= f.label 'メディアコンサルタント', class: 'formCheckBox__text' %>
+          </div>
+          <div class="formCheckBox">
+            <%= f.check_box :operation_operator, { class: 'formCheckBox__item' }, true, false %>
+            <%= f.label '運用オペレーター', class: 'formCheckBox__text' %>
+          </div>
+          <div class="formCheckBox">
+            <%= f.check_box :designer, { class: 'formCheckBox__item' }, true, false %>
+            <%= f.label 'デザイナー', class: 'formCheckBox__text' %>
+          </div>
+          <div class="formCheckBox">
+            <%= f.check_box :director, { class: 'formCheckBox__item' }, true, false %>
+            <%= f.label 'ディレクター', class: 'formCheckBox__text' %>
+          </div>
+          <div class="formCheckBox">
+            <%= f.check_box :engineer, { class: 'formCheckBox__item' }, true, false %>
+            <%= f.label 'エンジニア', class: 'formCheckBox__text' %>
+          </div>
+        </div>
+        <%= f.submit "診断スタート", class: 'generalButton bgBrown textWhite' %>
+      </div>
+    <% end %>
+  </div>
+</div>

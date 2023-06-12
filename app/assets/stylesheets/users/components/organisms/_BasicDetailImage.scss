@@ -1,0 +1,62 @@
+@use '../../base/Variable' as *;
+
+.basicDetailImage {
+  display: flex;
+  align-items: center;
+
+  @include mq(tab) {
+    display: block;
+  }
+
+  input[type=file] {
+    display: none;
+  }
+
+  .profileIcon {
+    width: 115px;
+    height: 115px;
+
+    @include mq(tab) {
+      width: 84px;
+      height: 84px;
+      margin: 20px 0;
+    }
+
+    &__text {
+      line-height: 115px;
+
+      @include mq(tab) {
+        line-height: 84px;
+      }
+    }
+  }
+
+  &__upload {
+    @include mq(tab-min) {
+      margin-left: 20px;
+    }
+
+    .generalButton {
+      width: 180px;
+      height: 40px;
+      line-height: 40px;
+      margin-bottom: 8px;
+      display: block;
+
+      &:before {
+        content: '画像アップロード';
+      }
+
+      &:hover {
+        opacity: .7;
+        transition: .4s ease-in-out;
+      }
+    }
+
+    .text {
+      color: $black;
+      font-size: 14px;
+      font-family: Yu Gothic, YuGothic, 'ヒラギノ角ゴ Pro', 'Hiragino Kaku Gothic Pro', 'Hiragino Sans', Meiryo, メイリオ, 'MS P Gothic', sans-serif;
+    }
+  }
+}

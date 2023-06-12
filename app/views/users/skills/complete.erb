@@ -1,0 +1,12 @@
+<div class="completionIndex skill openItem">
+  <%= render 'users/shared/side_menu' %>
+  <div class="completionIndex__container skill">
+    <h1 class="completionIndex__title skill">スキル診断を送信しました</h1>
+    <p class="completionIndex__text">
+      スキル診断おつかれさまでした。<br>
+      スキル診断は何度でも受けられます。<br>
+      再度受ける時は、<%= link_to "スキル診断", skill_diagnose_edit_users_skill_path(current_user.skill), class: 'link' %>から診断へお進みください。
+    </p>
+    <%= link_to '案件一覧へ戻る', users_propositions_path, class: 'generalButton bgBlack textWhite' %>
+  </div>
+</div>

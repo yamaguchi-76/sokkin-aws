@@ -1,0 +1,21 @@
+.colonText {
+  color: $black;
+  font-family: Yu Gothic, YuGothic, 'ヒラギノ角ゴ Pro', 'Hiragino Kaku Gothic Pro', 'Hiragino Sans', Meiryo, メイリオ, 'MS P Gothic', sans-serif;
+
+  @include mq(tab) {
+    font-size: 14px;
+  }
+
+  > .right {
+    font-family: Avenir, serif;
+    font-weight: 500;
+
+    &:before {
+      content: '：';
+    }
+  }
+
+  > .fontGothic {
+    font-family: Yu Gothic, YuGothic, 'ヒラギノ角ゴ Pro', 'Hiragino Kaku Gothic Pro', 'Hiragino Sans', Meiryo, メイリオ, 'MS P Gothic', sans-serif;
+  }
+}

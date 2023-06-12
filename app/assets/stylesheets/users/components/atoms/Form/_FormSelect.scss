@@ -1,0 +1,32 @@
+@use '../../../base/Variable' as *;
+
+.formSelect {
+  color: $black;
+  font-family: Yu Gothic, YuGothic, 'ヒラギノ角ゴ Pro', 'Hiragino Kaku Gothic Pro', 'Hiragino Sans', Meiryo, メイリオ, 'MS P Gothic', sans-serif;
+  font-size: 14px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+
+  &__item {
+    color: $black;
+    border-bottom: 1px solid $brown;
+    margin-right: 10px;
+
+    &.small {
+      width: 80px;
+    }
+
+    &.wide {
+      width: 400px;
+
+      @include mq(tab) {
+        width: 100%;
+      }
+    }
+
+    &.middle {
+      width: 100px;
+    }
+  }
+}

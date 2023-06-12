@@ -1,0 +1,155 @@
+<%= form_with(model: proposition, url: url) do |form| %>
+  <% if proposition.errors.any? %>
+    <div class="errorExplanation">
+      <ul class="errorExplanation__list">
+        <% proposition.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="formDetailItem">
+    <div class="basicHead edit">
+      <div class="wrapper">
+        <h3 class="basicHead__title">基本情報</h3>
+        <p class="basicHead__sub">basic info</p>
+      </div>
+    </div>
+    <dl class="inputForm">
+      <dt class="inputForm__title required">職種</h3>
+      <dd class="formGroup">
+        <%= form.collection_check_boxes(:job_kind_ids, JobKind.all, :id, :name) do |j| %>
+          <div class="formCheckBox">
+            <%= j.check_box(class: 'formCheckBox__item') %>
+            <%= j.label(class: "formCheckBox__text") %>
+          </div>
+        <% end %>
+      </dd>
+    </dl>
+    <dl class="inputForm">
+      <dt class="inputForm__title required">職域</h3>
+      <dd class="formGroup">
+        <%= form.collection_check_boxes(:work_range_ids, WorkRange.all, :id, :name) do |w| %>
+          <div class="formCheckBox">
+            <%= w.check_box(class: 'formCheckBox__item') %>
+            <%= w.label(class: "formCheckBox__text") %>
+          </div>
+        <% end %>
+      </dd>
+    </dl>
+    <dl class="inputForm">
+      <dt class="inputForm__title required">案件名</h3>
+      <dd><%= form.text_field :title, placeholder: '案件名をご入力ください。', class: 'inputForm__input border' %></dd>
+    </dl>
+    <dl class="inputForm">
+      <dt class="inputForm__title required">業界</h3>
+      <dd>
+        <%= form.grouped_collection_select(:industry_id,
+                                            IndustryGroup.default_sorted,
+                                            :industries,
+                                            :name,
+                                            :id,
+                                            :name,
+                                            {},
+                                            class: 'inputForm__select') %>
+      </dd>
+    </dl>
+    <dl class="inputForm">
+      <dt class="inputForm__title image">画像</h3>
+      <dd>
+        <label class="generalButton bgWhite textBrown outlineBrown">
+          <%= form.file_field :image %>
+        </label>
+        <p>
+          企業名はパートナーには伏せているため、ロゴなどの企業情報が分かる画像を避けてください。<br>
+           最大4MBの写真を選択してください。
+        </p>
+      </dd>
+    </dl>
+    <dl class="inputForm">
+      <dt class="inputForm__title image required">応募締め切り<br>（掲載期限）</dt>
+      <dd><%= form.date_field :application_deadline, class: 'inputForm__input small' %></dd>
+    </dl>
+  </div>
+  <div class="formDetailItem">
+    <div class="basicHead edit">
+      <div class="wrapper">
+        <h3 class="basicHead__title">働き方について</h3>
+        <p class="basicHead__sub">work style</p>
+      </div>
+    </div>
+    <dl class="inputForm">
+      <dt class="inputForm__title required">報酬単価</dt>
+      <dd><%= form.number_field :unit_price, placeholder: '例）20', class: 'inputForm__input small' %>万円/月</dd>
+    </dl>
+    <dl class="inputForm">
+      <dt class="inputForm__title required">時給単価</dt>
+      <dd><%= form.number_field :unit_price_per_hour, placeholder: '例）5000', class: 'inputForm__input small' %>円</dd>
+    </dl>
+    <dl class="inputForm">
+      <dt class="inputForm__title required">月間想定稼働時間</dt>
+      <dd class="errorFix"><%= form.number_field :estimated_work_time_from, placeholder: '例）30', class: 'inputForm__input small' %>〜<%= form.number_field :estimated_work_time_to, placeholder: '40', class: 'inputForm__input small' %>時間</dd>
+    </dl>
+    <dl class="inputForm">
+      <dt class="inputForm__title required">稼働開始時期</dt>
+      <dd class="errorFix"><%= form.date_field :operation_start_at, class: 'inputForm__input small' %></dd>
+    </dl>
+    <dl class="inputForm">
+      <dt class="inputForm__title required">契約期間</dt>
+      <dd class="errorFix"><%= form.number_field :contract_period, class: 'inputForm__input small' %>ヶ月〜</dd>
+    </dl>
+    <dl class="inputForm">
+      <dt class="inputForm__title required">勤務条件</dt>
+      <dd class="formGroup">
+        <%= form.collection_check_boxes(:work_condition_ids, WorkCondition.all, :id, :name) do |w| %>
+          <div class="formCheckBox">
+            <%= w.check_box(class: 'formCheckBox__item') %>
+            <%= w.label(class: "formCheckBox__text") %>
+          </div>
+        <% end %>
+      </dd>
+    </dl>
+  </div>
+  <div class="formDetailItem">
+    <div class="basicHead edit">
+      <div class="wrapper">
+        <h3 class="basicHead__title">求めるスキル</h3>
+        <p class="basicHead__sub">skill</p>
+      </div>
+    </div>
+    <dl class="inputForm">
+      <dt class="inputForm__title required">必須スキル</dt>
+      <dd><%= form.text_field :required_skill, placeholder: '例）Web広告運用の戦略設計経験', class: 'inputForm__input border' %></dd>
+    </dl>
+    <dl class="inputForm">
+      <dt class="inputForm__title required">歓迎スキル</dt>
+      <dd><%= form.text_field :welcome_skill, placeholder: '例）人材業界でのWebマーケティング戦略立案経験', class: 'inputForm__input border' %></dd>
+    </dl>
+  </div>
+  <div class="formDetailItem">
+    <div class="basicHead edit">
+      <div class="wrapper">
+        <h3 class="basicHead__title">募集背景や業務内容など</h3>
+        <p class="basicHead__sub">background and description</p>
+      </div>
+    </div>
+    <dl class="inputForm">
+      <dt class="inputForm__title required">背景・課題</dt>
+      <dd><%= form.text_area :background, placeholder: '例）予算拡大のため。', class: 'inputForm__input border height' %></dd>
+    </dl>
+    <dl class="inputForm">
+      <dt class="inputForm__title required">依頼業務</dt>
+      <dd><%= form.text_area :work_order, placeholder: '例）新しく制作したサービスサイトのアクセス解析・戦略立案。', class: 'inputForm__input border height' %></dd>
+    </dl>
+    <dl class="inputForm">
+      <dt class="inputForm__title">NG項目</dt>
+      <dd><%= form.text_area :ng_point, placeholder: '例）特定業種に勤めてる方など、NGとなる条件があればご記入ください。', class: 'inputForm__input border height' %></dd>
+    </dl>
+    <dl class="inputForm">
+      <dt class="inputForm__title">備考</dt>
+      <dd><%= form.text_area :note, placeholder: '例）応募時に過去関わった案件の業界や予算規模をご入力ください。', class: 'inputForm__input border height' %></dd>
+    </dl>
+  </div>
+  <%= form.submit '登録内容を確認', class: 'generalButton bgBlack textWhite' %>
+<% end %>

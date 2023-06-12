@@ -1,0 +1,5 @@
+<div class="text-center mt-5">
+  <% provide(:title, "ホーム") %>
+
+  <%= link_to '全ユーザーCSVエクスポート', export_csv_admins_users_path(format: :csv) %>
+</div>

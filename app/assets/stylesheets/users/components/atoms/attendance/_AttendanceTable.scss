@@ -1,0 +1,30 @@
+@use '../../../base/Variable' as *;
+
+.attendanceTable {
+  width: 100%;
+  border-radius: 5px;
+
+  tbody {
+    border: 1px solid $gray2;
+  }
+
+  th,
+  td {
+    color: $black;
+    font-size: 14px;
+    font-family: Yu Gothic, YuGothic, 'ヒラギノ角ゴ Pro', 'Hiragino Kaku Gothic Pro', 'Hiragino Sans', Meiryo, メイリオ, 'MS P Gothic', sans-serif;
+    padding: 16px;
+
+    a {
+      color: $black;
+      font-weight: bold;
+    }
+  }
+
+  .generalButton {
+    width: 180px;
+    height: 40px;
+    line-height: 40px;
+    display: block;
+  }
+}

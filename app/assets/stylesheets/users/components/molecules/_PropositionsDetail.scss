@@ -1,0 +1,26 @@
+@use '../../base/Variable' as *;
+
+.propositionsDetail {
+  display: flex;
+
+  &__title {
+    color: $black;
+    font-size: 14px;
+    font-family: Yu Gothic, YuGothic, 'ヒラギノ角ゴ Pro', 'Hiragino Kaku Gothic Pro', 'Hiragino Sans', Meiryo, メイリオ, 'MS P Gothic', sans-serif;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+
+    > .big {
+      font-family: Avenir, serif;
+      font-size: 30px;
+      font-weight: 500;
+      margin: 0 10px 0 5px;
+      display: block;
+
+      @include mq(tab) {
+        font-size: 20px;
+      }
+    }
+  }
+}

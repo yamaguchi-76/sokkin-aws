@@ -1,0 +1,69 @@
+<%= form_with(model: @form, url: companies_users_path, method: :get) do |f| %>
+  <div class="searchBoxContent">
+    <div class="wrapper">
+      <h3 class="searchBoxContent__title">職種</h3>
+      <div class="formGroup">
+        <%= f.collection_check_boxes :job_kind_ids, JobKind.all, :id, :name, checked: @form.job_kind_ids do |checkbox| %>
+          <div class="formCheckBox">
+            <%= checkbox.check_box(class: 'formCheckBox__item') %>
+            <%= checkbox.label(class: 'formCheckBox__text') %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+    <div class="wrapper">
+      <h3 class="searchBoxContent__title">年齢</h3>
+      <%# TODO: デザイン上だと select なので select できるようにしてほしい %>
+      <%= f.select :age_gteq, age_select, { include_blank: '' }, class: 'inputForm__select middle' %>歳 ~ <%= f.select :age_lteq,  age_select, { include_blank: '' }, class: 'inputForm__select middle' %>歳
+      <h3 class="searchBoxContent__title left">希望単価/時間</h3>
+      <%= f.select :desired_unit_price_gteq, desired_unit_price_select, { include_blank: '' }, class: 'inputForm__select middle' %>円 ~ <%= f.select :desired_unit_price_lteq, desired_unit_price_select, { include_blank: '' }, class: 'inputForm__select middle' %>円
+    </div>
+    <div class="wrapper">
+      <h3 class="searchBoxContent__title">希望稼働時間/日</h3>
+      <%= f.select :desired_working_hours_gteq, desired_working_hours_select, { include_blank: '' }, class: 'inputForm__select middle' %>時間 ~ <%= f.select :desired_working_hours_lteq, desired_working_hours_select, { include_blank: '' }, class: 'inputForm__select middle' %>時間
+      <h3 class="searchBoxContent__title left">希望勤務日数/月</h3>
+      <%= f.select :desired_working_days_gteq, desired_working_days_select, { include_blank: '' }, class: 'inputForm__select middle' %>日 ~ <%= f.select :desired_working_days_lteq, desired_working_days_select, { include_blank: '' }, class: 'inputForm__select middle' %>日
+    </div>
+    <div class="wrapper">
+      <h3 class="searchBoxContent__title">就業状況</h3>
+      <div class="formGroup">
+        <%= f.collection_check_boxes :employment_statuses, EmploymentStatus.statuses.invert, :first, :last, class: 'formCheckBox', checked: @form.employment_statuses do |checkbox| %>
+          <div class="formCheckBox">
+            <%= checkbox.check_box(class: 'formCheckBox__item') + checkbox.label(class: 'formCheckBox__text') { t("enums.employment_status.status.#{checkbox.text}") } %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+    <div class="wrapper">
+      <h3 class="searchBoxContent__title">対応ステータス</h3>
+      <div class="formGroup">
+        <%= f.collection_check_boxes :handle_statuses, SelfIntroduction.handle_statuses.invert, :first, :last, class: 'formCheckBox', checked: @form.handle_statuses do |checkbox| %>
+          <div class="formCheckBox">
+            <%= checkbox.check_box(class: 'formCheckBox__item') + checkbox.label(class: 'formCheckBox__text') { t("enums.self_introduction.handle_status.#{checkbox.text}") } %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+    <div class="wrapper">
+      <h3 class="searchBoxContent__title">対応条件</h3>
+      <div class="formGroup">
+        <%= f.collection_check_boxes :handle_conditions, SelfIntroduction.handle_conditions.invert, :first, :last, class: 'formCheckBox', checked: @form.handle_conditions do |checkbox| %>
+          <div class="formCheckBox">
+            <%= checkbox.check_box(class: 'formCheckBox__item') + checkbox.label(class: 'formCheckBox__text') { t("enums.self_introduction.handle_conditions.#{checkbox.text}") } %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+    <div class="wrapper">
+      <h3 class="searchBoxContent__title skill">スキル</h3>
+      <div class="formGroup">
+        <%= f.collection_check_boxes :skills, UserSearchForm::SKILLS.invert, :first, :last, class: 'formCheckBox', checked: @form.skills do |checkbox| %>
+          <div class="formCheckBox">
+            <%= checkbox.check_box(class: 'formCheckBox__item') + checkbox.label(class: 'formCheckBox__text') { t("views.admins.users.index.search.#{checkbox.text}") } %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+    <%= f.submit '検索', class: 'generalButton bgBlack textWhite search' %>
+  </div>
+<% end %>

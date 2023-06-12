@@ -1,0 +1,138 @@
+csv.items = @users.find_each(batch_size: 1000)
+csv.filename = "users.csv"
+csv.cols.add('ID') { |user| user.id }
+csv.cols.add('氏名') { |user| user.full_name }
+csv.cols.add('ふりがな') { |user| user.full_name_kana }
+csv.cols.add('電話番号') { |user| user.phone_number }
+csv.cols.add('郵便番号') { |user| user.postal_code }
+csv.cols.add('住所') { |user| user.address }
+csv.cols.add('性別') { |user| user.gender_i18n }
+csv.cols.add('生年月日') { |user| user.birthday }
+
+csv.cols.add('最終学歴') { |user| user.educational_background&.recent_academic_history_i18n }
+csv.cols.add('学校名') { |user| user.educational_background&.school_name }
+csv.cols.add('学部名') { |user| user.educational_background&.faculty_name }
+csv.cols.add('卒業年度') { |user| user.educational_background&.graduated_year }
+
+csv.cols.add('現在の就業形態') { |user| user.employment_status&.status_i18n }
+csv.cols.add('現在の会社名') { |user| user.employment_status&.company_name }
+csv.cols.add('現在の業種') { |user| user.employment_status&.industry_category }
+csv.cols.add('現在の職種') { |user| user.employment_status&.job_kind&.name }
+csv.cols.add('役職') { |user| user.employment_status&.job_title }
+csv.cols.add('年収') { |user| user.employment_status&.yearly_income }
+csv.cols.add('現在の月間稼働時間') { |user| "週#{user.employment_status&.working_hours}日 1日#{user.employment_status&.working_days_of_the_week}時間" }
+csv.cols.add('経験業務内容') { |user| user.employment_status&.business_experience }
+csv.cols.add('就業開始年月') { |user| user.employment_status&.employment_start_date }
+csv.cols.add('就業終了年月') { |user| user.employment_status&.employment_end_date }
+
+@maximum_past_employment_status_count.times do |i|
+  csv.cols.add("過去の会社名#{i + 1}") { |user| user.past_employment_statuses&.[](i)&.company_name }
+  csv.cols.add("過去の担当顧客や業種#{i + 1}") { |user| user.past_employment_statuses&.[](i)&.previous_client_or_industry }
+  csv.cols.add("過去の就業開始年月#{i + 1}") { |user| user.past_employment_statuses&.[](i)&.employment_start_date }
+  csv.cols.add("過去の就業終了年月#{i + 1}") { |user| user.past_employment_statuses&.[](i)&.employment_end_date }
+end
+
+csv.cols.add('複業経験有無') { |user| t("activerecord.attributes.user.second_job_experience.#{user.second_job_experience}") }
+
+@maximum_double_job_experience_count.times do |i|
+  csv.cols.add("複業会社名#{i + 1}") { |user| user.double_job_experiences&.[](i)&.company_name }
+  csv.cols.add("複業職種#{i + 1}") { |user| user.double_job_experiences&.[](i)&.job_kind&.name }
+  csv.cols.add("複業月収#{i + 1}") { |user| user.double_job_experiences&.[](i)&.monthly_income }
+  csv.cols.add("複業稼働時間#{i + 1}/日") { |user| user.double_job_experiences&.[](i)&.working_hours }
+  csv.cols.add("複業開始年月#{i + 1}") { |user| user.double_job_experiences&.[](i)&.employment_start_date }
+  csv.cols.add("複業終了年月#{i + 1}") { |user| user.double_job_experiences&.[](i)&.employment_end_date }
+  csv.cols.add("複業業務内容#{i + 1}") { |user| user.double_job_experiences&.[](i)&.business_experience }
+end
+
+
+csv.cols.add('自己PR') { |user| user.self_introduction&.self_pr }
+csv.cols.add('希望単価/時間') { |user| user.self_introduction&.desired_unit_price }
+csv.cols.add('希望稼働時間/日') { |user| user.self_introduction&.desired_working_hours }
+csv.cols.add('希望勤務日数/月') { |user| user.self_introduction&.desired_working_days }
+csv.cols.add('対面ミーティング') { |user| user.self_introduction&.in_person_meeting_i18n }
+csv.cols.add('対応ステータス') { |user| user.self_introduction&.handle_status_i18n }
+csv.cols.add('対応条件') { |user| user.self_introduction&.handle_conditions_i18n }
+csv.cols.add('インボイス登録') do |user|
+  [true, false].include?(user.self_introduction&.registered_invoice) ? t("activerecord.attributes.self_introduction.registered_invoice.#{user.self_introduction&.registered_invoice}") : nil
+end
+
+csv.cols.add('インボイス登録番号') { |user| user.self_introduction&.invoice_number ? "T#{user.self_introduction&.invoice_number}" : nil }
+csv.cols.add('ポートフォリオ') { |user| user.self_introduction&.portfolio }
+
+# スキル
+csv.cols.add('スキル') do |user|
+  ary = []
+  ary.push("プランナー") if user.skill&.planner
+  ary.push("メディアコンサルタント") if user.skill&.media_consultant
+  ary.push("運用オペレーター") if user.skill&.operation_operator
+  ary.push("デザイナー") if user.skill&.designer
+  ary.push("ディレクター") if user.skill&.director
+  ary.push("エンジニア") if user.skill&.engineer
+  ary.empty? ? nil : ary.join(" ")
+end
+csv.cols.add('検索広告(実務経験年数)') { |user| user.skill&.search_experience_i18n }
+csv.cols.add('検索広告(対応可能な業務範囲)') { |user| user.skill&.search_scopes&.map(&:answer)&.join(" ") }
+csv.cols.add('Display広告(実務経験年数)') { |user| user.skill&.display_experience_i18n }
+csv.cols.add('Display広告(対応可能な業務範囲)') { |user| user.skill&.display_scopes&.map(&:answer)&.join(" ") }
+csv.cols.add('SNS広告(実務経験年数)') { |user| user.skill&.sns_experience_i18n }
+csv.cols.add('SNS広告(対応可能な業務範囲)') { |user| user.skill&.sns_scopes&.map(&:answer)&.join(" ") }
+csv.cols.add('アプリ広告(実務経験年数)') { |user| user.skill&.application_ad_experience_i18n }
+csv.cols.add('アプリ広告(対応可能な業務範囲)') { |user| user.skill&.application_ad_scopes&.map(&:answer)&.join(" ") }
+csv.cols.add('SEO・ASO(実務経験年数)') { |user| user.skill&.seo_experience_i18n }
+csv.cols.add('SEO・ASO(対応可能な業務範囲)') { |user| user.skill&.seo_scopes&.map(&:answer)&.join(" ") }
+csv.cols.add('CRM(実務経験年数)') { |user| user.skill&.crm_experience_i18n }
+csv.cols.add('CRM(対応可能な業務範囲)') { |user| user.skill&.crm_scopes&.map(&:answer)&.join(" ") }
+csv.cols.add('SNSオウンドメディア運用(実務経験年数)') { |user| user.skill&.sns_owned_media_experience_i18n }
+csv.cols.add('SNSオウンドメディア運用(対応可能な業務範囲)') { |user| user.skill&.sns_owned_media_scopes&.map(&:answer)&.join(" ") }
+csv.cols.add('DSP・ADNW(実務経験年数)') { |user| user.skill&.dsp_experience_i18n }
+csv.cols.add('DSP・ADNW(対応可能な業務範囲)') { |user| user.skill&.dsp_scopes&.map(&:answer)&.join(" ") }
+csv.cols.add('動画広告(実務経験年数)') { |user| user.skill&.video_experience_i18n }
+csv.cols.add('動画広告(対応可能な業務範囲)') { |user| user.skill&.video_scopes&.map(&:answer)&.join(" ") }
+csv.cols.add('アフィリエイト(実務経験年数)') { |user| user.skill&.affiliate_experience_i18n }
+csv.cols.add('アフィリエイト(対応可能な業務範囲)') { |user| user.skill&.affiliate_scopes&.map(&:answer)&.join(" ") }
+csv.cols.add('サイト・アクセス解析(実務経験年数)') { |user| user.skill&.sight_access_experience_i18n }
+csv.cols.add('サイト・アクセス解析(対応可能な業務範囲)') { |user| user.skill&.sight_access_scopes&.map(&:answer)&.join(" ") }
+csv.cols.add('MAツール(実務経験年数)') { |user| user.skill&.ma_experience_i18n }
+csv.cols.add('MAツール(対応可能な業務範囲)') { |user| user.skill&.ma_scopes&.map(&:answer)&.join(" ") }
+csv.cols.add('Googleタグマネージャー(実務経験年数)') { |user| user.skill&.tag_manager_experience_i18n }
+csv.cols.add('Googleタグマネージャー(対応可能な業務範囲)') { |user| user.skill&.tag_manager_scopes&.map(&:answer)&.join(" ") }
+csv.cols.add('フィード/フィードマネージャー(実務経験年数)') { |user| user.skill&.feed_experience_i18n }
+csv.cols.add('フィード/フィードマネージャー(対応可能な業務範囲)') { |user| user.skill&.feed_scopes&.map(&:answer)&.join(" ") }
+csv.cols.add('3rdParty広告計測ツール(実務経験年数)') { |user| user.skill&.third_party_experience_i18n }
+csv.cols.add('3rdParty広告計測ツール(対応可能な業務範囲)') { |user| user.skill&.third_party_scopes&.map(&:answer)&.join(" ") }
+csv.cols.add('ToC向け広告戦略の立案(実務経験年数)') { |user| user.skill&.customer_experience_i18n }
+csv.cols.add('ToC向け広告戦略の立案(対応可能な業務範囲)') { |user| user.skill&.customer_scopes&.map(&:answer)&.join(" ") }
+csv.cols.add('ToB向け広告戦略の立案(実務経験年数)') { |user| user.skill&.business_experience_i18n }
+csv.cols.add('ToB向け広告戦略の立案(対応可能な業務範囲)') { |user| user.skill&.business_scopes&.map(&:answer)&.join(" ") }
+csv.cols.add('3C分析(実務経験年数)') { |user| user.skill&.three_c_experience_i18n }
+csv.cols.add('3C分析(対応可能な業務範囲)') { |user| user.skill&.three_c_scopes&.map(&:answer)&.join(" ") }
+csv.cols.add('4P分析(実務経験年数)') { |user| user.skill&.four_p_experience_i18n }
+csv.cols.add('4P分析(対応可能な業務範囲)') { |user| user.skill&.four_p_scopes&.map(&:answer)&.join(" ") }
+csv.cols.add('ペルソナ分析(実務経験年数)') { |user| user.skill&.persona_experience_i18n }
+csv.cols.add('ペルソナ分析(対応可能な業務範囲)') { |user| user.skill&.persona_scopes&.map(&:answer)&.join(" ") }
+csv.cols.add('ユーザー調査(実務経験年数)') { |user| user.skill&.user_survey_experience_i18n }
+csv.cols.add('ユーザー調査(対応可能な業務範囲)') { |user| user.skill&.user_survey_scopes&.map(&:answer)&.join(" ") }
+csv.cols.add('PR(実務経験年数)') { |user| user.skill&.pr_experience_i18n }
+csv.cols.add('PR(対応可能な業務範囲)') { |user| user.skill&.pr_scopes&.map(&:answer)&.join(" ") }
+csv.cols.add('カスタマージャーニー作成(実務経験年数)') { |user| user.skill&.customer_journey_experience_i18n }
+csv.cols.add('カスタマージャーニー作成(対応可能な業務範囲)') { |user| user.skill&.customer_journey_scopes&.map(&:answer)&.join(" ") }
+csv.cols.add('語学力(実務経験年数)') { |user| user.skill&.language_experience_i18n }
+csv.cols.add('語学力(対応可能な業務範囲)') { |user| user.skill&.language_scopes&.map(&:answer)&.join(" ") }
+csv.cols.add('KPI・KGIの設計(実務経験年数)') { |user| user.skill&.kpi_experience_i18n }
+csv.cols.add('KPI・KGIの設計(対応可能な業務範囲)') { |user| user.skill&.kpi_scopes&.map(&:answer)&.join(" ") }
+csv.cols.add('インフルエンサー施策(実務経験年数)') { |user| user.skill&.influencer_experience_i18n }
+csv.cols.add('インフルエンサー施策(対応可能な業務範囲)') { |user| user.skill&.influencer_scopes&.map(&:answer)&.join(" ") }
+csv.cols.add('記事制作(実務経験年数)') { |user| user.skill&.writing_experience_i18n }
+csv.cols.add('記事制作(対応可能な業務範囲)') { |user| user.skill&.writing_scopes&.map(&:answer)&.join(" ") }
+csv.cols.add('WEBサイト制作(実務経験年数)') { |user| user.skill&.website_experience_i18n }
+csv.cols.add('WEBサイト制作(対応可能な業務範囲)') { |user| user.skill&.website_scopes&.map(&:answer)&.join(" ") }
+csv.cols.add('ECサイト制作(実務経験年数)') { |user| user.skill&.ecsite_experience_i18n }
+csv.cols.add('ECサイト制作(対応可能な業務範囲)') { |user| user.skill&.ecsite_scopes&.map(&:answer)&.join(" ") }
+csv.cols.add('アプリ制作(実務経験年数)') { |user| user.skill&.application_production_experience_i18n }
+csv.cols.add('アプリ制作(対応可能な業務範囲)') { |user| user.skill&.application_production_scopes&.map(&:answer)&.join(" ") }
+csv.cols.add('静止画のAd制作(実務経験年数)') { |user| user.skill&.image_ad_experience_i18n }
+csv.cols.add('静止画のAd制作(対応可能な業務範囲)') { |user| user.skill&.image_ad_scopes&.map(&:answer)&.join(" ") }
+csv.cols.add('動画のAd制作(実務経験年数)') { |user| user.skill&.movie_ad_experience_i18n }
+csv.cols.add('動画のAd制作(対応可能な業務範囲)') { |user| user.skill&.movie_ad_scopes&.map(&:answer)&.join(" ") }
+csv.cols.add('新規事業立ち上げ(実務経験年数)') { |user| user.skill&.new_business_experience_i18n }
+csv.cols.add('新規事業立ち上げ(対応可能な業務範囲)') { |user| user.skill&.new_business_scopes&.map(&:answer)&.join(" ") }

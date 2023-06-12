@@ -1,0 +1,27 @@
+<div class="signInIndex">
+  <div class="signInIndex__container">
+    <h1 class="signInIndex__title">パスワード再設定</h1>
+    <div class="signInIndex__wrapper">
+      <div class="signBox pass">
+        <div class="signBox__wrapper">
+          <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
+            <%= render "users/shared/error_messages", resource: resource %>
+            <%= f.hidden_field :reset_password_token %>
+
+            <div class="loginFormItem">
+              <%= f.label :password, '新しいパスワード', class: 'loginFormItem__title' %>
+              <%= f.password_field :password, autofocus: true, autocomplete: "new-password", class: 'loginFormItem__item' %>
+            </div>
+
+            <div class="loginFormItem">
+              <%= f.label :password_confirmation, '新しいパスワード（確認用）', class: 'loginFormItem__title' %>
+              <%= f.password_field :password_confirmation, autocomplete: "new-password", class: 'loginFormItem__item' %>
+            </div>
+
+            <%= f.submit '登録', class: 'generalButton bgBrown textWhite' %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

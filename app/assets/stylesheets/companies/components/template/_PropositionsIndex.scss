@@ -1,0 +1,39 @@
+.propositionsIndex {
+  z-index: 1;
+  @include mq(tab-min) {
+    display: flex;
+  }
+
+  .openItem__wrapper {
+    @include mq(tab-min) {
+      width: 1100px;
+    }
+  }
+
+  &__title > .title {
+    color: $black;
+    font-family: Yu Gothic, YuGothic, 'ヒラギノ角ゴ Pro', 'Hiragino Kaku Gothic Pro', 'Hiragino Sans', Meiryo, メイリオ, 'MS P Gothic', sans-serif;
+    font-size: 24px;
+    margin-bottom: 30px;
+  }
+
+  &__detail {
+    margin-bottom: 20px;
+
+    > .count {
+      color: $black;
+      font-family: Yu Gothic, YuGothic, 'ヒラギノ角ゴ Pro', 'Hiragino Kaku Gothic Pro', 'Hiragino Sans', Meiryo, メイリオ, 'MS P Gothic', sans-serif;
+      font-size: 14px;
+      display: flex;
+      align-items: flex-end;
+
+      > .big {
+        font-family: Avenir, serif;
+        font-size: 30px;
+        font-weight: bold;
+        margin: 0 3px -5px;
+        display: block;
+      }
+    }
+  }
+}

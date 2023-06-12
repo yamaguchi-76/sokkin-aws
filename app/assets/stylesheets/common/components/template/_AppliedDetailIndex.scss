@@ -1,0 +1,98 @@
+.appliedDetailIndex {
+  @include mq(tab-min) {
+    display: flex;
+  }
+
+  &.applied {
+    @include mq(tab-min) {
+      height: calc(100vh - 60px);
+      overflow: hidden;
+    }
+  }
+
+  &.scouts {
+    .applyModal .content {
+      @include mq(tab-min) {
+        height: 164px;
+      }
+    }
+  }
+
+  .applyModal {
+    position: fixed;
+    z-index: 555555;
+    top: -40px;
+  }
+
+  > .openItem__wrapper {
+    @include mq(tab-min) {
+      padding-right: 0;
+    }
+  }
+
+  .arrowButton {
+    margin-bottom: 16px;
+  }
+
+  > .right {
+    margin: 30px 0 0 50px;
+
+    @include mq(tab) {
+      display: none;
+      margin-top: 40px;
+    }
+
+    > .jobDetailRightBox {
+      margin-bottom: 20px;
+    }
+  }
+
+  > .flexText {
+    margin: 10px 0;
+  }
+
+  .jobDetail {
+    @include mq(tab) {
+      padding-bottom: 160px;
+    }
+  }
+
+  &__bottom {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    @include mq(tab) {
+      width: 100%;
+      padding: 15px 16px;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      justify-content: space-between;
+      background: $white;
+      box-shadow: 0px -2px 7px rgba(166, 130, 108, 0.23);
+    }
+
+    @include mq(tab-min) {
+      margin-top: 30px;
+    }
+
+    > .generalButton {
+      width: 220px;
+      height: 50px;
+      line-height: 50px;
+
+      @include mq(tab) {
+        width: 49%;
+      }
+
+      &:first-child {
+        @include mq(tab-min) {
+          display: block;
+          margin-right: 20px;
+        }
+      }
+    }
+  }
+}

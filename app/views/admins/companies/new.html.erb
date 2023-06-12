@@ -1,0 +1,9 @@
+<div class="container mt-5">
+  <% provide(:title, "企業作成") %>
+
+  <%= render 'form', company: @company, url: admins_companies_path, method: :post %>
+
+  <div class="text-center">
+    <%= link_to '戻る', admins_companies_path, class: "mb-3 btn btn-primary" %>
+  </div>
+</div>

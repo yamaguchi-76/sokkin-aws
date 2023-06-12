@@ -1,0 +1,13 @@
+<ul class="monthTab">
+  <% unless monthly_unit_prices.blank? %>
+    <% (1..12).to_a.each do |month| %>
+      <li class="monthTab__item common">
+        <%= link_to_if monthly_unit_prices.exists?(month: month), "#{month}月",
+                       new_companies_attendance_client_feed_back_path(attendance_id: @attendance.id,
+                                                                      year: params[:year],
+                                                                      month: month)
+        %>
+      </li>
+    <% end %>
+  <% end %>
+</ul>

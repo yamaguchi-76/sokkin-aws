@@ -1,0 +1,98 @@
+.completionIndex {
+  @include mq(tab-min) {
+    height: calc(100vh - 60px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &.apply,
+  &.skill {
+    @include mq(tab-min) {
+      height: 100%;
+      justify-content: flex-start;
+      position: relative;
+    }
+  }
+
+  &__container {
+    width: 642px;
+
+    @include mq(tab) {
+      width: 100%;
+      padding: 30px 30px 0;
+    }
+
+    &.apply,
+    &.skill {
+      height: calc(100vh - 50px);
+      margin: auto;
+
+      @include mq(tab-min) {
+        width: 530px;
+        height: calc(100vh - 60px);
+      }
+    }
+  }
+
+  &__title {
+    color: $black;
+    font-family: Yu Gothic, YuGothic, 'ヒラギノ角ゴ Pro', 'Hiragino Kaku Gothic Pro', 'Hiragino Sans', Meiryo, メイリオ, 'MS P Gothic', sans-serif;
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 20px;
+
+    &.password:after {
+      content: '';
+      width: 60px;
+      height: 60px;
+      background: image-url('users/icon/lock.svg') 50% 0 no-repeat;
+      display: block;
+      margin: 22px auto 0;
+    }
+
+    &.apply:after {
+      content: '';
+      width: 70px;
+      height: 44px;
+      background: image-url('users/icon/airplane.svg') 50% 0 no-repeat;
+      display: block;
+      margin: 22px auto 0;
+    }
+
+    &.skill:after {
+      content: '';
+      width: 72px;
+      height: 72px;
+      background: image-url('users/icon/skill.svg') 50% 0 no-repeat;
+      display: block;
+      margin: 22px auto 0;
+    }
+  }
+
+  &__text {
+    color: $black;
+    font-family: Yu Gothic, YuGothic, 'ヒラギノ角ゴ Pro', 'Hiragino Kaku Gothic Pro', 'Hiragino Sans', Meiryo, メイリオ, 'MS P Gothic', sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    text-align: center;
+
+    .link {
+      color: $brown;
+      text-decoration: underline;
+    }
+  }
+
+  .generalButton {
+    width: 220px;
+    height: 50px;
+    line-height: 50px;
+    margin: 30px auto 0;
+    display: block;
+
+    @include mq(tab) {
+      width: 100%;
+    }
+  }
+}

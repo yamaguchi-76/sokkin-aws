@@ -1,0 +1,112 @@
+<%= form_with(model: self_introduction, url: url, method: :patch) do |f| %>
+  <%= render "users/shared/error_messages", resource: self_introduction %>
+  <div class="infoFormItemGroup">
+    <div class="infoFormItem editSelfIntroduce infoFormItemGroup__box">
+      <div class="wrapper">
+        <%= f.label :self_pr, class: 'infoFormItem__title required' %>
+        <%= f.text_area :self_pr, placeholder: '企業に伝えたいご自身のスキルやご経験などについてPRをご記入ください。', class: 'infoFormItem__item textarea' %>
+      </div>
+    </div>
+
+    <div class="infoFormItem editSelfIntroduce infoFormItemGroup__box">
+      <div class="wrapper">
+        <%= f.label :desired_unit_price, class: 'infoFormItem__title required' %>
+        <%= f.number_field :desired_unit_price, placeholder: '例) 5,000', class: 'formBorderTextBox__item middle' %>
+        <span class="formBorderTextBox__text">円/時間</span>
+      </div>
+    </div>
+
+    <div class="infoFormItem editSelfIntroduce infoFormItemGroup__box">
+      <div class="wrapper">
+        <%= f.label :desired_working_hours, class: 'infoFormItem__title required' %>
+
+        <span class="formBorderTextBox__text">1日</span>
+        <%= f.number_field :desired_working_hours, placeholder: '例) 8', class: 'formBorderTextBox__item middle' %>
+        <span class="formBorderTextBox__text">時間</span>
+      </div>
+    </div>
+
+    <div class="infoFormItem editSelfIntroduce infoFormItemGroup__box">
+      <div class="wrapper">
+        <%= f.label :desired_working_days, class: 'infoFormItem__title required' %>
+        <span class="formBorderTextBox__text">月間</span>
+        <%= f.number_field :desired_working_days, placeholder: '例) 20', class: 'formBorderTextBox__item middle' %>
+        <span class="formBorderTextBox__text">日</span>
+      </div>
+    </div>
+
+    <div class="infoFormItem editSelfIntroduce infoFormItemGroup__box">
+      <div class="wrapper">
+        <%= f.label '対面ミーティング', class: 'infoFormItem__title required' %>
+        <div class="formGroup">
+          <%= f.collection_radio_buttons :in_person_meeting, SelfIntroduction.in_person_meetings_i18n, :first, :last, class: '' do |radio| %>
+            <div class="formRadio">
+              <%= radio.radio_button(class: "formRadio__radio") %>
+              <%= radio.label(class: "formRadio__text") %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+
+    <div class="infoFormItem editSelfIntroduce infoFormItemGroup__box">
+      <div class="wrapper">
+        <%= f.label '対応ステータス', class: 'infoFormItem__title required' %>
+        <div class="formGroup">
+          <%= f.collection_radio_buttons :handle_status, SelfIntroduction.handle_statuses_i18n, :first, :last, class: '' do |radio| %>
+            <div class="formRadio">
+              <%= radio.radio_button(class: "formRadio__radio") %>
+              <%= radio.label(class: "formRadio__text") %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+
+    <div class="infoFormItem editSelfIntroduce infoFormItemGroup__box">
+      <div class="wrapper">
+        <%= f.label '対応条件', class: 'infoFormItem__title required' %>
+        <div class="formGroup">
+          <%= f.collection_radio_buttons :handle_conditions, SelfIntroduction.handle_conditions_i18n, :first, :last, class: '' do |radio| %>
+            <div class="formRadio">
+              <%= radio.radio_button(class: "formRadio__radio") %>
+              <%= radio.label(class: "formRadio__text") %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+
+    <div class="infoFormItem editSelfIntroduce infoFormItemGroup__box">
+      <div class="wrapper">
+        <%= f.label 'インボイス登録', class: 'infoFormItem__title' %>
+        <div class="formGroup">
+          <label class="formRadio">
+            <%= f.radio_button :registered_invoice, :false, class: 'formRadio__radio' %>
+            <span class="formRadio__text">未登録</span>
+          </label>
+          <label class="formRadio">
+            <%= f.radio_button :registered_invoice, :true, class: 'formRadio__radio' %>
+            <span class="formRadio__text">登録済み</span>
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <div class="infoFormItem editSelfIntroduce infoFormItemGroup__box">
+      <div class="wrapper">
+        <%= f.label 'インボイス登録番号', class: 'infoFormItem__title height' %>
+        T&nbsp;&nbsp;&nbsp;
+        <%= f.number_field :invoice_number, placeholder: '13桁の半角数字を入力してください。', class: 'infoFormItem__item wide2' %>
+      </div>
+    </div>
+
+    <div class="infoFormItem editSelfIntroduce infoFormItemGroup__box">
+      <div class="wrapper">
+        <%= f.label :portfolio, class: 'infoFormItem__title' %>
+        <%= f.text_field :portfolio, placeholder: 'URLを入力してください。', class: 'infoFormItem__item wide2' %>
+      </div>
+    </div>
+  </div>
+  <%= f.submit "登録", class: 'generalButton bgBrown textWhite' %>
+<% end %>

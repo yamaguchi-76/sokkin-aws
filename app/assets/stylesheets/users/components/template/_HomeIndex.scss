@@ -1,0 +1,24 @@
+@use '../../base/Variable' as *;
+
+.homeIndex {
+  @include mq(tab-min) {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__content:not(:last-child) {
+    margin-bottom: 71px;
+  }
+
+  &__title {
+    color: $black;
+    font-family: Yu Gothic, YuGothic, 'ヒラギノ角ゴ Pro', 'Hiragino Kaku Gothic Pro', 'Hiragino Sans', Meiryo, メイリオ, 'MS P Gothic', sans-serif;
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 30px;
+  }
+
+  .basicHead {
+    margin-bottom: 30px;
+  }
+}

@@ -1,0 +1,200 @@
+<div class="container mt-5">
+  <% provide(:title, "勤怠管理") %>
+  <div class="d-flex align-items-center">
+    <% @years.each do |year| %>
+      <div class="me-2">
+        <%= link_to admins_attendance_path(@attendance, year: year[0], month: year[1], user_id: params[:user_id]) do %>
+          <%= year[0] %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+  <%= render 'month_tab', monthly_unit_prices: @monthly_unit_prices %>
+
+  <div class="mt-4">
+    <h3>勤怠情報</h3>
+  </div>
+  <div class="mt-4 mb-3">
+    <h4><%= params[:year] %>年<%= params[:month] %>月の勤怠一覧</h4>
+    <% if @operating_times.present? %>
+      <% @operating_times.each do |operating_time| %>
+        <div class="d-flex align-items-center">
+          <div class="me-3">
+            <%= operating_time.working_days.strftime('%Y/%m/%d') %>
+          </div>
+          <div class="me-3">
+            <%= operating_time.working_hours %>時間
+          </div>
+          <div class="me-3">
+            ¥<%= @monthly_unit_price.unit_price %> = ¥<%= @monthly_unit_price.unit_price * operating_time.working_hours %>
+          </div>
+          <div>
+            <%= operating_time.job_description %>
+          </div>
+        </div>
+      <% end %>
+    <% else %>
+      <div>勤怠がありません</div>
+    <% end %>
+  </div>
+
+  <div class="d-flex align-items-center">
+    <div class="me-4">
+      <h3>ユーザーフィードバック</h3>
+      <div>
+        <div>Q1.依頼された上限時間内に業務を遂行することができたか?</div>
+        <% if @feed_back.present? %>
+          <%= @feed_back.within_time_i18n %>
+        <% else %>
+          <div> - </div>
+        <% end %>
+      </div>
+      <div>
+        <div>Q2.依頼された業務を正確に遂行する事が出来たか？</div>
+        <% if @feed_back.present? %>
+          <%= @feed_back.achieved_i18n %>
+        <% else %>
+          <div> - </div>
+        <% end %>
+      </div>
+      <div>
+        <div>Q3.お客様とコミュニケーションは適切頻度かつ正確にできたか？</div>
+        <% if @feed_back.present? %>
+          <%= @feed_back.communication_i18n %>
+        <% else %>
+          <div> - </div>
+        <% end %>
+      </div>
+      <div>
+        <div>Q4.業務内容に関して自身のスキルは十分だったか？</div>
+        <% if @feed_back.present? %>
+          <%= @feed_back.partner_skills_i18n %>
+        <% else %>
+          <div> - </div>
+        <% end %>
+      </div>
+      <div>
+        <div>2.事務局を入れた3者間で面談を希望しますか?</div>
+        <% if @feed_back.present? %>
+          <%= @feed_back.interview_i18n %>
+        <% else %>
+          <div> - </div>
+        <% end %>
+      </div>
+      <div>
+        <div>3.その他要望・相談があれば記載ください。</div>
+        <% if @feed_back.present? %>
+          <%= @feed_back.request %>
+        <% else %>
+          <div> - </div>
+        <% end %>
+      </div>
+    </div>
+    <div>
+      <h3>企業フィードバック</h3>
+      <div>
+        <div>Q1.依頼された上限時間内に業務を遂行することができたか?</div>
+        <% if @client_feed_back.present? %>
+          <%= @client_feed_back.within_time_i18n %>
+        <% else %>
+          <div> - </div>
+        <% end %>
+      </div>
+      <div>
+        <div>Q2.依頼された業務を正確に遂行する事が出来たか？</div>
+        <% if @client_feed_back.present? %>
+          <%= @client_feed_back.achieved_i18n %>
+        <% else %>
+          <div> - </div>
+        <% end %>
+      </div>
+      <div>
+        <div>Q3.お客様とコミュニケーションは適切頻度かつ正確にできたか？</div>
+        <% if @client_feed_back.present? %>
+          <%= @client_feed_back.communication_i18n %>
+        <% else %>
+          <div> - </div>
+        <% end %>
+      </div>
+      <div>
+        <div>Q4.業務内容に関して自身のスキルは十分だったか？</div>
+        <% if @client_feed_back.present? %>
+          <%= @client_feed_back.partner_skills_i18n %>
+        <% else %>
+          <div> - </div>
+        <% end %>
+      </div>
+      <div>
+        <div>2.事務局を入れた3者間で面談を希望しますか?</div>
+        <% if @client_feed_back.present? %>
+          <%= @client_feed_back.interview_i18n %>
+        <% else %>
+          <div> - </div>
+        <% end %>
+      </div>
+      <div>
+        <div>3.その他要望・相談があれば記載ください。</div>
+        <% if @client_feed_back.present? %>
+          <%= @client_feed_back.request %>
+        <% else %>
+          <div> - </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <div class="mt-4">
+    <h3>勤怠状況</h3>
+    <% if @operating_times.present? %>
+      <table class="table">
+        <thead>
+        <tr>
+          <th>当月時給</th>
+          <th>稼働日数</th>
+          <th>勤務時間</th>
+          <th>報酬</th>
+        </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><%= @monthly_unit_price.unit_price %>円</td>
+            <td><%= @operating_times.count %>日</td>
+            <td><%= @operating_times.sum { |hash| hash[:working_hours]} %>時間</td>
+            <td>¥<%= @monthly_unit_price.unit_price * @operating_times.sum { |hash| hash[:working_hours]} %></td>
+          </tr>
+        </tbody>
+      </table>
+      <table class="table">
+        <thead>
+        <tr>
+          <th>ユーザー勤怠</th>
+          <th>ユーザーFB</th>
+          <th>企業FB</th>
+          <th>支払いステータス</th>
+        </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <%= @operating_times.first.submitted ? "提出済み" : "未提出" %>
+            </td>
+            <td>
+              <%= @feed_back.present? ? "提出済み" : "未提出" %>
+            </td>
+            <td>
+              <%= @client_feed_back.present? ? "提出済み" : "未提出" %>
+            </td>
+            <td>
+              <%= @attendance.payment_statuses.present? ? @payment_status.paid_i18n : "" %>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    <% else %>
+      <div>勤怠状況がありません</div>
+    <% end %>
+  </div>
+  <div class="text-center mt-5">
+    <%= link_to "編集する", edit_admins_attendance_path(@attendance, year: params[:year], month: params[:month]), class: "mb-3 btn btn-primary" %>
+  </div>
+</div>

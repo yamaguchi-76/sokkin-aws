@@ -1,0 +1,161 @@
+<%= form_with(model: proposition, url: url, class: "form-horizontal") do |form| %>
+  <% if proposition.errors.any? %>
+    <div id="error_explanation">
+      <ul>
+        <% proposition.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <h4 class="mt-5 mb-5">ステータス</h4>
+  <table class="table">
+    <tr>
+      <th>ステータス</th>
+      <td>
+        <%= form.select :status, Proposition.statuses.map { |k, _| [t("enums.proposition.status.#{k}"), k] }.to_h %>
+      </td>
+    </tr>
+  </table>
+
+  <h4 class="mt-5 mb-5">企業</h4>
+    <table class="table">
+      <tr>
+        <th>企業名</th>
+        <td><%= form.select :company_id, Company.all.pluck(:name, :id), {}, :class => "form-select" %></td>
+      </tr>
+    </table>
+
+  <h4 class="mt-5 mb-5">基本情報</h4>
+    <table class="table">
+      <tr>
+        <th>業界</th>
+        <td>
+          <%= form.grouped_collection_select(:industry_id,
+                                             IndustryGroup.default_sorted,
+                                             :industries,
+                                             :name,
+                                             :id,
+                                             :name,
+                                             {},
+                                             class: "form-select") %>
+        </td>
+      </tr>
+      <tr>
+        <th>職種</th>
+        <td>
+          <%= form.collection_check_boxes(:job_kind_ids, JobKind.all, :id, :name) do |j| %>
+            <div class="d-block float-start">
+              <%= j.check_box class: "form-check-input" %>
+              <%= j.label class: "ms-1 me-2" %>
+            </div>
+          <% end %>
+        </td>
+      </tr>
+      <tr>
+        <th>職域</th>
+        <td>
+          <%= form.collection_check_boxes(:work_range_ids, WorkRange.all, :id, :name) do |w| %>
+            <div class="d-block float-start">
+              <%= w.check_box class:"form-check-input" %>
+              <%= w.label class: "ms-1 me-2" %>
+            </div>
+          <% end %>
+        </td>
+      </tr>
+      <tr>
+        <th>案件名</th>
+        <td><%= form.text_field :title, class: "form-control" %></td>
+      </tr>
+      <tr>
+        <th>画像</th>
+        <td>
+          <%= form.file_field :image %>
+        </td>
+      </tr>
+    </table>
+
+  <h4 class="mt-5 mb-5">働き方について</h4>
+    <table class="table">
+      <tr>
+        <th>月間想定稼働時間</th>
+        <td>
+          <div class="d-flex align-items-center">
+            <%= form.number_field :estimated_work_time_from, class: "form-control" %>
+            <div>h〜</div>
+            <%= form.number_field :estimated_work_time_to, class: "form-control" %>
+            h
+          </div>
+
+        </td>
+      </tr>
+      <tr>
+        <th>稼働開始時期</th>
+        <td><%= form.date_field :operation_start_at, class: "form-control" %></td>
+      </tr>
+      <tr>
+        <th>契約期間</th>
+        <td><%= form.number_field :contract_period, class: "form-control" %>ヶ月〜</td>
+      </tr>
+      <tr>
+        <th>勤務条件</th>
+        <td>
+          <%= form.collection_check_boxes(:work_condition_ids, WorkCondition.all, :id, :name) do |w| %>
+            <div class="d-block float-start">
+              <%= w.check_box class:"form-check-input" %>
+              <%= w.label class: "ms-1 me-2" %>
+            </div>
+          <% end %>
+        </td>
+      </tr>
+    </table>
+
+  <h4 class="mt-5 mb-5">求めるスキル</h4>
+    <table class="table">
+      <tr>
+        <th>必須スキル</th>
+        <td><%= form.text_field :required_skill, class: "form-control" %></td>
+      </tr>
+      <tr>
+        <th>歓迎スキル</th>
+        <td><%= form.text_field :welcome_skill, class: "form-control" %></td>
+      </tr>
+    </table>
+
+  <h4 class="mt-5 mb-5">募集背景や業務内容など</h4>
+    <table class="table">
+      <tr>
+        <th>背景・課題</th>
+        <td><%= form.text_area :background, class: "form-control" %></td>
+      </tr>
+      <tr>
+        <th>依頼業務</th>
+        <td><%= form.text_area :work_order, class: "form-control" %></td>
+      </tr>
+      <tr>
+        <th>NG項目</th>
+        <td><%= form.text_area :ng_point, class: "form-control" %></td>
+      </tr>
+      <tr>
+        <th>備考</th>
+        <td><%= form.text_area :note, class: "form-control" %></td>
+      </tr>
+      <tr>
+        <th>単価/月</th>
+        <td><%= form.number_field :unit_price, class: "form-control" %>万円</td>
+      </tr>
+      <tr>
+        <th>時給単価</th>
+        <td><%= form.number_field :unit_price_per_hour, class: "form-control" %></td>
+      </tr>
+      <tr>
+        <th>応募締切</th>
+        <td><%= form.date_field :application_deadline, class: "form-control" %></td>
+      </tr>
+    </table>
+
+  <div class="actions text-center mt-3">
+    <%= form.submit "登録する", class: "mb-3 btn btn-primary" %>
+  </div>
+<% end %>

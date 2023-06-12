@@ -1,0 +1,113 @@
+<%= javascript_pack_tag ('totalAmount'), 'data-turbolinks-eval': false, defer: true %>
+<%= javascript_pack_tag ('controlMonthTabStatus') %>
+
+<div class="attendanceIndex openItem">
+  <%= render 'users/shared/side_menu' %>
+  <div class="openItem__wrapper">
+    <h2 class="attendanceIndex__title">勤怠管理</h2>
+    <%= link_to '案件詳細を見る', users_proposition_path(@proposition_contracts.ids), class: 'generalButton bgBlack textWhite pc' %>
+    <%= link_to '案件詳細を見る', users_proposition_path(@proposition_contracts.ids), class: 'attendanceIndex__link sp' %>
+    <div class="attendanceIndex__wrapper">
+      <ul class="generalTab">
+        <li class="generalTab__item attendances"><p class="text active">勤怠登録</p></li>
+        <li class="generalTab__item feedback">
+          <%= link_to 'フィードバック', new_users_attendance_feed_back_path(@attendance, year: params[:year], month: params[:month]), class: 'text' %>
+        </li>
+      </ul>
+
+      <%# TODO: いずれはプルダウンにしたい %>
+      <div class="attendanceIndex__calendar">
+        <% @years.each do |year| %>
+          <p class="item">
+            <%= link_to users_attendance_path(@attendance, year: year[0], month: year[1]) do %>
+              <%= year[0] %>
+            <% end %>
+          </p>
+        <% end %>
+      </div>
+
+      <%# TODO: いずれはプルダウンにしたい %>
+      <%= render 'month_tab', monthly_unit_prices: @monthly_unit_prices %>
+
+      <div class="attendanceContents">
+        <div class="attendanceContents__wrap">
+          <% unless @operating_times.present? && @operating_times.first.submitted %>
+            <div class="attendanceBlock">
+              <h2 class="attendanceBlock__title">勤怠登録</h2>
+              <%= form_with(model: @operating_time, url: users_attendance_operating_times_path(@operating_time, attendance_id: @attendance.id), method: :post ) do |f| %>
+                <div class="attendanceWorkingTime">
+                  <%= f.date_field :working_days, value: Time.now.strftime("%Y-%m-%d"), max: Date.new(params["year"].to_i, @monthly_unit_price.month, -1), min: Date.new(params["year"].to_i, @monthly_unit_price.month, 1), class: 'attendanceWorkingTime__calendar' %>
+                  <%= f.hidden_field :working_month, value: @monthly_unit_price.month %>
+                  <%= f.number_field :working_hours, value: 0, placeholder: '8', id: 'working_hours', class: 'attendanceWorkingTime__number', min: 0 %>
+                  <p class="attendanceWorkingTime__text">
+                    時間 × ¥
+                    <span class="price conversionYen">
+                      <%= @monthly_unit_price.unit_price %>
+                    </span>
+                    =
+                    <span class="bold">
+                      ¥
+                      <span class="conversionYen amount bold">
+                        0
+                      </span>
+                    </span>
+                  </p>
+                </div>
+                <%= f.text_area :job_description, placeholder: '30文字以内で業務内容を入力してください。', class: 'attendanceBlock__textarea' %>
+                <%= f.submit '勤怠を登録', class: 'generalButton bgBrown textWhite' %>
+              <% end %>
+            </div>
+          <% end %>
+          <div class="attendanceBlock">
+            <h2 class="attendanceBlock__title">勤務状況</h2>
+            <% if @operating_times.present? %>
+              <div class="attendanceBlock__flex">
+                <p class="colonText">稼働日数<span class="right fontGothic"><%= @operating_times.count %>日</span></p>
+                <p class="colonText">勤務時間<span class="right fontGothic"><%= @operating_times.sum { |hash| hash[:working_hours]} %>時間</span></p>
+              </div>
+              <div class="attendanceBlock__flex">
+                <p class="colonText">報酬<span class="right fontGothic">¥<span class="conversionYen"><%= @monthly_unit_price.unit_price * @operating_times.sum { |hash| hash[:working_hours]} %></span></span></p>
+              </div>
+              <div class="attendanceBlock__flex">
+                <p class="colonText">支払いステータス
+                  <span class="right fontGothic">
+                    <%= @payment_status.paid_i18n %>
+                  </span>
+                </p>
+              </div>
+              <% unless @operating_times.first.submitted %>
+                <%= button_to '勤怠を提出', users_attendance_hand_in_operating_times_path(@attendance, year: params[:year], month: params[:month]), { method: :patch, class: 'generalButton bgBrown textWhite' } %>
+              <% end %>
+            <% else %>
+              <p class="attendanceBlock__text">勤怠状況がありません</p>
+            <% end %>
+          </div>
+          <div class="wrap">
+            <% if @operating_times.present? %>
+              <% @operating_times.each do |operating_time| %>
+                <div class="attendanceText">
+                  <p class="attendanceText__item"><%= operating_time.working_days.strftime('%Y/%m/%d') %></p>
+                  <p class="attendanceText__item"><%= operating_time.working_hours %>時間 × ¥<span class="conversionYen"><%= @monthly_unit_price.unit_price %></span> = <span class="bold">¥</span><span class="conversionYen bold"><%= @monthly_unit_price.unit_price * operating_time.working_hours %></span></p>
+                  <p class="attendanceText__item"><%= operating_time.job_description %></p>
+                </div>
+              <% end %>
+            <% else %>
+              <div class="attendanceText">
+                <p class="attendanceText__item">勤怠がありません</p>
+              </div>
+            <% end %>
+          </div>
+        </div>
+        <div class="attendanceContents__bottom">
+          <% unless @operating_times.blank? %>
+            <% if @operating_times.first.submitted == false %>
+              <div class="bg">
+                <%= link_to '編集する', users_attendance_operating_times_path(@attendance, year: @monthly_unit_price.year, month: @monthly_unit_price.month), class: 'generalButton bgBlack textWhite' %>
+              </div>
+            <% end %>
+          <% end %>
+        </div>
+       </div>
+    </div>
+ </div>
+</div>

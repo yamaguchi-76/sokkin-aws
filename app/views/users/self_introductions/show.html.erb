@@ -1,0 +1,94 @@
+<%# TODO: 登録時、ログイン時でクラスを分けたい %>
+<div class="inputFormIndex login openItem">
+  <%= render 'users/shared/side_menu' %>
+  <div class="openItem__wrapper">
+    <h1 class="inputFormIndex__title"><%= first_sign_in? ? 'プロフィール' : '会員登録' %></h1>
+    <div class="inputFormIndex__wrapper">
+      <%= render "users/shared/profile_links" %>
+      <div class="formDetailItem">
+        <div class="basicHead edit">
+          <div class="wrapper">
+            <h3 class="basicHead__title">自己紹介</h3>
+            <p class="basicHead__sub">self-introduction</p>
+          </div>
+          <%= link_to '編集する', edit_users_self_introductions_path, class: 'generalButton outlineBlack textBlack edit' %>
+        </div>
+        <div class="infoFormItemGroup">
+          <div class="infoFormItem selfIntroduce infoFormItemGroup__box">
+            <div class="wrapper">
+              <h3 class="infoFormItem__title required">自己PR</h3>
+              <p class="infoFormItem__text"><%= @self_introduction.self_pr %></p>
+            </div>
+          </div>
+          <div class="infoFormItem selfIntroduce infoFormItemGroup__box">
+            <div class="wrapper">
+              <h3 class="infoFormItem__title required">希望単価</h3>
+              <p class="infoFormItem__text">
+                <%= @self_introduction.desired_unit_price %>
+                円/時間
+              </p>
+            </div>
+          </div>
+          <div class="infoFormItem selfIntroduce infoFormItemGroup__box">
+            <div class="wrapper">
+              <h3 class="infoFormItem__title required">希望稼働時間</h3>
+              <p class="infoFormItem__text">
+                1日
+                <%= @self_introduction.desired_working_hours %>
+                時間
+              </p>
+            </div>
+          </div>
+          <div class="infoFormItem selfIntroduce infoFormItemGroup__box">
+            <div class="wrapper">
+              <h3 class="infoFormItem__title required">希望勤務日数</h3>
+              <p class="infoFormItem__text">
+                月間
+                <%= @self_introduction.desired_working_days %>
+                日
+              </p>
+            </div>
+          </div>
+          <div class="infoFormItem selfIntroduce infoFormItemGroup__box">
+            <div class="wrapper">
+              <h3 class="infoFormItem__title required">対面ミーティング</h3>
+              <p class="infoFormItem__text"><%= @self_introduction.in_person_meeting_i18n %></p>
+            </div>
+          </div>
+          <div class="infoFormItem selfIntroduce infoFormItemGroup__box">
+            <div class="wrapper">
+              <h3 class="infoFormItem__title required">対応ステータス</h3>
+              <p class="infoFormItem__text"><%= @self_introduction.handle_status_i18n %></p>
+            </div>
+          </div>
+          <div class="infoFormItem selfIntroduce infoFormItemGroup__box">
+            <div class="wrapper">
+              <h3 class="infoFormItem__title required">対応条件</h3>
+              <p class="infoFormItem__text"><%= @self_introduction.handle_conditions_i18n %></p>
+            </div>
+          </div>
+          <div class="infoFormItem selfIntroduce infoFormItemGroup__box">
+            <div class="wrapper">
+              <h3 class="infoFormItem__title required">インボイス登録</h3>
+              <p class="infoFormItem__text"><%= t("activerecord.attributes.self_introduction.registered_invoice.#{@self_introduction.registered_invoice}") %></p>
+            </div>
+          </div>
+          <div class="infoFormItem selfIntroduce infoFormItemGroup__box">
+            <div class="wrapper">
+              <h3 class="infoFormItem__title required">インボイス登録番号</h3>
+              <p class="infoFormItem__text">T<%= @self_introduction.invoice_number %></p>
+            </div>
+          </div>
+          <div class="infoFormItem selfIntroduce infoFormItemGroup__box">
+            <div class="wrapper">
+              <h3 class="infoFormItem__title required">ポートフォリオ</h3>
+              <% if @self_introduction.portfolio %>
+                <p class="infoFormItem__text"><%= link_to @self_introduction.portfolio, @self_introduction.portfolio, target: :_blank, rel: 'noopener noreferrer', class: 'link' %></p>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

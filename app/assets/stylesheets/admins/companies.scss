@@ -1,0 +1,35 @@
+$breakpoint: (
+        sp: 'screen and (max-width: 350px)',
+        sp-min: 'screen and (min-width: 351px)',
+        tab: 'screen and (max-width: 767px)',
+        tab-min: 'screen and (min-width: 768px)',
+        pc: 'screen and (max-width: 1200px)',
+        pc-min: 'screen and (min-width: 1201px)',
+);
+
+@mixin mq($bp) {
+  @media #{map-get($breakpoint, $bp)} {
+    @content;
+  }
+}
+
+@include mq(tab) {
+  .heading,
+  .text {
+    font-size: 1rem;
+    vertical-align: middle;
+  }
+}
+
+@include mq(tab-min) {
+  .heading,
+  .text {
+    font-size: 0.8rem;
+    vertical-align: middle;
+  }
+}
+
+th {
+  width: 200px;
+  vertical-align: middle;
+}

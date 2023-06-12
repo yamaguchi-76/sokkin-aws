@@ -1,0 +1,22 @@
+@use '../../../base/Variable' as *;
+
+.formBorderTextBox {
+  &__item {
+    border-bottom: 1px solid $brown;
+
+    &.small {
+      width: 80px;
+    }
+
+    &.middle {
+      width: 100px;
+    }
+  }
+
+  &__text {
+    color: $black;
+    font-family: Yu Gothic, YuGothic, 'ヒラギノ角ゴ Pro', 'Hiragino Kaku Gothic Pro', 'Hiragino Sans', Meiryo, メイリオ, 'MS P Gothic', sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+  }
+}

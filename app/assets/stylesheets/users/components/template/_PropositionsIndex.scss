@@ -1,0 +1,50 @@
+@use '../../base/Variable' as *;
+
+.propositionsIndex {
+  @include mq(tab-min) {
+    display: flex;
+  }
+
+  .openItem__wrapper {
+    @include mq(tab-min) {
+      width: 1100px;
+    }
+  }
+
+  &__title {
+    color: $black;
+    font-family: Yu Gothic, YuGothic, 'ヒラギノ角ゴ Pro', 'Hiragino Kaku Gothic Pro', 'Hiragino Sans', Meiryo, メイリオ, 'MS P Gothic', sans-serif;
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 30px;
+  }
+
+  .searchBoxContent {
+    max-width: 1100px;
+  }
+
+  .propositionsDetail {
+    margin: 30px 0;
+  }
+
+  .propositionsList:not(:last-child) {
+    margin-bottom: 20px;
+  }
+  
+  .pagenationContainer {
+    margin-top: 30px;
+    @include mq(tab-min) {
+      margin-top: 70px;
+    }
+    .spPagenation {
+      @include mq(tab-min) {
+        display: none;
+      }
+    }
+    .tabAndPcPagenation {
+      @include mq(tab) {
+        display: none;
+      }
+    }
+  } 
+}

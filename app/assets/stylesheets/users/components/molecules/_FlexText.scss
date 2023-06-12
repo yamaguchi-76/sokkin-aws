@@ -1,0 +1,27 @@
+@use '../../base/Variable' as *;
+
+.flexText {
+  display: flex;
+  flex-wrap: wrap;
+
+  &__text {
+    font-family: Yu Gothic, YuGothic, 'ヒラギノ角ゴ Pro', 'Hiragino Kaku Gothic Pro', 'Hiragino Sans', Meiryo, メイリオ, 'MS P Gothic', sans-serif;
+    font-size: 14px;
+
+    @include mq(tab) {
+      line-height: 1.5;
+    }
+
+    &:not(:last-child) {
+      margin-right: 10px;
+    }
+
+    &.jobRange {
+      color: $brown;
+
+      &:before {
+        content: '#';
+      }
+    }
+  }
+}

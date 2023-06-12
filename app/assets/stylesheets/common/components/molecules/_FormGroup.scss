@@ -1,0 +1,10 @@
+.formGroup {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 0 -15px -10px;
+
+  .formCheckBox,
+  .formRadio {
+    margin: 0 0 15px 10px;
+  }
+}

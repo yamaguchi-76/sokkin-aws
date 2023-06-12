@@ -1,0 +1,36 @@
+<div class="header">
+  <div class="wrapper">
+    <h1 class="header__logo">
+      <%= link_to image_tag('common/header/logo.svg'), users_home_path %>
+    </h1>
+    <% if current_user %>
+      <div class="right">
+        <ul class="headerMenu">
+          <%# <li class="headerMenu__item circleIcon business"></li> %>
+          <%# <li class="headerMenu__item circleIcon bell"></li> %>
+          <% if current_user&.image_url %>
+            <li class="headerMenu__item profileIcon">
+              <%= image_tag current_user.image_url(:user_header) %>
+          <% else %>
+            <li class="headerMenu__item profileIcon default">
+          <% end %>
+            <div class="profileModal none modal profile">
+              <h2 class="profileModal__title"><%= current_user.full_name %></h2>
+              <ul class="modalList">
+                <li class="modalList__item"><%= link_to 'プロフィール編集', users_self_introductions_url, class: 'link profile' %></li>
+                <li class="modalList__item"><%= link_to 'お気に入り', users_propositions_url + '#favorite', class: 'link favorite' %></li>
+                <li class="modalList__item"><%= link_to 'アカウント設定', users_account_url, class: 'link account' %></li>
+                <li class="modalList__item"><%= link_to 'ログアウト', destroy_user_session_path, class: 'link logout' %></li>
+              </ul>
+            </div>
+          </li>
+        </ul>
+        <div class="hamburger">
+          <span class="hamburger__border"></span>
+          <span class="hamburger__border"></span>
+          <span class="hamburger__border"></span>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

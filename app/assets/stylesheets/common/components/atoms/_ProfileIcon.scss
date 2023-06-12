@@ -1,0 +1,15 @@
+.profileIcon {
+  &.default {
+    background: image-url('users/icon/header_personal.svg') no-repeat;
+    background-size: contain;
+  }
+
+  &.company {
+    background: image-url('companies/icon/header_company.svg') no-repeat;
+    background-size: contain;
+  }
+
+  > img {
+    border-radius: 50%;
+  }
+}

@@ -1,0 +1,25 @@
+.headerMenu {
+  display: flex;
+  align-items: center;
+
+  &__item {
+    position: relative;
+
+    &:not(:last-child) {
+      margin-right: 15px;
+    }
+
+    .modal {
+      position: absolute;
+
+      &.profile {
+        right: 0;
+        top: 46px;
+      }
+    }
+  }
+
+  .profileIcon {
+    cursor: pointer;
+  }
+}

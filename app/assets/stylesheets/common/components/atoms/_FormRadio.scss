@@ -1,0 +1,51 @@
+.formRadio {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+
+  &__radio {
+    width: 25px;
+    height: 25px;
+    margin-right: 10px;
+    cursor: pointer;
+    appearance: none;
+    outline: none;
+    position: relative;
+
+    &:before {
+      content: '';
+      width: 25px;
+      height: 25px;
+      display: block;
+      background: $white;
+      border: 1px solid $gray3;
+      border-radius: 50%;
+    }
+
+    &:after {
+      content: '';
+      display: block;
+      width: 15px;
+      height: 15px;
+      position: absolute;
+      left: 6px;
+      top: 6px;
+      background: $brown;
+      transform: rotate(45deg);
+      border-radius: 50%;
+      opacity: 0;
+    }
+
+    &:checked:after {
+      opacity: 1;
+    }
+  }
+
+  &__text {
+    color: $black;
+    font-family: Yu Gothic, YuGothic, 'ヒラギノ角ゴ Pro', 'Hiragino Kaku Gothic Pro', 'Hiragino Sans', Meiryo, メイリオ, 'MS P Gothic', sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+}

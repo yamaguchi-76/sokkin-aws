@@ -1,0 +1,54 @@
+@use '../../base/Variable' as *;
+
+.skillTableForm {
+  display: flex;
+
+  @include mq(tab) {
+    display: block;
+  }
+
+  &__title {
+    width: 232px;
+    color: $black;
+    font-size: 14px;
+    font-family: Yu Gothic, YuGothic, 'ヒラギノ角ゴ Pro', 'Hiragino Kaku Gothic Pro', 'Hiragino Sans', Meiryo, メイリオ, 'MS P Gothic', sans-serif;
+    font-weight: bold;
+    background: $brown2;
+    padding: 16px 10px;
+
+    @include mq(tab) {
+      width: 100%;
+    }
+
+    &.height {
+      line-height: 1.5;
+    }
+
+    .required {
+      color: $red;
+    }
+  }
+
+  &__content {
+    width: 734px;
+    background: $gray;
+    padding: 13px 10px;
+
+    @include mq(tab) {
+      width: 100%;
+    }
+
+    .textarea {
+      width: 690px;
+      height: 140px;
+      border: 1px solid $gray3;
+      border-radius: 3px;
+      padding: 10px;
+      resize: none;
+
+      @include mq(tab) {
+        width: 100%;
+      }
+    }
+  }
+}

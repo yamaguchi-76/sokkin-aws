@@ -1,0 +1,53 @@
+<div class="container mt-5">
+  <% provide(:title, "勤怠管理_契約一覧") %>
+  <table class="table">
+    <thead>
+    <tr>
+      <th><%= t('activerecord.attributes.company.name') %></th>
+      <th><%= t('activerecord.attributes.proposition.title') %></th>
+      <th>ユーザー名</th>
+      <th>支払いステータス</th>
+      <th>年月</th>
+      <th>当月時給</th>
+      <th colspan="3"></th>
+    </tr>
+    </thead>
+    <tbody>
+    <% @proposition_contracts.each do |proposition_contract| %>
+      <tr>
+        <td><%= proposition_contract.proposition.company.name %></td>
+        <td><%= proposition_contract.proposition.title %></td>
+        <td><%= proposition_contract.user.full_name %></td>
+        <td>
+          <% attendance = proposition_contract.proposition.attendance %>
+          <% payment_statuses = attendance&.payment_statuses %>
+          <div class="text-center">
+            <%= payment_statuses.present? ? payment_statuses.last.paid_i18n : '-' %>
+          </div>
+        </td>
+        <td class="align-middle">
+          <div class="text-center">
+            <% monthly_unit_prices = proposition_contract.proposition.attendance.monthly_unit_prices&.last %>
+            <%= monthly_unit_prices ? "#{monthly_unit_prices.year}年#{monthly_unit_prices.month}月" : '-' %>
+          </div>
+        </td>
+        <td class="align-middle">
+          <% if attendance&.monthly_unit_prices.present? %>
+            <%= attendance.monthly_unit_prices.last.unit_price %>円
+          <% else %>
+            月単価が登録されていません
+          <% end %>
+        </td>
+        <td>
+          <% if attendance&.monthly_unit_prices.present? %>
+            <%= link_to "詳細", admins_attendance_path(attendance, year: attendance.monthly_unit_prices.last.year, month: attendance.monthly_unit_prices.last.month, user_id: proposition_contract.user.id), class: "btn btn-primary btn-sm", style: "width: 50px" %>
+          <% else %>
+            <div></div>
+          <% end %>
+        </td>
+        <td><%= link_to "新規月登録", new_admins_attendance_monthly_unit_price_path(attendance), class: "btn btn-primary btn-sm", style: "width: 100px" %></td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+</div>

@@ -1,0 +1,39 @@
+<div class="propositionsIndex openItem">
+  <%= render 'companies/shared/side_menu' %>
+  <div class="openItem__wrapper">
+    <div class="propositionsIndex__title">
+      <h2 class="title">登録案件一覧</h2>
+      <%# TODO: 新規案件を登録ボタン / 劣後対応 %>
+    </div>
+    <div class="propositionsIndex__detail">
+      <p class="count">全<span class="big"><%= @propositions.count %></span>件</p>
+      <div class="flex">
+        <%# TODO: 最小値、最大値を動的に取得したい？ %>
+        <%# 1〜6件を表示 %>
+        <%# TODO: select にしてほしい %>
+        <%# sort_link(@q, :created_at, t('activerecord.attributes.proposition.created_at'), default_order: :desc) %>
+      </div>
+    </div>
+
+    <table class="propositionsList">
+      <thead>
+        <tr>
+          <th>案件ID</th>
+          <th>募集日</th>
+          <th>応募締め切り</th>
+          <th class="long">案件名</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @propositions.each do |proposition| %>
+          <tr>
+            <td><%= proposition.id %></td>
+            <td><%= l proposition.created_at, format: :date_joins_dot %></td>
+            <td><%= l proposition.application_deadline, format: :date_joins_dot %></td>
+            <td><%= link_to proposition.title, companies_proposition_path(proposition.id), class: 'link' %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

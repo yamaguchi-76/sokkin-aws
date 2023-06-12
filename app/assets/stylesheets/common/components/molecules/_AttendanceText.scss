@@ -1,0 +1,36 @@
+.attendanceText {
+  @include mq(tab-min) {
+    display: flex;
+  }
+
+  &:not(:first-of-type) {
+    @include mq(tab) {
+      padding-top: 10px;
+    }
+  }
+
+  &:not(:last-of-type) {
+    @include mq(tab) {
+      padding-bottom: 10px;
+      border-bottom: 1px solid $gray3;
+    }
+  }
+
+  &__item {
+    color: $black;
+    font-size: 14px;
+    font-family: Yu Gothic, YuGothic, 'ヒラギノ角ゴ Pro', 'Hiragino Kaku Gothic Pro', 'Hiragino Sans', Meiryo, メイリオ, 'MS P Gothic', sans-serif;
+
+    &:not(:first-child) {
+      margin: 0 0 0 20px;
+
+      @include mq(tab) {
+        margin: 10px 0 0;
+      }
+    }
+
+    > .bold {
+      font-weight: bold;
+    }
+  }
+}

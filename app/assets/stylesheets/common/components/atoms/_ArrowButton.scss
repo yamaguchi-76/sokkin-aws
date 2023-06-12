@@ -1,0 +1,17 @@
+.arrowButton {
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+
+  &.back {
+    color: $brown;
+
+    &:before {
+      content: '';
+      width: 5px;
+      height: 10px;
+      background: image-url('users/icon/back_arrow.svg') no-repeat;
+      margin-right: 10px;
+    }
+  }
+}

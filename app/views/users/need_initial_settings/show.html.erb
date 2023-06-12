@@ -1,0 +1,10 @@
+<main class="needInitialSettingsIndex openItem">
+  <%= render 'users/shared/side_menu' %>
+  <div class="openItem__wrapper">
+    <p class="needInitialSettingsIndex__text">案件に応募するためにはプロフィール登録、スキル診断が必要です。</p>
+    <div class="needInitialSettingsIndex__button">
+      <%= link_to 'プロフィール登録', users_basic_infos_path, class: 'generalButton bgBrown textWhite' %>
+      <%= link_to 'スキル診断', current_user.skill.nil? ? skill_diagnose_users_skills_path : skill_diagnose_edit_users_skill_path(current_user.skill), class: 'generalButton bgBrown textWhite' %>
+    </div>
+  </div>
+</main>

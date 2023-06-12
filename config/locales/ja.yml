@@ -1,0 +1,878 @@
+ja:
+  enums:
+    user:
+      gender:
+        male: 男性
+        female: 女性
+        others: その他
+    educational_background:
+      recent_academic_history:
+        masters_graduate: 大学院卒
+        masters_dropout: 大学院中退
+        university_graduate: 大学卒
+        university_dropout: 大学中退
+        junior_college_graduate: 短大卒
+        junior_college_dropout: 専門卒
+        vocational_college_graduate: 高専卒
+        high_school_graduate: 高校卒
+        junior_high_school_graduate: 中学卒
+        others: その他
+    employment_status:
+      status:
+        employee: 正社員
+        freelance: フリーランス
+        others: その他
+    proposition:
+      status:
+        wanted: 募集中
+        contracted: 成約済
+        expired: 掲載期間終了
+        draft: 承認待ち
+    proposition_entry:
+      status:
+        before_interview: 面談前
+        considering: 選考中
+        contracting: 契約中
+        rejected: お見送り
+        disbanded: 解約済み
+    scout:
+      status:
+        consider: 検討中
+        entried: 応募済み
+        not_interested: 興味なし
+    skill:
+      search_scope:
+        search_scope_planning: プランニング
+        search_scope_operational_direction: 運用ディレクション
+        search_scope_advertising_operation: 広告運用（入稿・入札など）
+        search_scope_proposal_review: 提案・レビュー
+        search_scope_impossible: 対応不可
+      search_experience:
+        search_experience_rank_e: 経験なし
+        search_experience_rank_d: 3年未満
+        search_experience_rank_c: 3年以上5年未満
+        search_experience_rank_b: 5年以上10年未満
+        search_experience_rank_a: 10年以上
+      display_scope:
+        display_scope_planning: プランニング
+        display_scope_operational_direction: 運用ディレクション
+        display_scope_advertising_operation: 広告運用（入稿・入札など）
+        display_scope_proposal_review: 提案・レビュー
+        display_scope_impossible: 対応不可
+      display_experience:
+        display_experience_rank_e: 経験なし
+        display_experience_rank_d: 3年未満
+        display_experience_rank_c: 3年以上5年未満
+        display_experience_rank_b: 5年以上10年未満
+        display_experience_rank_a: 10年以上
+      sns_scope:
+        sns_scope_planning: プランニング
+        sns_scope_operational_direction: 運用ディレクション
+        sns_scope_advertising_operation: 広告運用（入稿・入札など）
+        sns_scope_proposal_review: 提案・レビュー
+        sns_scope_impossible: 対応不可
+      sns_experience:
+        sns_experience_rank_e: 経験なし
+        sns_experience_rank_d: 3年未満
+        sns_experience_rank_c: 3年以上5年未満
+        sns_experience_rank_b: 5年以上10年未満
+        sns_experience_rank_a: 10年以上
+      application_ad_scope:
+        application_ad_scope_planning: プランニング
+        application_ad_scope_operational_direction: 運用ディレクション
+        application_ad_scope_advertising_operation: 広告運用（入稿・入札など）
+        application_ad_scope_proposal_review: 提案・レビュー
+        application_ad_scope_impossible: 対応不可
+      application_ad_experience:
+        application_ad_experience_rank_e: 経験なし
+        application_ad_experience_rank_d: 3年未満
+        application_ad_experience_rank_c: 3年以上5年未満
+        application_ad_experience_rank_b: 5年以上10年未満
+        application_ad_experience_rank_a: 10年以上
+      seo_scope:
+        seo_scope_strategy_planning: 戦略立案(分析・対策KW選定など)
+        seo_scope_operational_direction: 記事コンテンツ制作ディレクション
+        seo_scope_trend_catch_up: 媒体トレンドキャッチアップ
+        seo_scope_proposal_review: 提案・レビュー
+        seo_scope_impossible: 対応不可
+      seo_experience:
+        seo_experience_rank_e: 経験なし
+        seo_experience_rank_d: 3年未満
+        seo_experience_rank_c: 3年以上5年未満
+        seo_experience_rank_b: 5年以上10年未満
+        seo_experience_rank_a: 10年以上
+      crm_scope:
+        crm_scope_measures_design_planning: 施策設計・プランニング
+        crm_scope_operation: 運用
+        crm_scope_analysis_proposal: 分析・提案レビュー
+        crm_scope_impossible: 対応不可
+      crm_experience:
+        crm_experience_rank_e: 経験なし
+        crm_experience_rank_d: 3年未満
+        crm_experience_rank_c: 3年以上5年未満
+        crm_experience_rank_b: 5年以上10年未満
+        crm_experience_rank_a: 10年以上
+      sns_owned_media_scope:
+        sns_owned_media_scope_strategy_planning: 戦略立案
+        sns_owned_media_scope_operational: 運用
+        sns_owned_media_scope_operational_direction: 運用ディレクション
+        sns_owned_media_scope_content_production: コンテンツ制作
+        sns_owned_media_scope_proposal_review: 提案・レビュー
+        sns_owned_media_scope_impossible: 対応不可
+      sns_owned_media_experience:
+        sns_owned_media_experience_rank_e: 経験なし
+        sns_owned_media_experience_rank_d: 3年未満
+        sns_owned_media_experience_rank_c: 3年以上5年未満
+        sns_owned_media_experience_rank_b: 5年以上10年未満
+        sns_owned_media_experience_rank_a: 10年以上
+      dsp_scope:
+        dsp_scope_planning: プランニング
+        dsp_scope_operational_direction: 運用ディレクション
+        dsp_scope_advertising_operation: 広告運用（入稿・入札など）
+        dsp_scope_proposal_review: 提案・レビュー
+        dsp_scope_impossible: 対応不可
+      dsp_experience:
+        dsp_experience_rank_e: 経験なし
+        dsp_experience_rank_d: 3年未満
+        dsp_experience_rank_c: 3年以上5年未満
+        dsp_experience_rank_b: 5年以上10年未満
+        dsp_experience_rank_a: 10年以上
+      video_scope:
+        video_scope_planning: プランニング
+        video_scope_operational_direction: 運用ディレクション
+        video_scope_advertising_operation: 広告運用（入稿・入札など）
+        video_scope_proposal_review: 提案・レビュー
+        video_scope_impossible: 対応不可
+      video_experience:
+        video_experience_rank_e: 経験なし
+        video_experience_rank_d: 3年未満
+        video_experience_rank_c: 3年以上5年未満
+        video_experience_rank_b: 5年以上10年未満
+        video_experience_rank_a: 10年以上
+      affiliate_scope:
+        affiliate_scope_planning: プランニング
+        affiliate_scope_operational_direction: 運用ディレクション
+        affiliate_scope_proposal_review: 提案・レビュー
+        affiliate_scope_impossible: 対応不可
+      affiliate_experience:
+        affiliate_experience_rank_e: 経験なし
+        affiliate_experience_rank_d: 3年未満
+        affiliate_experience_rank_c: 3年以上5年未満
+        affiliate_experience_rank_b: 5年以上10年未満
+        affiliate_experience_rank_a: 10年以上
+      sight_access_scope:
+        sight_access_scope_investigation: 調査・設計
+        sight_access_scope_analysis: 分析
+        sight_access_scope_proposal_review: 提案・レビュー
+        sight_access_scope_impossible: 対応不可
+      sight_access_experience:
+        sight_access_experience_rank_e: 経験なし
+        sight_access_experience_rank_d: 3年未満
+        sight_access_experience_rank_c: 3年以上5年未満
+        sight_access_experience_rank_b: 5年以上10年未満
+        sight_access_experience_rank_a: 10年以上
+      ma_scope:
+        ma_scope_measurement_conditions_planning: 計測条件のプランニング
+        ma_scope_operational_direction: 運用ディレクション
+        ma_scope_operation_support: 運用対応
+        ma_scope_proposal_review: 提案・レビュー
+        ma_scope_impossible: 対応不可
+      ma_experience:
+        ma_experience_rank_e: 経験なし
+        ma_experience_rank_d: 3年未満
+        ma_experience_rank_c: 3年以上5年未満
+        ma_experience_rank_b: 5年以上10年未満
+        ma_experience_rank_a: 10年以上
+      tag_manager_scope:
+        tag_manager_scope_design: タグ環境設計
+        tag_manager_scope_direction: タグ設置ディレクション
+        tag_manager_scope_installation: タグ設置対応
+        tag_manager_scope_impossible: 対応不可
+      tag_manager_experience:
+        tag_manager_experience_rank_e: 経験なし
+        tag_manager_experience_rank_d: 3年未満
+        tag_manager_experience_rank_c: 3年以上5年未満
+        tag_manager_experience_rank_b: 5年以上10年未満
+        tag_manager_experience_rank_a: 10年以上
+      feed_scope:
+        feed_scope_design: フィード設計
+        feed_scope_direction: フィード作成ディレクション
+        feed_scope_create: フィード作成
+        feed_scope_management: フィード管理
+        feed_scope_impossible: 対応不可
+      feed_experience:
+        feed_experience_rank_e: 経験なし
+        feed_experience_rank_d: 3年未満
+        feed_experience_rank_c: 3年以上5年未満
+        feed_experience_rank_b: 5年以上10年未満
+        feed_experience_rank_a: 10年以上
+      third_party_scope:
+        third_party_scope_plannning: 計測条件のプランニング
+        third_party_scope_direction: 運用ディレクション
+        third_party_scope_operation: 運用対応
+        third_party_scope_proposal_review: 分析・レビュー
+        third_party_scope_impossible: 対応不可
+      third_party_experience:
+        third_party_experience_rank_e: 経験なし
+        third_party_experience_rank_d: 3年未満
+        third_party_experience_rank_c: 3年以上5年未満
+        third_party_experience_rank_b: 5年以上10年未満
+        third_party_experience_rank_a: 10年以上
+      customer_scope:
+        customer_scope_investigation: 調査・設計
+        customer_scope_analysis: 分析
+        customer_scope_proposal: 提案
+        customer_scope_impossible: 対応不可
+      customer_experience:
+        customer_experience_rank_e: 経験なし
+        customer_experience_rank_d: 3年未満
+        customer_experience_rank_c: 3年以上5年未満
+        customer_experience_rank_b: 5年以上10年未満
+        customer_experience_rank_a: 10年以上
+      business_scope:
+        business_scope_investigation: 調査・設計
+        business_scope_analysis: 分析
+        business_scope_proposal: 提案
+        business_scope_impossible: 対応不可
+      business_experience:
+        business_experience_rank_e: 経験なし
+        business_experience_rank_d: 3年未満
+        business_experience_rank_c: 3年以上5年未満
+        business_experience_rank_b: 5年以上10年未満
+        business_experience_rank_a: 10年以上
+      three_c_scope:
+        three_c_scope_investigation: 調査・設計
+        three_c_scope_analysis: 分析
+        three_c_scope_proposal: 提案
+        three_c_scope_impossible: 対応不可
+      three_c_experience:
+        three_c_experience_rank_e: 経験なし
+        three_c_experience_rank_d: 3年未満
+        three_c_experience_rank_c: 3年以上5年未満
+        three_c_experience_rank_b: 5年以上10年未満
+        three_c_experience_rank_a: 10年以上
+      four_p_scope:
+        four_p_scope_investigation: 調査・設計
+        four_p_scope_analysis: 分析
+        four_p_scope_proposal: 提案
+        four_p_scope_impossible: 対応不可
+      four_p_experience:
+        four_p_experience_rank_e: 経験なし
+        four_p_experience_rank_d: 3年未満
+        four_p_experience_rank_c: 3年以上5年未満
+        four_p_experience_rank_b: 5年以上10年未満
+        four_p_experience_rank_a: 10年以上
+      persona_scope:
+        persona_scope_investigation: 調査・設計
+        persona_scope_analysis: 分析
+        persona_scope_proposal: 提案
+        persona_scope_impossible: 対応不可
+      persona_experience:
+        persona_experience_rank_e: 経験なし
+        persona_experience_rank_d: 3年未満
+        persona_experience_rank_c: 3年以上5年未満
+        persona_experience_rank_b: 5年以上10年未満
+        persona_experience_rank_a: 10年以上
+      user_survey_scope:
+        user_survey_scope_investigation: 調査・設計
+        user_survey_scope_analysis: 分析
+        user_survey_scope_proposal: 提案
+        user_survey_scope_impossible: 対応不可
+      user_survey_experience:
+        user_survey_experience_rank_e: 経験なし
+        user_survey_experience_rank_d: 3年未満
+        user_survey_experience_rank_c: 3年以上5年未満
+        user_survey_experience_rank_b: 5年以上10年未満
+        user_survey_experience_rank_a: 10年以上
+      pr_scope:
+        pr_scope_strategy: 戦略設計
+        pr_scope_policy_design: 施策設計・プランニング
+        pr_scope_proposal_review: 分析・提案レビュー
+        pr_scope_impossible: 対応不可
+      pr_experience:
+        pr_experience_rank_e: 経験なし
+        pr_experience_rank_d: 3年未満
+        pr_experience_rank_c: 3年以上5年未満
+        pr_experience_rank_b: 5年以上10年未満
+        pr_experience_rank_a: 10年以上
+      customer_journey_scope:
+        customer_journey_scope_investigation: 調査・設計
+        customer_journey_scope_analysis: 分析
+        customer_journey_scope_proposal: 提案
+        customer_journey_scope_impossible: 対応不可
+      customer_journey_experience:
+        customer_journey_experience_rank_e: 経験なし
+        customer_journey_experience_rank_d: 3年未満
+        customer_journey_experience_rank_c: 3年以上5年未満
+        customer_journey_experience_rank_b: 5年以上10年未満
+        customer_journey_experience_rank_a: 10年以上
+      language_scope:
+        language_scope_english: 英語
+        language_scope_chinese: 中国語
+        language_scope_french: フランス語
+        language_scope_impossible: 対応不可
+      language_experience:
+        language_experience_rank_e: 経験なし
+        language_experience_rank_d: 3年未満
+        language_experience_rank_c: 3年以上5年未満
+        language_experience_rank_b: 5年以上10年未満
+        language_experience_rank_a: 10年以上
+      kpi_scope:
+        kpi_scope_possible: 対応可能
+        kpi_scope_impossible: 対応不可
+      kpi_experience:
+        kpi_experience_rank_e: 経験なし
+        kpi_experience_rank_d: 3年未満
+        kpi_experience_rank_c: 3年以上5年未満
+        kpi_experience_rank_b: 5年以上10年未満
+        kpi_experience_rank_a: 10年以上
+      influencer_scope:
+        influencer_scope_strategy_design: 戦略設計
+        influencer_scope_measures_design_planning: 施策設計・プランニング
+        influencer_scope_analysis_proposal: 分析・提案レビュー
+        influencer_scope_impossible: 対応不可
+      influencer_experience:
+        influencer_experience_rank_e: 経験なし
+        influencer_experience_rank_d: 3年未満
+        influencer_experience_rank_c: 3年以上5年未満
+        influencer_experience_rank_b: 5年以上10年未満
+        influencer_experience_rank_a: 10年以上
+      writing_scope:
+        writing_scope_wire_create: ワイヤー作成
+        writing_scope_constitution_create: 構成作成
+        writing_scope_image: 画像手配
+        writing_scope_writing: 記事執筆
+        writing_scope_reserch: リサーチ
+        writing_scope_coding: コーディング
+        writing_scope_impossible: 対応不可
+      writing_experience:
+        writing_experience_rank_e: 経験なし
+        writing_experience_rank_d: 3年未満
+        writing_experience_rank_c: 3年以上5年未満
+        writing_experience_rank_b: 5年以上10年未満
+        writing_experience_rank_a: 10年以上
+      website_scope:
+        website_scope_configuration_creation: サイト構成作成
+        website_scope_design: デザイン制作
+        website_scope_material_arrangement: 素材手配
+        website_scope_system_development: システム開発
+        website_scope_coding: コーディング
+        website_scope_test: 挙動テスト
+        website_scope_impossible: 対応不可
+      website_experience:
+        website_experience_rank_e: 経験なし
+        website_experience_rank_d: 3年未満
+        website_experience_rank_c: 3年以上5年未満
+        website_experience_rank_b: 5年以上10年未満
+        website_experience_rank_a: 10年以上
+      ecsite_scope:
+        ecsite_scope_configuration_creation: サイト構成作成
+        ecsite_scope_design: デザイン制作
+        ecsite_scope_material_arrangement: 素材手配
+        ecsite_scope_system_development: システム開発
+        ecsite_scope_coding: コーディング
+        ecsite_scope_test: 挙動テスト
+        ecsite_scope_update: 更新対応
+        ecsite_scope_impossible: 対応不可
+      ecsite_experience:
+        ecsite_experience_rank_e: 経験なし
+        ecsite_experience_rank_d: 3年未満
+        ecsite_experience_rank_c: 3年以上5年未満
+        ecsite_experience_rank_b: 5年以上10年未満
+        ecsite_experience_rank_a: 10年以上
+      application_production_scope:
+        application_production_scope_requirement_definition: 要件定義
+        application_production_scope_basic_design: 基本設計
+        application_production_scope_detailed_design: 詳細設計
+        application_production_scope_development: 開発・実装・テスト
+        application_production_scope_store_application: ストア申請
+        application_production_scope_maintenance: 保守・運用
+        application_production_scope_impossible: 対応不可
+      application_production_experience:
+        application_production_experience_rank_e: 経験なし
+        application_production_experience_rank_d: 3年未満
+        application_production_experience_rank_c: 3年以上5年未満
+        application_production_experience_rank_b: 5年以上10年未満
+        application_production_experience_rank_a: 10年以上
+      image_ad_scope:
+        image_ad_scope_communication_planning: コミュニケーションプランニング
+        image_ad_scope_material_arrangement: 素材手配
+        image_ad_scope_design: デザイン制作
+        image_ad_scope_ad: Ad制作
+        image_ad_scope_performance_analysis: 実績分析
+        image_ad_scope_impossible: 対応不可
+      image_ad_experience:
+        image_ad_experience_rank_e: 経験なし
+        image_ad_experience_rank_d: 3年未満
+        image_ad_experience_rank_c: 3年以上5年未満
+        image_ad_experience_rank_b: 5年以上10年未満
+        image_ad_experience_rank_a: 10年以上
+      movie_ad_scope:
+        movie_ad_scope_communication_planning: コミュニケーションプランニング
+        movie_ad_scope_material_arrangement: 素材手配
+        movie_ad_scope_design: デザイン制作
+        movie_ad_scope_ad: Ad制作
+        movie_ad_scope_performance_analysis: 実績分析
+        movie_ad_scope_impossible: 対応不可
+      movie_ad_experience:
+        movie_ad_experience_rank_e: 経験なし
+        movie_ad_experience_rank_d: 3年未満
+        movie_ad_experience_rank_c: 3年以上5年未満
+        movie_ad_experience_rank_b: 5年以上10年未満
+        movie_ad_experience_rank_a: 10年以上
+      new_business_scope:
+        new_business_scope_planning: 企画施策
+        new_business_scope_budget_manhours_plan: 予算・工数策定
+        new_business_scope_project_promotion_management: プロジェクト推進・管理
+        new_business_scope_evaluation_review: 評価・レビュー
+        new_business_scope_impossible: 対応不可
+      new_business_experience:
+        new_business_experience_rank_e: 経験なし
+        new_business_experience_rank_d: 3年未満
+        new_business_experience_rank_c: 3年以上5年未満
+        new_business_experience_rank_b: 5年以上10年未満
+        new_business_experience_rank_a: 10年以上
+    feed_back:
+      within_time:
+        within_time_rank_e: 大幅に改善が必要
+        within_time_rank_d: 一部改善が必要
+        within_time_rank_c: できた
+        within_time_rank_b: 期待以上にできた
+        within_time_rank_a: 大幅に期待以上にできた
+      achieved:
+        achieved_rank_e: 大幅に改善が必要
+        achieved_rank_d: 一部改善が必要
+        achieved_rank_c: できた
+        achieved_rank_b: 期待以上にできた
+        achieved_rank_a: 大幅に期待以上にできた
+      communication:
+        communication_rank_e: 大幅に改善が必要
+        communication_rank_d: 一部改善が必要
+        communication_rank_c: できた
+        communication_rank_b: 期待以上にできた
+        communication_rank_a: 大幅に期待以上にできた
+      partner_skills:
+        partner_skills_rank_e: 大幅に改善が必要
+        partner_skills_rank_d: 一部改善が必要
+        partner_skills_rank_c: できた
+        partner_skills_rank_b: 期待以上にできた
+        partner_skills_rank_a: 大幅に期待以上にできた
+      interview:
+        hope: はい
+        do_not_want: いいえ
+    client_feed_back:
+      within_time:
+        within_time_rank_e: 大幅に改善が必要
+        within_time_rank_d: 一部改善が必要
+        within_time_rank_c: できた
+        within_time_rank_b: 期待以上にできた
+        within_time_rank_a: 大幅に期待以上にできた
+      achieved:
+        achieved_rank_e: 大幅に改善が必要
+        achieved_rank_d: 一部改善が必要
+        achieved_rank_c: できた
+        achieved_rank_b: 期待以上にできた
+        achieved_rank_a: 大幅に期待以上にできた
+      communication:
+        communication_rank_e: 大幅に改善が必要
+        communication_rank_d: 一部改善が必要
+        communication_rank_c: できた
+        communication_rank_b: 期待以上にできた
+        communication_rank_a: 大幅に期待以上にできた
+      partner_skills:
+        partner_skills_rank_e: 大幅に改善が必要
+        partner_skills_rank_d: 一部改善が必要
+        partner_skills_rank_c: できた
+        partner_skills_rank_b: 期待以上にできた
+        partner_skills_rank_a: 大幅に期待以上にできた
+      interview:
+        hope: はい
+        do_not_want: いいえ
+    bank_account:
+      account_kind:
+        saving_account: 普通
+        current_account: 当座
+    payment_status:
+      paid:
+        completion: 支払い完了
+        incomplete: 支払い前
+        confirming: 金額確認中
+    self_introduction:
+      in_person_meeting:
+        possible: 可
+        impossible: 不可
+      handle_status:
+        now: 今すぐ対応したい
+        good_proposition: 良い条件の案件があれば対応したい
+        three_month: 3ヶ月以内に対応可能
+        no_status: 今は対応できない
+      handle_conditions:
+        freelance: フリーランスのために比較的柔軟に対応可能
+        double_job: 複業のためコアタイムは対応が制限される
+        no_conditions: 今は対応できない
+  activerecord:
+    errors:
+      messages:
+        record_invalid: 'バリデーションに失敗しました: %{errors}'
+        restrict_dependent_destroy:
+          has_one: "%{record}が存在しているので削除できません"
+          has_many: "%{record}が存在しているので削除できません"
+    attributes:
+      id: ID
+      created_at: 作成日時
+      updated_at: 更新日時
+      user:
+        email: メールアドレス
+        first_name: 名
+        last_name: 姓
+        first_name_kana: めい
+        last_name_kana: せい
+        phone_number: 電話番号
+        postal_code: 郵便番号
+        address: 住所
+        gender: 性別
+        birthday: 生年月日
+        full_name: 姓名
+        second_job_experience:
+          "true": あり
+          "false": なし
+      educational_background:
+        recent_academic_history: 最終学歴
+        school_name: 学校名
+        faculty_name: 学部名
+        graduated_year: 卒業年数
+      employment_status:
+        status: 就業状況
+        company_name: 現在の会社名
+        industry_category: 現在の業種
+        job_kind: 現在の職種
+        job_title: 役職
+        yearly_income: 年収
+        working_hours: 現在の稼働日数
+        working_days_of_the_week: 現在の稼働時間
+        business_experience: 経験業務内容
+        employment_start_date: 就業開始年月
+        employment_end_date: 就業終了年月
+        in_employment: 現在の就業状況
+      past_employment_statuses:
+        company_name: 過去の会社名
+        previous_client_or_industry: 過去の担当顧客や業種
+        employment_start_date: 就業開始年月
+        employment_end_date: 就業終了年月
+      double_job_experiences:
+        business_experience: 業務内容
+        company_name: 会社名
+        employment_end_date: 複業時の就業終了年月
+        employment_start_date: 複業開始年月
+        job_kind: 職種
+        monthly_income: 月収
+        working_hours: 稼働時間
+      self_introduction:
+        desired_unit_price: 希望単価
+        desired_working_days: 希望勤務日数
+        desired_working_hours: 希望稼働時間
+        handle_conditions: 対応条件
+        handle_status: 対応ステータス
+        in_person_meeting: 対面ミーティング
+        portfolio: ポートフォリオ
+        self_pr: 自己PR
+        registered_invoice:
+          "true": 登録済み
+          "false": 未登録
+      proposition:
+        industry_id: 業界
+        job_kind: 職種
+        work_range: 職域
+        title: 案件名
+        estimated_work_time_from: 月間想定稼働時間
+        estimated_work_time_to: 月間想定稼働時間
+        operation_start_at: 稼働開始時期
+        contract_period: 契約期間
+        work_condition: 勤務条件
+        status: 成約状況
+        required_skill: 必須スキル
+        welcome_skill: 歓迎スキル
+        background: 背景・課題
+        work_order: 依頼業務
+        ng_point: NG項目
+        note: 備考
+        unit_price: 単価/月
+        application_deadline: 応募締切
+        unit_price_per_hour: 時給単価
+        created_at: 募集開始日
+        updated_at: 更新日
+        working_hour_per_month: 稼働時間/月
+        price_per_month: 報酬単価/月
+      proposition_entry:
+        proposition_id: 案件
+        user_id: 応募ユーザー
+        status: 応募ステータス
+        estimated_work_time: 月間希望労働時間
+        request: ご要望
+        created_at: 応募日時
+      bank_account:
+        bank_name: 金融機関
+        branch_name: 支店名
+        account_holder: 口座名義
+        account_kind: 口座種別
+        account_number: 口座番号
+      company:
+        name: 企業名
+        name_kana: 企業名カナ
+        phone_number: 電話番号
+        person_in_charge_first_name_kana: 名カナ
+        person_in_charge_first_name: 名
+        person_in_charge_last_name_kana: 姓カナ
+        person_in_charge_last_name: 姓
+        belonging_department: 所属部署
+        address: 住所
+        postal_code: 郵便番号
+        homepage: ホームページ
+      operating_time:
+        id: ID
+        working_month: 稼働月
+        working_days: 稼働日
+        working_hours: 稼働時間
+        job_description: コメント
+      monthly_unit_price:
+        id: ID
+        year: 年
+        month: 月
+        unit_price: 当月時給
+      feed_back:
+        within_time: Q1.依頼された上限時間内に業務を遂行することができたか?
+        achieved: Q2.依頼された業務を正確に遂行する事が出来たか？
+        communication: Q3.お客様とコミュニケーションは適切頻度かつ正確にできたか？
+        partner_skills: Q4.業務内容に関して自身のスキルは十分だったか？
+        interview: 2.事務局を入れた3者間で面談を希望しますか?
+        request: 3.その他要望・相談があれば記載ください。
+      client_feed_back:
+        within_time: Q1.依頼された上限時間内に業務を遂行されたか?
+        achieved: Q2.依頼された業務を正確に遂行されたか？
+        communication: Q3.お客様とコミュニケーションは適切頻度かつ正確にできたか？
+        partner_skills: Q4.業務内容に関して自身のスキルは十分だったか？
+      payment_status:
+        paid: 支払いステータス
+  views:
+    admins:
+      users:
+        index:
+          search:
+            search_scopes: '検索広告'
+            display_scopes: 'Display広告'
+            sns_scopes: 'SNS広告'
+            application_ad_scopes: 'アプリ広告'
+            seo_scopes: 'SEO・ASO'
+            crm_scopes: 'CRM'
+            sns_owned_media_scopes: 'SNSオウンドメディア運用'
+            dsp_scopes: 'DSP・ADNW'
+            video_scopes: '動画広告'
+            affiliate_scopes: 'アフィリエイト'
+            sight_access_scopes: 'サイト・アクセス解析'
+            ma_scopes: 'MAツール'
+            tag_manager_scopes: 'Google タグマネージャー'
+            feed_scopes: 'フィード/フィードマネージャー'
+            third_party_scopes: '3rd Party 広告計測ツール'
+            customer_scopes: 'ToC向け広告戦略の立案'
+            business_scopes: 'ToB向け広告戦略の立案'
+            three_c_scopes: '3C 分析'
+            four_p_scopes: '4P 分析'
+            persona_scopes: 'ペルソナ分析'
+            user_survey_scopes: 'ユーザー調査'
+            pr_scopes: 'PR'
+            customer_journey_scopes: 'カスタマージャーニー作成'
+            language_scopes: '語学力'
+            kpi_scopes: 'KPI・KGIの設計'
+            influencer_scopes: 'インフルエンサー施策'
+            writing_scopes: '記事制作'
+            website_scopes: 'ウェブサイト制作'
+            ecsite_scopes: 'ECサイト制作'
+            application_production_scopes: 'アプリ制作'
+            image_ad_scopes: '静止画のAd制作'
+            movie_ad_scopes: '動画のAd制作'
+            new_business_scopes: '新規事業立ち上げ'
+    users:
+      propositions:
+        entry_form:
+          title: '応募画面'
+      proposition_entries:
+        index:
+          title: '応募済み案件'
+          pending_table: '選考中'
+          approved_table: '成約'
+          rejected_table: 'お見送り'
+  date:
+    abbr_day_names:
+      - 日
+      - 月
+      - 火
+      - 水
+      - 木
+      - 金
+      - 土
+    abbr_month_names:
+      -
+      - 1月
+      - 2月
+      - 3月
+      - 4月
+      - 5月
+      - 6月
+      - 7月
+      - 8月
+      - 9月
+      - 10月
+      - 11月
+      - 12月
+    day_names:
+      - 日曜日
+      - 月曜日
+      - 火曜日
+      - 水曜日
+      - 木曜日
+      - 金曜日
+      - 土曜日
+    formats:
+      default: "%Y/%m/%d"
+      long: "%Y年%m月%d日(%a)"
+      short: "%m/%d"
+    month_names:
+      -
+      - 1月
+      - 2月
+      - 3月
+      - 4月
+      - 5月
+      - 6月
+      - 7月
+      - 8月
+      - 9月
+      - 10月
+      - 11月
+      - 12月
+    order:
+      - :year
+      - :month
+      - :day
+  datetime:
+    distance_in_words:
+      about_x_hours: 約%{count}時間
+      about_x_months: 約%{count}ヶ月
+      about_x_years: 約%{count}年
+      almost_x_years: "%{count}年弱"
+      half_a_minute: 30秒前後
+      less_than_x_seconds: "%{count}秒未満"
+      less_than_x_minutes: "%{count}分未満"
+      over_x_years: "%{count}年以上"
+      x_seconds: "%{count}秒"
+      x_minutes: "%{count}分"
+      x_days: "%{count}日"
+      x_months: "%{count}ヶ月"
+      x_years: "%{count}年"
+    prompts:
+      second: 秒
+      minute: 分
+      hour: 時
+      day: 日
+      month: 月
+      year: 年
+  errors:
+    format: "%{attribute}%{message}"
+    messages:
+      accepted: を受諾してください
+      blank: を入力してください
+      confirmation: と%{attribute}の入力が一致しません
+      empty: を入力してください
+      equal_to: は%{count}にしてください
+      even: は偶数にしてください
+      exclusion: は予約されています
+      greater_than: は%{count}より大きい値にしてください
+      greater_than_or_equal_to: は%{count}以上の値にしてください
+      inclusion: は一覧にありません
+      invalid: は不正な値です
+      less_than: は%{count}より小さい値にしてください
+      less_than_or_equal_to: は%{count}以下の値にしてください
+      model_invalid: 'バリデーションに失敗しました: %{errors}'
+      not_a_number: は数値で入力してください
+      not_an_integer: は整数で入力してください
+      odd: は奇数にしてください
+      other_than: は%{count}以外の値にしてください
+      present: は入力しないでください
+      required: を入力してください
+      taken: はすでに存在します
+      too_long: は%{count}文字以内で入力してください
+      too_short: は%{count}文字以上で入力してください
+      wrong_length: は%{count}文字で入力してください
+    template:
+      body: 次の項目を確認してください
+      header: "%{model}に%{count}個のエラーが発生しました"
+  helpers:
+    select:
+      prompt: 選択してください
+    submit:
+      create: 登録する
+      submit: 保存する
+      update: 更新する
+  number:
+    currency:
+      format:
+        delimiter: ","
+        format: "%n%u"
+        precision: 0
+        separator: "."
+        significant: false
+        strip_insignificant_zeros: false
+        unit: 円
+    format:
+      delimiter: ","
+      precision: 3
+      separator: "."
+      significant: false
+      strip_insignificant_zeros: false
+    human:
+      decimal_units:
+        format: "%n %u"
+        units:
+          billion: 十億
+          million: 百万
+          quadrillion: 千兆
+          thousand: 千
+          trillion: 兆
+          unit: ''
+      format:
+        delimiter: ''
+        precision: 3
+        significant: true
+        strip_insignificant_zeros: true
+      storage_units:
+        format: "%n%u"
+        units:
+          byte: バイト
+          eb: EB
+          gb: GB
+          kb: KB
+          mb: MB
+          pb: PB
+          tb: TB
+    percentage:
+      format:
+        delimiter: ''
+        format: "%n%"
+    precision:
+      format:
+        delimiter: ''
+  support:
+    array:
+      last_word_connector: "、"
+      two_words_connector: "、"
+      words_connector: "、"
+  time:
+    am: 午前
+    formats:
+      default: "%Y年%m月%d日(%a) %H時%M分%S秒 %z"
+      long: "%Y/%m/%d %H:%M"
+      short: "%m/%d %H:%M"
+      date_joins_dot: "%Y.%m.%d"
+      year_month_joins_dot: "%Y.%m"
+      year_month_jp: "%Y年%m月"
+    pm: 午後

@@ -1,0 +1,18 @@
+.skillCheckArea {
+  + .skillCheckArea {
+    margin-top: 20px;
+  }
+
+  &__title {
+    color: $black;
+    font-size: 18px;
+    font-family: Yu Gothic, YuGothic, 'ヒラギノ角ゴ Pro', 'Hiragino Kaku Gothic Pro', 'Hiragino Sans', Meiryo, メイリオ, 'MS P Gothic', sans-serif;
+    margin-bottom: 20px;
+  }
+
+  > .skillTableForm {
+    &:not(:last-child) {
+      margin-bottom: 1px;
+    }
+  }
+}

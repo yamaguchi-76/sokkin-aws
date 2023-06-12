@@ -1,0 +1,53 @@
+<%= form_with(model: educational_background, url: url, method: :patch) do |f| %>
+  <%= render "/users/shared/error_messages", resource: educational_background %>
+
+  <div class="infoFormItemGroup">
+    <div class="infoFormItem editEducational infoFormItemGroup__box">
+      <div class="wrapper">
+        <%= f.label :recent_academic_history, class: 'infoFormItem__title required' %>
+        <div class="formGroup">
+          <%= f.collection_radio_buttons :recent_academic_history, EducationalBackground.recent_academic_histories_i18n, :first, :last, class: '' do |radio| %>
+            <div class="formRadio">
+              <%= radio.radio_button(class: "formRadio__radio") %>
+              <%= radio.label(class: "formRadio__text") %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+
+    <div class="infoFormItem editEducational infoFormItemGroup__box">
+      <div class="wrapper">
+        <%= f.label :school_name, class: 'infoFormItem__title required' %>
+        <%= f.text_field :school_name, placeholder: '例) 〇〇大学', class: 'infoFormItem__item wide3' %>
+      </div>
+    </div>
+
+    <div class="infoFormItem editEducational infoFormItemGroup__box">
+      <div class="wrapper">
+        <%= f.label :faculty_name, class: 'infoFormItem__title required' %>
+        <%= f.text_field :faculty_name, placeholder: '経営学部', class: 'infoFormItem__item wide3' %>
+      </div>
+    </div>
+
+    <div class="infoFormItem editEducational infoFormItemGroup__box">
+      <div class="wrapper">
+        <%= f.label :graduated_year, class: 'infoFormItem__title required' %>
+        <%== sprintf(f.date_select(:graduated_year,
+          {
+            discard_day: true,
+            discard_month: true,
+            date_separator: '%s',
+            start_year: 1943,
+            end_year: Time.now.year,
+            prompt: { year: '--' },
+          },
+          { class: 'formSelect__item' })) %>
+          <span class="font">年度</span>
+      </div>
+    </div>
+
+  </div>
+
+  <%= f.submit "登録", class: 'generalButton bgBrown textWhite' %>
+<% end %>

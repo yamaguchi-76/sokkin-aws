@@ -1,0 +1,63 @@
+@use '../../base/Variable' as *;
+
+.itemList {
+  color: $black;
+  font-size: 14px;
+  font-family: Yu Gothic, YuGothic, 'ヒラギノ角ゴ Pro', 'Hiragino Kaku Gothic Pro', 'Hiragino Sans', Meiryo, メイリオ, 'MS P Gothic', sans-serif;
+  display: flex;
+  align-items: center;
+
+  &:before {
+    content: '';
+    margin-right: 7px;
+  }
+
+  &.schedule:before {
+    width: 15px;
+    height: 15px;
+    background: image-url('users/icon/calendar.svg') no-repeat;
+  }
+
+  &.remuneration:before {
+    width: 16px;
+    height: 12px;
+    background: image-url('users/icon/money.svg') no-repeat;
+  }
+
+  &.baggage:before {
+    width: 16px;
+    height: 12px;
+    background: image-url('users/icon/baggage.svg') no-repeat;
+  }
+
+  &.time:before {
+    width: 17px;
+    height: 17px;
+    background: image-url('users/icon/time.svg') no-repeat;
+  }
+
+  &.task:before {
+    width: 16px;
+    height: 20px;
+    background: image-url('users/icon/task.svg') no-repeat;
+  }
+
+  &.desktop:before {
+    width: 14px;
+    height: 12px;
+    margin-right: 10px;
+    background: image-url('users/icon/desktop.svg') no-repeat;
+  }
+
+  &.handshake:before {
+    width: 17px;
+    height: 12px;
+    background: image-url('users/icon/handshake.svg') no-repeat;
+  }
+
+  &.comment:before {
+    width: 18px;
+    height: 18px;
+    background: image-url('users/icon/comment.svg') no-repeat;
+  }
+}

@@ -1,0 +1,172 @@
+<%= javascript_pack_tag ('companies/smoothScroll') %>
+
+<div class="propositionsDetailIndex openItem">
+  <%= render 'companies/shared/side_menu' %>
+  <div class="openItem__wrapper">
+    <h2 class="propositionsDetailIndex__submitTitle">案件登録</h2>
+    <p class="propositionsDetailIndex__submitText">案件登録にあたり、必要事項をご入力お願いいたします。</p>
+    <%= form_with(model: @proposition, url: companies_propositions_path, method: :post) do |form| %>
+      <% if @proposition.errors.any? %>
+        <div class="errorExplanation">
+          <ul class="errorExplanation__list">
+            <% @proposition.errors.each do |error| %>
+              <li><%= error.full_message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+      <section class="propositionsDetailIndex__content">
+        <div class="basicHead">
+          <h3 class="basicHead__title">基本情報</h3>
+          <p class="basicHead__sub">basic info</p>
+        </div>
+        <dl>
+          <dt class="inputForm__title required">職種</dt>
+          <dd>
+            <% @proposition.job_kinds.each do |job_kind| %>
+              <%= job_kind.name %>
+            <% end %>
+            <%= form.hidden_field :job_kind_ids, multiple: true %>
+          </dd>
+          <dt class="inputForm__title required">職域</dt>
+          <dd>
+            <% @proposition.work_ranges.each do |work_range| %>
+              <%= work_range.name %>
+            <% end %>
+            <%= form.hidden_field :work_range_ids, multiple: true %>
+          </dd>
+          <dt class="inputForm__title required">案件名</dt>
+          <dd>
+            <%= @proposition.title %>
+            <%= form.hidden_field :title %>
+          </dd>
+          <dt class="inputForm__title">画像</dt>
+          <dd>
+            <% if @proposition.image.url %>
+              <%= form.hidden_field :image_cache %>
+              <%= image_tag @proposition.image_url(:proposition_show), class: 'image' %>
+            <% else %>
+              <%= image_tag '/images/default_proposition_image.png', class: 'image' %>
+            <% end %>
+          </dd>
+          <dt class="inputForm__title required">業界</dt>
+          <dd>
+            <%= @proposition.industry.name %>
+            <%= form.hidden_field :industry_id %>
+          </dd>
+          <dt class="inputForm__title">応募締め切り<br>(掲載期限)</dt>
+          <dd>
+            <% if @proposition.application_deadline %>
+              <%= l @proposition.application_deadline, format: :date_joins_dot %>
+            <% end %>
+            <%= form.hidden_field :application_deadline %>
+          </dd>
+        </dl>
+      </section>
+      <section class="propositionsDetailIndex__content">
+        <div class="basicHead">
+          <h3 class="basicHead__title">働き方について</h3>
+          <p class="basicHead__sub">work style</p>
+        </div>
+        <dl>
+          <dt class="inputForm__title">報酬単価</dt>
+          <dd>
+            <%= @proposition.unit_price %>万円
+            <%= form.hidden_field :unit_price %>
+          </dd>
+          <dt class="inputForm__title">時給単価</dt>
+          <dd>
+            <%= @proposition.unit_price_per_hour %>円
+            <%= form.hidden_field :unit_price_per_hour %>
+          </dd>
+          <dt class="inputForm__title">月間想定稼働時間</dt>
+          <dd>
+            <%= @proposition.estimated_work_time_from %>
+            〜
+            <%= @proposition.estimated_work_time_to %>
+            時間
+            <%= form.hidden_field :estimated_work_time_from %>
+            <%= form.hidden_field :estimated_work_time_to %>
+          </dd>
+          <dt class="inputForm__title">稼働開始時期</dt>
+          <dd>
+            <% if @proposition.operation_start_at %>
+              <%= l @proposition.operation_start_at, format: :date_joins_dot %>
+            <% end %>
+            <%= form.hidden_field :operation_start_at %>
+          </dd>
+          <dt class="inputForm__title">契約期間</dt>
+          <dd>
+            <%= @proposition.contract_period %>
+            ヶ月〜
+            <%= form.hidden_field :contract_period %>
+          </dd>
+          <dt class="inputForm__title">勤務条件</dt>
+          <dd>
+            <% @proposition.work_conditions.each do |work_condition| %>
+              <%= text_field_tag nil, work_condition.name, disabled: true, class: 'text' %>
+            <% end %>
+              <%= form.hidden_field :work_condition_ids, multiple: true %>
+          </dd>
+        </dl>
+      </section>
+      <section class="propositionsDetailIndex__content">
+        <div class="basicHead">
+          <h3 class="basicHead__title">求めるスキル</h3>
+          <p class="basicHead__sub">skill</p>
+        </div>
+        <dl>
+          <dt class="inputForm__title">必須スキル</dt>
+          <dd>
+            <%= @proposition.required_skill %>
+            <%= form.hidden_field :required_skill %>
+          </dd>
+          <dt class="inputForm__title">歓迎スキル</dt>
+          <dd>
+            <%= @proposition.welcome_skill %>
+            <%= form.hidden_field :welcome_skill %>
+          </dd>
+        </dl>
+      </section>
+      <section class="propositionsDetailIndex__content">
+        <div class="basicHead">
+          <h3 class="basicHead__title">募集背景や業務内容など</h3>
+          <p class="basicHead__sub">background and  description</p>
+        </div>
+        <dl>
+          <dt class="inputForm__title">背景・課題</dt>
+          <dd>
+            <%= simple_format @proposition.background %>
+            <%= form.hidden_field :background %>
+          </dd>
+          <dt class="inputForm__title">依頼業務</dt>
+          <dd>
+            <%= simple_format @proposition.work_order %>
+            <%= form.hidden_field :work_order %>
+          </dd>
+          <dt class="inputForm__title">NG項目</dt>
+          <dd>
+            <%= simple_format @proposition.ng_point %>
+            <%= form.hidden_field :ng_point %>
+          </dd>
+          <dt class="inputForm__title">備考</dt>
+          <dd>
+            <%= simple_format @proposition.note %>
+            <%= form.hidden_field :note %>
+          </dd>
+          <dt></dt>
+        </dl>
+      </section>
+      <div class="buttonGroup">
+        <%= form.submit '戻る', name: :back, class: 'generalButton bgGray-5 textWhite' %>
+        <%= form.submit '登録', class: 'generalButton bgBrown textWhite'  %>
+      </div>
+    <% end %>
+  </div>
+  <ul class="basicInfoMenu">
+    <li class="basicInfoMenu__item">基本情報</li>
+    <li class="basicInfoMenu__item">学歴</li>
+    <li class="basicInfoMenu__item">自己紹介</li>
+    <li class="basicInfoMenu__item">スキル診断</li>
+  </ul>
+</div>

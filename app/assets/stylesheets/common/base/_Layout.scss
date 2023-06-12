@@ -1,0 +1,20 @@
+@use 'Variable' as *;
+
+.errorExplanation {
+  max-width: 400px;
+  color: $red;
+  margin-bottom: 20px;
+
+  &__message {
+    font-weight: bold;
+    font-size: 12px;
+    line-height: 1.7;
+    margin-bottom: 8px;
+  }
+
+  &__list {
+    font-size: 12px;
+    list-style: '・';
+    margin-left: 11px;
+  }
+}

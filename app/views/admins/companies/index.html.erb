@@ -1,0 +1,43 @@
+<div class="text-center mt-5">
+  <% provide(:title, "企業一覧") %>
+
+  <div class="ml-3">
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th class="heading" scope="col">企業 ID</th>
+          <th class="heading" scope="col">企業名</th>
+          <th class="heading" scope="col">email</th>
+          <th class="heading" scope="col">電話番号</th>
+          <th class="heading" scope="col">担当者名 性</th>
+          <th class="heading" scope="col">担当者名 名</th>
+          <th class="heading" scope="col">郵便番号</th>
+          <th class="heading" scope="col">住所</th>
+          <th class="heading" colspan="3"></th>
+        </tr>
+      </thead>
+
+      <tbody>
+      <% @companies.each do |company| %>
+        <tr>
+          <td class="text" scope="row"><%= company.id %></td>
+          <td class="text" scope="row"><%= company.name %></td>
+          <td class="text" scope="row"><%= company.email %></td>
+          <td class="text" scope="row"><%= company.phone_number %></td>
+          <td class="text" scope="row"><%= company.person_in_charge_last_name %></td>
+          <td class="text" scope="row"><%= company.person_in_charge_first_name %></td>
+          <td class="text" scope="row"><%= company.postal_code.remove('-') %></td>
+          <td class="text" scope="row"><%= company.address %></td>
+          <td class="text" scope="row"><%= link_to '詳細', admins_company_path(company.id), class: "btn btn-primary btn-sm", style: "width: 50px" %></td>
+          <td class="text" scope="row"><%= link_to '編集', edit_admins_company_path(company.id), class: "btn btn-primary btn-sm", style: "width: 50px" %></td>
+          <td class="text" scope="row"><%= link_to '削除', admins_company_path(company.id), class: "btn btn-danger btn-sm", style: "width: 50px", method: :delete, data: { confirm: '本当に削除しますか？' } %></td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+
+    <br>
+
+    <%= link_to '企業作成', new_admins_company_path, class: "btn btn-primary" %>
+  </div>
+</div>

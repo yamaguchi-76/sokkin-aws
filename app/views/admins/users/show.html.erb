@@ -1,0 +1,397 @@
+<div class="container mt-5">
+  <% provide(:title, "ユーザー詳細") %>
+
+  <table class="table">
+    <tbody>
+      <h2>基本情報</h2>
+      <tr>
+        <th>ID</th>
+        <td><%= @user.id %></td>
+      </tr>
+
+      <tr>
+        <th><%= t('activerecord.attributes.user.email') %></th>
+        <td><%= @user.email %></td>
+      </tr>
+
+      <tr>
+        <th><%= t('activerecord.attributes.user.last_name') %></th>
+        <td><%= @user.last_name %></td>
+      </tr>
+
+      <tr>
+        <th><%= t('activerecord.attributes.user.first_name') %></th>
+        <td><%= @user.first_name %></td>
+      </tr>
+
+      <tr>
+        <th><%= t('activerecord.attributes.user.last_name_kana') %></th>
+        <td><%= @user.last_name_kana %></td>
+      </tr>
+
+      <tr>
+        <th><%= t('activerecord.attributes.user.first_name_kana') %></th>
+        <td><%= @user.first_name_kana %></td>
+      </tr>
+
+      <tr>
+        <th><%= t('activerecord.attributes.user.phone_number') %></th>
+        <td><%= @user.phone_number %></td>
+      </tr>
+
+      <tr>
+        <th><%= t('activerecord.attributes.user.postal_code') %></th>
+        <td><%= @user.postal_code %></td>
+      </tr>
+
+      <tr>
+        <th><%= t('activerecord.attributes.user.address') %></th>
+        <td><%= @user.address %></td>
+      </tr>
+
+      <tr>
+        <th><%= t('activerecord.attributes.user.gender') %></th>
+        <td><%= @user.gender_i18n %></td>
+      </tr>
+
+      <tr>
+        <th><%= t('activerecord.attributes.user.birthday') %></th>
+        <td>
+          <% if @user.birthday %>
+            <%= l @user.birthday, format: :default %>
+          <% end %>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <h2 class="mt-5">学歴</h2>
+  <table class="table">
+    <tbody>
+      <% educational_background = @user.educational_background %>
+      <tr>
+        <th>最終学歴</th>
+        <td><%= educational_background&.recent_academic_history %></td>
+      </tr>
+
+      <tr>
+        <th>学校名</th>
+        <td><%= educational_background&.school_name %></td>
+      </tr>
+
+      <tr>
+        <th>学部名</th>
+        <td><%= educational_background&.faculty_name %></td>
+      </tr>
+
+      <tr>
+        <th>卒業年度</th>
+        <td><%= educational_background&.graduated_year %></td>
+      </tr>
+    </tbody>
+  </table>
+  <h2 class="mt-5">就業状況</h2>
+  <table class="table">
+    <tbody>
+      <% employment_status = @user.employment_status %>
+      <tr>
+        <th>現在の就業形態</th>
+        <td><%= employment_status&.status_i18n %></td>
+      </tr>
+
+      <tr>
+        <th>現在の会社名</th>
+        <td><%= employment_status&.company_name %></td>
+      </tr>
+
+      <tr>
+        <th>現在の業種</th>
+        <td><%= employment_status&.industry_category %></td>
+      </tr>
+
+      <tr>
+        <th>現在の職種</th>
+        <td><%= employment_status&.job_kind&.name %></td>
+      </tr>
+
+      <tr>
+        <th>役割</th>
+        <td><%= employment_status&.job_title %></td>
+      </tr>
+
+      <tr>
+        <th>年収</th>
+        <td><%= employment_status&.yearly_income %></td>
+      </tr>
+
+      <tr>
+        <th>現在の月間稼働時間</th>
+        <td>週 <%= employment_status&.working_days_of_the_week %> 日 <%= employment_status&.working_hours %> 時間</td>
+      </tr>
+
+      <tr>
+        <th>経験業務内容</th>
+        <td><%= employment_status&.business_experience %></td>
+      </tr>
+
+      <tr>
+        <th>就業開始年月</th>
+        <td><%= employment_status&.employment_start_date %></td>
+      </tr>
+
+      <tr>
+        <th>就業終了年月</th>
+        <td><%= employment_status&.employment_end_date %></td>
+      </tr>
+
+      <% @user.past_employment_statuses.each do |past_employment_status| %>
+        <tr>
+          <th>過去の会社名</th>
+          <td><%= past_employment_status.company_name %></td>
+        </tr>
+
+        <tr>
+          <th>過去の担当顧客や業種</th>
+          <td><%= past_employment_status.previous_client_or_industry %></td>
+        </tr>
+
+        <tr>
+          <th>就業開始年月</th>
+          <td><%= past_employment_status.employment_start_date %></td>
+        </tr>
+
+        <tr>
+          <th>就業終了年月</th>
+          <td><%= past_employment_status.employment_end_date %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <h2 class="mt-5">複業経験</h2>
+  <table class="table">
+    <tbody>
+      <tr>
+        <th>複業経験</th>
+        <td><%= t("activerecord.attributes.user.second_job_experience.#{@user.second_job_experience}") %></td>
+      </tr>
+
+      <% if @user.second_job_experience %>
+        <% @user.double_job_experiences.each do |double_job_experience| %>
+          <tr>
+            <th>会社名</th>
+            <td><%= double_job_experience.company_name %></td>
+          </tr>
+
+          <tr>
+            <th>職種</th>
+            <td><%= double_job_experience.job_kind.name %></td>
+          </tr>
+
+          <tr>
+            <th>月収</th>
+            <%= double_job_experience.monthly_income %></td>
+          </tr>
+
+          <tr>
+            <th>稼働時間</th>
+            <td><%= double_job_experience.working_hours %></td>
+          </tr>
+
+          <tr>
+            <th>複業開始年月</th>
+            <td><%= double_job_experience.employment_start_date %></td>
+          </tr>
+
+          <tr>
+            <th>複業時の就業終了年月</th>
+            <td><%= double_job_experience.employment_end_date %></td>
+          </tr>
+
+          <tr>
+            <th>業務内容</th>
+            <td><%= double_job_experience.business_experience %></td>
+          </tr>
+        <% end %>
+      <% end %>
+    </tbody>
+  </table>
+  <h2 class="mt-5">自己紹介</h2>
+  <table class="table">
+    <tbody>
+      <% self_introduction = @user.self_introduction %>
+      <tr>
+        <th>自己PR</th>
+        <td><%= self_introduction&.self_pr %></td>
+      </tr>
+
+      <tr>
+        <th>希望単価</th>
+        <td><%= self_introduction&.desired_unit_price %>円/時間</td>
+      </tr>
+
+      <tr>
+        <th>希望稼働時間</th>
+        <td><%= self_introduction&.desired_working_hours %></td>
+      </tr>
+
+      <tr>
+        <th>希望勤務日数</th>
+        <td><%= self_introduction&.desired_working_days %></td>
+      </tr>
+
+      <tr>
+        <th>対面ミーティング</th>
+        <td><%= self_introduction&.in_person_meeting_i18n %></td>
+      </tr>
+
+      <tr>
+        <th>対応ステータス</th>
+        <td><%= self_introduction&.handle_status_i18n %></td>
+      </tr>
+
+      <tr>
+        <th>対応条件</th>
+        <td><%= self_introduction&.handle_conditions_i18n %></td>
+      </tr>
+
+      <tr>
+        <th>インボイス登録</th>
+        <td>
+          <% if self_introduction %>
+            <%= t("activerecord.attributes.self_introduction.registered_invoice.#{self_introduction.registered_invoice}") %>
+          <% end %>
+        </td>
+      </tr>
+
+      <tr>
+        <th>インボイス登録番号</th>
+        <td><%= self_introduction&.invoice_number %></td>
+      </tr>
+
+      <tr>
+        <th>ポートフォリオ</th>
+        <td><%= self_introduction&.portfolio %></td>
+      </tr>
+    </tbody>
+  </table>
+  <h2 class="mt-5">スキル診断</h2>
+  <% if @user.skill.present? %>
+    <% skill = @user.skill %>
+    <table class="table">
+      <tbody>
+        <tr>
+          <th>職種</th>
+          <td><%= "プランナー" if skill.planner %></td>
+          <td><%= "メディアコンサルタント" if skill.media_consultant %></td>
+          <td><%= "運用オペレーター" if skill.operation_operator %></td>
+          <td><%= "デザイナー" if skill.designer %></td>
+          <td><%= "ディレクター" if skill.director %></td>
+          <td><%= "エンジニア" if skill.engineer %></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <% if skill.planner || skill.media_consultant || skill.operation_operator %>
+      <%= render '/shared/admins/skills/search_skill', skill: skill %>
+      <%= render '/shared/admins/skills/display_skill', skill: skill %>
+      <%= render '/shared/admins/skills/sns_skill', skill: skill %>
+      <%= render '/shared/admins/skills/application_ad_skill', skill: skill %>
+      <%= render '/shared/admins/skills/seo_skill', skill: skill %>
+    <% end %>
+    <% if skill.planner || skill.operation_operator %>
+      <%= render '/shared/admins/skills/crm_skill', skill: skill %>
+    <% end %>
+    <% if skill.planner || skill.media_consultant || skill.operation_operator %>
+      <%= render '/shared/admins/skills/sns_owned_media_skill', skill: skill %>
+      <%= render '/shared/admins/skills/dsp_skill', skill: skill %>
+      <%= render '/shared/admins/skills/video_skill', skill: skill %>
+      <%= render '/shared/admins/skills/affiliate_skill', skill: skill %>
+    <% end %>
+    <% if skill.planner || skill.media_consultant || skill.operation_operator || skill.engineer %>
+      <%= render '/shared/admins/skills/sight_access_skill', skill: skill %>
+    <% end %>
+    <% if skill.planner || skill.media_consultant || skill.engineer %>
+      <%= render '/shared/admins/skills/ma_skill', skill: skill %>
+    <% end %>
+    <% if skill.planner || skill.media_consultant || skill.operation_operator || skill.engineer %>
+      <%= render '/shared/admins/skills/tag_manager_skill', skill: skill %>
+      <%= render '/shared/admins/skills/feed_skill', skill: skill %>
+      <%= render '/shared/admins/skills/third_party_skill', skill: skill %>
+    <% end %>
+    <% if skill.planner || skill.media_consultant %>
+      <%= render '/shared/admins/skills/customer_skill', skill: skill %>
+      <%= render '/shared/admins/skills/business_skill', skill: skill %>
+    <% end %>
+    <% if skill.planner || skill.media_consultant || skill.designer || skill.director %>
+      <%= render '/shared/admins/skills/three_c_skill', skill: skill %>
+      <%= render '/shared/admins/skills/four_p_skill', skill: skill %>
+      <%= render '/shared/admins/skills/persona_skill', skill: skill %>
+      <%= render '/shared/admins/skills/user_survey_skill', skill: skill %>
+    <% end %>
+    <% if skill.planner || skill.media_consultant || skill.operation_operator || skill.designer || skill.director %>
+      <%= render '/shared/admins/skills/pr_skill', skill: skill %>
+    <% end %>
+    <% if skill.planner || skill.media_consultant || skill.designer || skill.director %>
+      <%= render '/shared/admins/skills/customer_journey_skill', skill: skill %>
+      <%= render '/shared/admins/skills/language_skill', skill: skill %>
+    <% end %>
+    <% if skill.planner || skill.media_consultant %>
+      <%= render '/shared/admins/skills/kpi_skill', skill: skill %>
+    <% end %>
+    <% if skill.planner || skill.operation_operator %>
+      <%= render '/shared/admins/skills/influencer_skill', skill: skill %>
+    <% end %>
+    <% if skill.planner || skill.media_consultant || skill.designer || skill.director %>
+      <%= render '/shared/admins/skills/writing_skill', skill: skill %>
+    <% end %>
+    <% if skill.planner || skill.designer || skill.director %>
+      <%= render '/shared/admins/skills/website_skill', skill: skill %>
+      <%= render '/shared/admins/skills/ecsite_skill', skill: skill %>
+    <% end %>
+    <% if skill.planner || skill.director || skill.engineer %>
+      <%= render '/shared/admins/skills/application_production_skill', skill: skill %>
+    <% end %>
+    <% if skill.planner || skill.designer || skill.director %>
+      <%= render '/shared/admins/skills/image_ad_skill', skill: skill %>
+      <%= render '/shared/admins/skills/movie_ad_skill', skill: skill %>
+    <% end %>
+    <% if skill.planner || skill.director %>
+      <%= render '/shared/admins/skills/new_business_skill', skill: skill %>
+    <% end %>
+  <% end %>
+  <h2 class="mt-5">口座情報</h2>
+  <table class="table">
+    <% bank_account = @user.bank_account %>
+    <tbody>
+      <tr>
+        <th>金融機関</th>
+        <td><%= bank_account&.bank_name %></td>
+      </tr>
+
+      <tr>
+        <th>支店名</th>
+        <td><%= bank_account&.branch_name %></td>
+      </tr>
+
+      <tr>
+        <th>口座種別</th>
+        <td><%= bank_account&.account_kind_i18n %></td>
+      </tr>
+
+      <tr>
+        <th>口座番号</th>
+        <td><%= bank_account&.account_number %></td>
+      </tr>
+
+      <tr>
+        <th>口座名義</th>
+        <td><%= bank_account&.account_holder %></td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="text-center">
+    <%= link_to '戻る', admins_users_path, class: "mb-3 btn btn-primary" %>
+  </div>
+  <div class="text-center">
+    <%= link_to '退会', admins_user_path(@user.id), method: :delete, data: { confirm: '退会させますか？' }, class: "mb-3 btn btn-danger" %>
+  </div>
+</div>

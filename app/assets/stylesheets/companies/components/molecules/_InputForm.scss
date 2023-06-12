@@ -1,0 +1,89 @@
+.inputForm {
+  overflow: hidden;
+
+  &__title {
+    width: 180px;
+    color: $black;
+    font-family: Yu Gothic, YuGothic, 'ヒラギノ角ゴ Pro', 'Hiragino Kaku Gothic Pro', 'Hiragino Sans', Meiryo, メイリオ, 'MS P Gothic', sans-serif;
+    font-size: 16px;
+    font-weight: bold;
+    float: left;
+
+    &.image {
+      min-height: 70px;
+    }
+
+    &.required:after {
+      content: '*';
+      color: $red;
+    }
+  }
+
+  &__input {
+    color: $black;
+    font-family: Yu Gothic, YuGothic, 'ヒラギノ角ゴ Pro', 'Hiragino Kaku Gothic Pro', 'Hiragino Sans', Meiryo, メイリオ, 'MS P Gothic', sans-serif;
+    font-size: 14px;
+
+    &.border {
+      width: 630px;
+      height: 45px;
+      line-height: 45px;
+      border: 1px solid $gray3;
+      border-radius: 5px;
+      padding: 0 12px;
+    }
+
+    &.height {
+      height: 120px;
+      resize: none;
+    }
+
+    &.small {
+      width: 100px;
+      height: 23px;
+      line-height: 23px;
+      border-bottom: 1px solid $brown;
+    }
+  }
+
+  &__select {
+    width: 320px;
+    border-bottom: 1px solid $brown;
+
+    &.middle {
+      width: 120px;
+    }
+  }
+
+  dd {
+    &.errorFix {
+      display: flex;
+    }
+
+    input[type='file'] {
+      opacity: 0;
+      visibility: hidden;
+      position: absolute;
+    }
+
+    .generalButton {
+      width: 180px;
+      height: 40px;
+      line-height: 40px;
+      display: flex;
+      justify-content: center;
+
+      &:before {
+        content: '画像アップロード';
+      }
+    }
+
+    > p {
+      color: $black;
+      font-family: Yu Gothic, YuGothic, 'ヒラギノ角ゴ Pro', 'Hiragino Kaku Gothic Pro', 'Hiragino Sans', Meiryo, メイリオ, 'MS P Gothic', sans-serif;
+      font-size: 14px;
+      line-height: 1.5;
+      margin-top: 8px;
+    }
+  }
+}

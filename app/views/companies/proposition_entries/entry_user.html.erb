@@ -1,0 +1,146 @@
+<%= javascript_pack_tag ('companies/smoothScroll') %>
+
+<div class="propositionsDetailIndex openItem">
+  <%= render 'companies/shared/side_menu' %>
+  <div class="openItem__wrapper">
+    <h2 class="propositionsDetailIndex__id title">ID:<%= @user.id %></h2>
+    <section class="propositionsDetailIndex__content">
+      <div class="basicHead">
+        <h3 class="basicHead__title">基本情報</h3>
+        <p class="basicHead__sub">basic info</p>
+      </div>
+      <dl>
+        <dt><%= t('activerecord.attributes.user.gender') %></dt>
+        <dd><%= @user.gender_i18n %></dd>
+        <dt><%= t('activerecord.attributes.user.birthday') %></dt>
+        <dd><%= @user.birthday %></dd>
+      </dl>
+    </section>
+    <section class="propositionsDetailIndex__content">
+      <div class="basicHead">
+        <h3 class="basicHead__title">学歴</h3>
+        <p class="basicHead__sub">educational background</p>
+      </div>
+      <% educational_background = @user.educational_background %>
+      <dl>
+        <dt><%= t('activerecord.attributes.educational_background.recent_academic_history') %></dt>
+        <dd><%= educational_background&.recent_academic_history_i18n %></dd>
+        <dt><%= t('activerecord.attributes.educational_background.school_name') %></dt>
+        <dd><%= educational_background&.school_name %></dd>
+        <% if educational_background&.faculty_name %>
+          <dt><%= t('activerecord.attributes.educational_background.faculty_name') %></dt>
+          <dd><%= educational_background&.faculty_name %></dd>
+        <% end %>
+        <dt><%= t('activerecord.attributes.educational_background.graduated_year') %></dt>
+        <dd><%= educational_background&.graduated_year %></dd>
+      </dl>
+    </section>
+    <section class="propositionsDetailIndex__content">
+      <div class="basicHead">
+        <h3 class="basicHead__title">自己紹介</h3>
+        <p class="basicHead__sub">self-introduction</p>
+      </div>
+      <% self_introduction = @user.self_introduction %>
+      <dl>
+        <% if self_introduction&.self_pr %>
+          <dt><%= t('activerecord.attributes.self_introduction.self_pr') %></dt>
+          <dd><%= self_introduction&.self_pr %></dd>
+        <% end %>
+        <dt><%= t('activerecord.attributes.self_introduction.desired_unit_price') %></dt>
+        <dd><%= self_introduction&.desired_unit_price %>円/時間</dd>
+        <dt><%= t('activerecord.attributes.self_introduction.desired_working_hours') %></dt>
+        <dd><%= self_introduction&.desired_working_hours %>時間/日</dd>
+        <dt><%= t('activerecord.attributes.self_introduction.desired_working_days') %></dt>
+        <dd><%= self_introduction&.desired_working_days %>日/月</dd>
+        <dt><%= t('activerecord.attributes.self_introduction.in_person_meeting') %></dt>
+        <dd><%= self_introduction&.in_person_meeting_i18n %></dd>
+        <dt><%= t('activerecord.attributes.self_introduction.handle_status') %></dt>
+        <dd><%= self_introduction&.handle_status_i18n %></dd>
+        <dt><%= t('activerecord.attributes.self_introduction.handle_conditions') %></dt>
+        <dd><%= self_introduction&.handle_conditions_i18n %></dd>
+        <dt><%= t('activerecord.attributes.self_introduction.portfolio') %></dt>
+        <dd>
+          <% if self_introduction&.portfolio %>
+            <%= link_to self_introduction&.portfolio, self_introduction&.portfolio, target: :_blank, rel: 'noopener noreferrer', class: 'link' %>
+          <% end %>
+        </dd>
+      </dl>
+    </section>
+    <% if @user.skill.present? %>
+      <section class="propositionsDetailIndex__content">
+        <div class="basicHead">
+          <h3 class="basicHead__title">スキル診断</h3>
+          <p class="basicHead__sub">skills assessment</p>
+        </div>
+        <% skill = @user.skill %>
+
+        <dl>
+          <dt>職種</dt>
+          <dd>
+            <%= view_skills(skill) %>
+          </dd>
+        </dl>
+
+        <% if skill.planner || skill.media_consultant %>
+          <%= render '/shared/skills/customer_skill', skill: skill %>
+          <%= render '/shared/skills/business_skill', skill: skill %>
+          <%= render '/shared/skills/kpi_skill', skill: skill %>
+        <% end %>
+        <% if skill.planner || skill.operation_operator %>
+          <%= render '/shared/skills/crm_skill', skill: skill %>
+          <%= render '/shared/skills/influencer_skill', skill: skill %>
+        <% end %>
+        <% if skill.planner || skill.director %>
+          <%= render '/shared/skills/new_business_skill', skill: skill %>
+        <% end %>
+        <% if skill.planner || skill.media_consultant || skill.operation_operator %>
+          <%= render '/shared/skills/search_skill', skill: skill %>
+          <%= render '/shared/skills/display_skill', skill: skill %>
+          <%= render '/shared/skills/sns_skill', skill: skill %>
+          <%= render '/shared/skills/application_ad_skill', skill: skill %>
+          <%= render '/shared/skills/seo_skill', skill: skill %>
+          <%= render '/shared/skills/sns_owned_media_skill', skill: skill %>
+          <%= render '/shared/skills/dsp_skill', skill: skill %>
+          <%= render '/shared/skills/video_skill', skill: skill %>
+          <%= render '/shared/skills/affiliate_skill', skill: skill %>
+        <% end %>
+        <% if skill.planner || skill.media_consultant || skill.engineer %>
+          <%= render '/shared/skills/ma_skill', skill: skill %>
+        <% end %>
+        <% if skill.planner || skill.designer || skill.director %>
+          <%= render '/shared/skills/website_skill', skill: skill %>
+          <%= render '/shared/skills/ecsite_skill', skill: skill %>
+          <%= render '/shared/skills/image_ad_skill', skill: skill %>
+          <%= render '/shared/skills/movie_ad_skill', skill: skill %>
+        <% end %>
+        <% if skill.planner || skill.director || skill.engineer %>
+          <%= render '/shared/skills/application_production_skill', skill: skill %>
+        <% end %>
+        <% if skill.planner || skill.media_consultant || skill.operation_operator || skill.engineer %>
+          <%= render '/shared/skills/sight_access_skill', skill: skill %>
+          <%= render '/shared/skills/tag_manager_skill', skill: skill %>
+          <%= render '/shared/skills/feed_skill', skill: skill %>
+          <%= render '/shared/skills/third_party_skill', skill: skill %>
+        <% end %>
+        <% if skill.planner || skill.media_consultant || skill.designer || skill.director %>
+          <%= render '/shared/skills/three_c_skill', skill: skill %>
+          <%= render '/shared/skills/four_p_skill', skill: skill %>
+          <%= render '/shared/skills/persona_skill', skill: skill %>
+          <%= render '/shared/skills/user_survey_skill', skill: skill %>
+          <%= render '/shared/skills/customer_journey_skill', skill: skill %>
+          <%= render '/shared/skills/language_skill', skill: skill %>
+          <%= render '/shared/skills/writing_skill', skill: skill %>
+        <% end %>
+        <% if skill.planner || skill.media_consultant || skill.operation_operator || skill.designer || skill.director %>
+          <%= render '/shared/skills/pr_skill', skill: skill %>
+        <% end %>
+      </section>
+    <% end %>
+  </div>
+  <ul class="basicInfoMenu">
+    <li class="basicInfoMenu__item">基本情報</li>
+    <li class="basicInfoMenu__item">学歴</li>
+    <li class="basicInfoMenu__item">自己紹介</li>
+    <li class="basicInfoMenu__item">スキル診断</li>
+  </ul>
+</div>

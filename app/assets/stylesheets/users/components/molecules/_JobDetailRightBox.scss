@@ -1,0 +1,42 @@
+@use '../../base/Variable' as *;
+
+.jobDetailRightBox {
+  width: 280px;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+  padding: 30px 20px;
+  border: 1px solid $gray3;
+  border-radius: 5px;
+
+  > .categoryList {
+    margin-bottom: 5px;
+  }
+
+  > .flexText {
+    margin: 10px 0 -10px;
+
+    .flexText__text {
+      margin-bottom: 10px;
+    }
+  }
+
+  &__title {
+    color: $black;
+    font-family: Yu Gothic, YuGothic, 'ヒラギノ角ゴ Pro', 'Hiragino Kaku Gothic Pro', 'Hiragino Sans', Meiryo, メイリオ, 'MS P Gothic', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    margin: 20px 0;
+  }
+
+  &__bottom {
+    .generalButton {
+      width: 239px;
+      height: 50px;
+      line-height: 50px;
+
+      &:not(.favorite) {
+        display: block;
+        margin-bottom: 10px;
+      }
+    }
+  }
+}

@@ -1,0 +1,35 @@
+<%= javascript_pack_tag ('toggleDoubleJobForm') %>
+
+<%= form_with(model: current_user, url: url, method: :patch) do |f| %>
+  <%= render "users/shared/error_messages", resource: current_user %>
+  <div class="infoFormItemGroup">
+    <div class="infoFormItem editMultipleWork infoFormItemGroup__box">
+      <div class="wrapper">
+        <h3 class="infoFormItem__title required">複業経験</h3>
+        <div class="formGroup">
+          <label class="formRadio">
+            <%= f.radio_button :second_job_experience, :true, class: 'formRadio__radio' %>
+            <span class="formRadio__text">あり</span>
+          </label>
+          <label class="formRadio">
+            <%= f.radio_button :second_job_experience, :false, class: 'formRadio__radio' %>
+            <span class="formRadio__text">なし</span>
+          </label>
+        </div>
+      </div>
+    </div>
+    <div class="formModalGroup">
+      <%= f.fields_for :double_job_experiences do |double_job_experience| %>
+        <%= render partial: 'input_attributes', locals: { f: double_job_experience } %>
+      <% end %>
+      <%= link_to_add_association '複業経験を追加する',
+        f,
+        :double_job_experiences,
+        partial: 'input_attributes',
+        class: 'formModalGroup__add',
+        data: { association_insertion_method: 'prepend' }
+      %>
+    </div>
+  </div>
+  <%= f.submit "登録", class: 'generalButton bgBrown textWhite' %>
+<% end %>

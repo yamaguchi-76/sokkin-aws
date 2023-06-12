@@ -1,0 +1,84 @@
+<div class="skillDiagnoseIndex login openItem">
+  <%= render 'users/shared/side_menu' %>
+  <div class="openItem__wrapper">
+    <h2 class="skillDiagnoseIndex__title">スキル診断</h2>
+    <% if current_user.skill %>
+      <%= link_to '戻る', skill_diagnose_edit_users_skill_path(current_user.skill), class: 'arrowButton back' %>
+    <% else %>
+      <%= link_to '戻る', skill_diagnose_users_skills_path, class: 'arrowButton back' %>
+    <% end %>
+    <%= form_with(model: @skill, url: users_skill_path, method: :patch) do |f| %>
+      <% if @skill.planner || @skill.media_consultant || @skill.operation_operator %>
+        <%= render "users/skills/shared/search_skill_form", f: f %>
+        <%= render "users/skills/shared/display_skill_form", f: f %>
+        <%= render "users/skills/shared/sns_skill_form", f: f %>
+        <%= render "users/skills/shared/application_ad_skill_form", f: f %>
+        <%= render "users/skills/shared/seo_skill_form", f: f %>
+      <% end %>
+      <% if @skill.planner || @skill.operation_operator %>
+        <%= render "users/skills/shared/crm_skill_form", f: f %>
+      <% end %>
+      <% if @skill.planner || @skill.media_consultant || @skill.operation_operator %>
+        <%= render "users/skills/shared/sns_owned_media_skill_form", f: f %>
+        <%= render "users/skills/shared/dsp_skill_form", f: f %>
+        <%= render "users/skills/shared/video_skill_form", f: f %>
+        <%= render "users/skills/shared/affiliate_skill_form", f: f %>
+      <% end %>
+      <% if @skill.planner || @skill.media_consultant || @skill.operation_operator || @skill.engineer %>
+        <%= render "users/skills/shared/sight_access_skill_form", f: f %>
+      <% end %>
+      <% if @skill.planner || @skill.media_consultant || @skill.engineer %>
+        <%= render "users/skills/shared/ma_skill_form", f: f %>
+      <% end %>
+      <% if @skill.planner || @skill.media_consultant || @skill.operation_operator || @skill.engineer %>
+        <%= render "users/skills/shared/tag_manager_skill_form", f: f %>
+        <%= render "users/skills/shared/feed_skill_form", f: f %>
+        <%= render "users/skills/shared/third_party_skill_form", f: f %>
+      <% end %>
+      <% if @skill.planner || @skill.media_consultant %>
+        <%= render "users/skills/shared/customer_skill_form", f: f %>
+        <%= render "users/skills/shared/business_skill_form", f: f %>
+      <% end %>
+      <% if @skill.planner || @skill.media_consultant || @skill.designer || @skill.director %>
+        <%= render "users/skills/shared/three_c_skill_form", f: f %>
+        <%= render "users/skills/shared/four_p_skill_form", f: f %>
+        <%= render "users/skills/shared/persona_skill_form", f: f %>
+        <%= render "users/skills/shared/user_survey_skill_form", f: f %>
+      <% end %>
+      <% if @skill.planner || @skill.media_consultant || @skill.operation_operator || @skill.designer || @skill.director %>
+        <%= render "users/skills/shared/pr_skill_form", f: f %>
+      <% end %>
+      <% if @skill.planner || @skill.media_consultant || @skill.designer || @skill.director %>
+        <%= render "users/skills/shared/customer_journey_skill_form", f: f %>
+        <%= render "users/skills/shared/language_skill_form", f: f %>
+      <% end %>
+      <% if @skill.planner || @skill.media_consultant %>
+        <%= render "users/skills/shared/kpi_skill_form", f: f %>
+      <% end %>
+      <% if @skill.planner || @skill.operation_operator %>
+        <%= render "users/skills/shared/influencer_skill_form", f: f %>
+      <% end %>
+      <% if @skill.planner || @skill.media_consultant || @skill.designer || @skill.director %>
+        <%= render "users/skills/shared/writing_skill_form", f: f %>
+      <% end %>
+      <% if @skill.planner || @skill.designer || @skill.director %>
+        <%= render "users/skills/shared/website_skill_form", f: f %>
+        <%= render "users/skills/shared/ecsite_skill_form", f: f %>
+      <% end %>
+      <% if @skill.planner || @skill.director || @skill.engineer %>
+        <%= render "users/skills/shared/application_production_skill_form", f: f %>
+      <% end %>
+      <% if @skill.planner || @skill.designer || @skill.director %>
+        <%= render "users/skills/shared/image_ad_skill_form", f: f %>
+        <%= render "users/skills/shared/movie_ad_skill_form", f: f %>
+      <% end %>
+      <% if @skill.planner || @skill.director %>
+        <%= render "users/skills/shared/new_business_skill_form", f: f %>
+      <% end %>
+
+      <% if @skill.planner || @skill.media_consultant || @skill.operation_operator || @skill.designer || @skill.director %>
+        <%= f.submit '回答を送信', class: 'generalButton bgBrown textWhite' %>
+      <% end %>
+    <% end %>
+  </div>
+</main>

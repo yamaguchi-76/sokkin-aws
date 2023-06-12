@@ -1,0 +1,17 @@
+<p><%= @email %>様</p>
+
+<p>会員登録ありがとうございます</p>
+<p>下記のURLからアカウントの本登録完了をお願いします。</p>
+
+<p><%= link_to 'アカウントを有効化する', confirmation_url(@resource, confirmation_token: @token) %></p>
+
+<p>※本サービスの登録に身に覚えの無い方は、恐れ入りますがこちらのメールの削除をお願いします。</p>
+
+<br>
+<p>========================================</p>
+<p>SOKKIN MATCH運営事務局</p>
+<p>Email: info@sokkin-match.me</p>
+<p>TEL: 03-6273-0773</p>
+<p>▼株式会社SOKKIN</p>
+<p>〒160-0022 東京都新宿区新宿2丁目8-3</p>
+<p>AOIHOUSE SHINJUKU 9F</p>

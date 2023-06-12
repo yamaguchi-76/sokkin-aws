@@ -1,0 +1,46 @@
+<div class="skillCheckArea">
+  <h2 class="skillCheckArea__title">MAツール</h2>
+  <div class="skillTableForm">
+    <h3 class="skillTableForm__title">実務経験年数</h3>
+    <div class="skillTableForm__content">
+      <div class="formGroup">
+        <div class="formRadio">
+          <%= f.radio_button :ma_experience, :ma_experience_rank_e, class: 'formRadio__radio' %>
+          <%= f.label :ma_experience_ma_experience_rank_e, '経験なし', class: 'formRadio__text' %>
+        </div>
+        <div class="formRadio">
+          <%= f.radio_button :ma_experience, :ma_experience_rank_d, class: 'formRadio__radio' %>
+          <%= f.label :ma_experience_ma_experience_rank_d, '3年未満', class: 'formRadio__text' %>
+        </div>
+        <div class="formRadio">
+          <%= f.radio_button :ma_experience, :ma_experience_rank_c, class: 'formRadio__radio' %>
+          <%= f.label :ma_experience_ma_experience_rank_c, '3年以上5年未満', class: 'formRadio__text' %>
+        </div>
+        <div class="formRadio">
+          <%= f.radio_button :ma_experience, :ma_experience_rank_b, class: 'formRadio__radio' %>
+          <%= f.label :ma_experience_ma_experience_rank_b, '5年以上10年未満', class: 'formRadio__text' %>
+        </div>
+        <div class="formRadio">
+          <%= f.radio_button :ma_experience, :ma_experience_rank_a, class: 'formRadio__radio' %>
+          <%= f.label :ma_experience_ma_experience_rank_a, '10年以上', class: 'formRadio__text' %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="skillTableForm">
+    <h3 class="skillTableForm__title height">
+      対応可能な業務範囲<br>
+      <span class="required">※複数選択可</span>
+    </h3>
+    <div class="skillTableForm__content">
+      <div class="formGroup">
+        <%= f.collection_check_boxes :ma_scope_ids, MaScope.all, :id, :answer do |checkbox| %>
+          <div class="formCheckBox">
+            <%= checkbox.check_box(class: "formCheckBox__item") %>
+            <%= checkbox.label(class: "formCheckBox__text") %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

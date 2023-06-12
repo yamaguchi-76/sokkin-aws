@@ -1,0 +1,21 @@
+// ----------------------
+// common
+// ----------------------
+@import '../common/style';
+
+// ----------------------
+// components
+// ----------------------
+// molecules
+@import 'components/molecules/InputForm';
+
+// organisms
+@import 'components/organisms/CompanyBox';
+@import 'components/organisms/PropositionsList';
+
+// template
+@import 'components/template/HomeIndex';
+@import 'components/template/PropositionsDetailIndex';
+@import 'components/template/PropositionsIndex';
+@import 'components/template/PropositionsSubmitIndex';
+@import 'components/template/ScoutIndex';

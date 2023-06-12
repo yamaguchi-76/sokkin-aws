@@ -1,0 +1,105 @@
+<div class="container p-3">
+  <div class="row mb-4">
+    <div class="col-12">
+      <div class="d-flex align-items-center justify-content-center">
+        <%= form_with(model: @form, url: admins_users_path, method: :get) do |f| %>
+          <div class="row">
+            <div class="col-4">
+              <div class="form-group">
+                <div class="control-label">職種</div>
+                <div class="form-control flex">
+                  <%= f.collection_check_boxes :job_kind_ids, JobKind.all, :id, :name, class: 'formCheckBox', checked: @form.job_kind_ids do |checkbox| %>
+                    <div class="form-control__checkbox">
+                      <%= checkbox.check_box(class: "checkbox") %>
+                      <%= checkbox.label(class: "") %>
+                    </div>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-4">
+              <div class="control-label">年齢</div>
+              <div class="form-control">
+                <%= f.number_field :age_gteq %>
+                ~<%= f.number_field :age_lteq %>
+              </div>
+            </div>
+
+            <div class="col-4">
+              <div class="control-label">希望単価/時間</div>
+              <div class="form-control">
+                <%= f.number_field :desired_unit_price_gteq %>
+                ~<%= f.number_field :desired_unit_price_lteq %>
+              </div>
+            </div>
+
+            <div class="col-4">
+              <div class="control-label">希望稼働時間/日</div>
+              <div class="form-control">
+                <%= f.number_field :desired_working_hours_gteq %>
+                ~<%= f.number_field :desired_working_hours_lteq %>
+              </div>
+            </div>
+
+            <div class="col-4">
+              <div class="control-label">希望勤務日数/月</div>
+              <div class="form-control">
+                <%= f.number_field :desired_working_days_gteq %>
+                ~<%= f.number_field :desired_working_days_lteq %>
+              </div>
+            </div>
+
+            <div class="col-4">
+              <div class="control-label">就業状況</div>
+              <div class="form-control flex">
+                <%= f.collection_check_boxes :employment_statuses, EmploymentStatus.statuses.invert, :first, :last, class: 'formCheckBox', checked: @form.employment_statuses do |checkbox| %>
+                  <div class="form-control__checkbox">
+                    <%= checkbox.check_box(class: "checkbox") + checkbox.label { t("enums.employment_status.status.#{checkbox.text}") } %>
+                  </div>
+                <% end %>
+              </div>
+            </div>
+
+            <div class="col-4">
+              <div class="control-label">対応ステータス</div>
+              <div class="form-control flex">
+                <%= f.collection_check_boxes :handle_statuses, SelfIntroduction.handle_statuses.invert, :first, :last, class: 'formCheckBox', checked: @form.handle_statuses do |checkbox| %>
+                  <div class="form-control__checkbox">
+                    <%= checkbox.check_box(class: "checkbox") + checkbox.label { t("enums.self_introduction.handle_status.#{checkbox.text}") } %>
+                  </div>
+                <% end %>
+              </div>
+            </div>
+
+            <div class="col-4">
+              <div class="control-label">対応条件</div>
+              <div class="form-control flex">
+                <%= f.collection_check_boxes :handle_conditions, SelfIntroduction.handle_conditions.invert, :first, :last, class: 'formCheckBox', checked: @form.handle_conditions do |checkbox| %>
+                  <div class="form-control__checkbox">
+                    <%= checkbox.check_box(class: "checkbox") + checkbox.label { t("enums.self_introduction.handle_conditions.#{checkbox.text}") } %>
+                  </div>
+                <% end %>
+              </div>
+            </div>
+
+            <div class="col-4">
+              <div class="control-label">スキル</div>
+              <div class="form-control flex">
+                <%= f.collection_check_boxes :skills, UserSearchForm::SKILLS.invert, :first, :last, class: 'formCheckBox', checked: @form.skills do |checkbox| %>
+                  <div class="form-control__checkbox">
+                    <%= checkbox.check_box(class: "checkbox") + checkbox.label { t("views.admins.users.index.search.#{checkbox.text}") } %>
+                  </div>
+                <% end %>
+              </div>
+            </div>
+
+            <div class="d-flex align-items-center justify-content-center mt-4">
+              <%= f.submit '検索', class: 'btn btn-secondary ms-1' %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

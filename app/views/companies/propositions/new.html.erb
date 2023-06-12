@@ -1,0 +1,9 @@
+<div class="propositionsSubmitIndex openItem">
+  <%= render 'companies/shared/side_menu' %>
+  <div class="openItem__wrapper">
+    <h2 class="propositionsSubmitIndex__title">案件登録</h2>
+    <p class="propositionsSubmitIndex__text">案件登録にあたり、必要事項をご入力お願いいたします。</p>
+
+    <%= render 'form', proposition: @proposition, url: confirm_companies_propositions_path, method: :post %>
+  </div>
+</div>

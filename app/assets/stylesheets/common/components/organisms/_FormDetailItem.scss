@@ -1,0 +1,44 @@
+@use '../../base/Variable' as *;
+
+.formDetailItem {
+  width: 630px;
+
+  @include mq(tab) {
+    width: 100%;
+  }
+
+  &.edit {
+    @include mq(tab-min) {
+      position: relative;
+    }
+  }
+
+  .basicDetailImage {
+    margin-bottom: 32px;
+  }
+
+  .basicHead + .formDetailItem__text {
+    margin-bottom: 26px;
+
+    @include mq(tab) {
+      margin-bottom: 20px;
+    }
+  }
+
+  &__text {
+    color: $black;
+    font-family: Yu Gothic, YuGothic, 'ヒラギノ角ゴ Pro', 'Hiragino Kaku Gothic Pro', 'Hiragino Sans', Meiryo, メイリオ, 'MS P Gothic', sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+  }
+
+  > .inputForm {
+    margin-top: 26px;
+  }
+
+  &__image {
+    width: 115px;
+    height: 115px;
+    margin: 0 0 40px 12px;
+  }
+}

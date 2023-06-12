@@ -1,0 +1,35 @@
+version: '3'
+services:
+  db:
+    platform: linux/x86_64
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: "password"
+      TZ: "Asia/Tokyo"
+    volumes:
+      - mysql-data:/var/lib/mysql
+    ports:
+      - "3306:3306"
+    command: --default-authentication-plugin=mysql_native_password
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/work:cached
+      - bundle:/usr/local/bundle:cached
+      - /work/node_modules
+      - /work/log
+      - /work/tmp
+    links:
+      - db
+    platform: linux/x86_64
+    tty: true
+    stdin_open: true
+    command: /bin/sh -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
+volumes:
+  mysql-data:
+    driver: local
+  bundle:

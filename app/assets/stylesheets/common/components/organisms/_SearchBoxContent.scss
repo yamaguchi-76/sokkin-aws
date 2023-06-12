@@ -1,0 +1,175 @@
+.searchBoxContent {
+  background-color: $white;
+  padding: 24px 26px;
+  border: 1px solid $gray3;
+  border-radius: 5px;
+
+  @include mq(tab-min) {
+    position: relative;
+  }
+
+  > .wrapper {
+    display: flex;
+    @include mq(tab) {
+      flex-direction: column;
+      & > :first-child {
+        margin-bottom: 10px;
+      }
+    }
+    @include mq(tab-min) {
+      flex-direction: row;
+      align-items: center;
+    }
+
+    &:not(:last-child) {
+      margin-bottom: 25px;
+    }
+  }
+
+  &__title {
+    color: $black;
+    font-family: Yu Gothic, YuGothic, 'ヒラギノ角ゴ Pro', 'Hiragino Kaku Gothic Pro', 'Hiragino Sans', Meiryo, メイリオ, 'MS P Gothic', sans-serif;
+    font-size: 16px;
+    font-weight: bold;
+    word-break: keep-all;
+
+    @include mq(tab-min) {
+      margin-right: 20px;
+    }
+
+    &.left {
+      @include mq(tab-min) {
+        margin-left: 34px;
+      }
+    }
+
+    &.skill {
+      @include mq(tab-min) {
+        word-break: keep-all;
+      }
+    }
+  }
+
+  .flexRowWrapper {
+    display: flex;
+    margin-bottom: 25px;
+    & > :first-child {
+      @include mq(tab-min) {
+        margin-right: 30px;
+      }
+    }
+  }
+
+  .formGroup {
+    align-items: center;
+  }
+
+  .borderBottomFiled {
+    border-bottom: 1px solid $brown;
+  }
+
+  .selectField {
+    &__industry {
+      @include mq(tab-min) {
+        width: 300px;
+      }
+    }
+  }
+
+  .numberField {
+    &__unitPrice {
+      width: 80px;
+      @include mq(tab-min) {
+        width: 120px;
+      }
+    }
+    &__workingHourPerMonth {
+      width: 80px;
+      @include mq(tab-min) {
+        width: 120px;
+      }
+      
+    }
+    &__contractPeriod {
+      width: 80px;
+      @include mq(tab-min) {
+        width: 60px;
+      }
+    }
+  }
+
+  .generalButton {
+    width: 220px;
+    height: 40px;
+    line-height: 40px;
+
+    @include mq(tab) {
+      width: 100%;
+    }
+
+    @include mq(tab-min) {
+      position: absolute;
+      right: 24px;
+      bottom: 24px;
+    }
+
+    &:not(:last-child) {
+      margin-bottom: 20px;
+    }
+  }
+  
+  .spDisplayNone {
+    @include mq(tab) {
+      display: none;
+    }
+  }
+
+  .tabDisplayNone {
+    @include mq(tab-min) {
+      display: none;
+    }
+  }
+
+  // アコーディオン
+  details {
+    position: relative;
+    border-bottom: 1px solid #D4D4D4;
+    margin-bottom: 25px;
+    & > :last-child {
+      padding-bottom: 15px;
+    }
+  }
+  details summary {
+    list-style: none;
+    cursor: pointer;
+    display: flex;
+    margin-bottom: 10px;
+  }
+  details summary::-webkit-details-marker {
+    display: none;
+  }
+  details summary::after {
+    content: '';
+    width: 8px;
+    height: 8px;
+    margin-top: -5px;
+    border-top: solid 1.5px #979797;
+    border-right: solid 1.5px #979797; 
+    transform: rotate(135deg);
+    position: absolute;
+    right: 0;
+    top: 2px;
+  }
+  details[open] summary::after {
+    content: '';
+    width: 8px;
+    height: 8px;
+    margin-top: -5px;
+    border-top: solid 1.5px #979797;
+    border-right: solid 1.5px #979797;
+    transform: rotate(-45deg);
+    position: absolute;
+    right: 0;
+    top: 6px;
+  }
+}

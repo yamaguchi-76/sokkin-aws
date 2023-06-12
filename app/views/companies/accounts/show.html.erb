@@ -1,0 +1,58 @@
+<div class="accountIndex openItem">
+  <%= render 'companies/shared/side_menu' %>
+  <div class="openItem__wrapper">
+    <h1 class="accountIndex__title">アカウント設定</h1>
+    <div class="accountIndex__wrapper">
+      <div class="formDetailItem">
+        <%= link_to '編集する', edit_company_registration_path, class: 'generalButton outlineBlack textBlack edit' %>
+
+        <dl>
+          <% if current_company.name %>
+            <dt>企業名</dt>
+            <dd><%= current_company.name %></dd>
+          <% end %>
+          <% if current_company.name_kana %>
+            <dt>企業名フリガナ</dt>
+            <dd><%= current_company.name_kana %></dd>
+          <% end %>
+          <% if current_company.homepage %>
+            <dt>ホームページ</dt>
+            <dd><%= current_company.homepage %></dd>
+          <% end %>
+          <% if current_company.postal_code %>
+            <dt>郵便番号</dt>
+            <dd><%= current_company.postal_code %></dd>
+          <% end %>
+          <% if current_company.address %>
+            <dt>住所</dt>
+            <dd><%= current_company.address %></dd>
+          <% end %>
+          <% if current_company.belonging_department %>
+            <dt>所属部署</dt>
+            <dd><%= current_company.belonging_department %></dd>
+          <% end %>
+          <% if current_company.person_in_charge_full_name %>
+            <dt>担当者名</dt>
+            <dd><%= current_company.person_in_charge_full_name %></dd>
+          <% end %>
+          <% if current_company.person_in_charge_full_name_kana %>
+            <dt>担当者名フリガナ</dt>
+            <dd><%= current_company.person_in_charge_full_name_kana %></dd>
+          <% end %>
+          <% if current_company.phone_number %>
+            <dt>電話番号</dt>
+            <dd><%= current_company.phone_number %></dd>
+          <% end %>
+          <% if current_company.email %>
+            <dt>メールアドレス</dt>
+            <dd><%= current_company.email %></dd>
+          <% end %>
+          <% if current_company.password %>
+            <dt>パスワード</dt>
+            <dd><%= current_company.password %></dd>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,28 @@
+<div class="container mt-5">
+  <% provide(:title, "スカウト一覧") %>
+
+  <table class="table">
+    <thead>
+    <tr>
+      <th>スカウトID</th>
+      <th>会社名</th>
+      <th>案件名</th>
+      <th>ユーザー</th>
+      <th>スカウトステータス</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% @scouts.each do |scout| %>
+      <tr>
+        <td><%= scout.id %></td>
+        <td><%= link_to scout.proposition.company.name, admins_company_path(scout.proposition.company_id) %></td>
+        <td><%= link_to scout.proposition.title, admins_proposition_path(scout.proposition_id) %></td>
+        <td><%= link_to scout.user.full_name, admins_user_path(scout.user_id) %></td>
+        <td><%= scout.status_i18n %></td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+  <%= link_to 'スカウト作成', new_admins_scout_path, class: "mb-3 btn btn-primary" %>
+</div>
+

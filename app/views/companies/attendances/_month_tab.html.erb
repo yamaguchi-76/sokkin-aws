@@ -1,0 +1,40 @@
+<ul class="monthTab">
+  <% unless @monthly_unit_prices.blank? %>
+    <li class="monthTab__item common">
+      <%= link_to_if @monthly_unit_prices.exists?(month: 1), "1月", companies_attendance_path(id: @monthly_unit_prices.first.attendance_id, year: params[:year], month: 1, user_id: @monthly_unit_prices.first.attendance.user_id) %>
+    </li>
+    <li class="monthTab__item common">
+      <%= link_to_if @monthly_unit_prices.exists?(month: 2), "2月", companies_attendance_path(id: @monthly_unit_prices.first.attendance_id, year: params[:year], month: 2, user_id: @monthly_unit_prices.first.attendance.user_id) %>
+    </li>
+    <li class="monthTab__item common">
+      <%= link_to_if @monthly_unit_prices.exists?(month: 3), "3月", companies_attendance_path(id: @monthly_unit_prices.first.attendance_id, year: params[:year], month: 3, user_id: @monthly_unit_prices.first.attendance.user_id) %>
+    </li>
+    <li class="monthTab__item common">
+      <%= link_to_if @monthly_unit_prices.exists?(month: 4), "4月", companies_attendance_path(id: @monthly_unit_prices.first.attendance_id, year: params[:year], month: 4, user_id: @monthly_unit_prices.first.attendance.user_id) %>
+    </li>
+    <li class="monthTab__item common">
+      <%= link_to_if @monthly_unit_prices.exists?(month: 5), "5月", companies_attendance_path(id: @monthly_unit_prices.first.attendance_id, year: params[:year], month: 5, user_id: @monthly_unit_prices.first.attendance.user_id) %>
+    </li>
+    <li class="monthTab__item common">
+      <%= link_to_if @monthly_unit_prices.exists?(month: 6), "6月", companies_attendance_path(id: @monthly_unit_prices.first.attendance_id, year: params[:year], month: 6, user_id: @monthly_unit_prices.first.attendance.user_id) %>
+    </li>
+    <li class="monthTab__item common">
+      <%= link_to_if @monthly_unit_prices.exists?(month: 7), "7月", companies_attendance_path(id: @monthly_unit_prices.first.attendance_id, year: params[:year], month: 7, user_id: @monthly_unit_prices.first.attendance.user_id) %>
+    </li>
+    <li class="monthTab__item common">
+      <%= link_to_if @monthly_unit_prices.exists?(month: 8), "8月", companies_attendance_path(id: @monthly_unit_prices.first.attendance_id, year: params[:year], month: 8, user_id: @monthly_unit_prices.first.attendance.user_id) %>
+    </li>
+    <li class="monthTab__item common">
+      <%= link_to_if @monthly_unit_prices.exists?(month: 9), "9月", companies_attendance_path(id: @monthly_unit_prices.first.attendance_id, year: params[:year], month: 9, user_id: @monthly_unit_prices.first.attendance.user_id) %>
+    </li>
+    <li class="monthTab__item common">
+      <%= link_to_if @monthly_unit_prices.exists?(month: 10), "10月", companies_attendance_path(id: @monthly_unit_prices.first.attendance_id, year: params[:year], month: 10, user_id: @monthly_unit_prices.first.attendance.user_id) %>
+    </li>
+    <li class="monthTab__item common">
+      <%= link_to_if @monthly_unit_prices.exists?(month: 11), "11月", companies_attendance_path(id: @monthly_unit_prices.first.attendance_id, year: params[:year], month: 11, user_id: @monthly_unit_prices.first.attendance.user_id) %>
+    </li>
+    <li class="monthTab__item common">
+      <%= link_to_if @monthly_unit_prices.exists?(month: 12), "12月", companies_attendance_path(id: @monthly_unit_prices.first.attendance_id, year: params[:year], month: 12, user_id: @monthly_unit_prices.first.attendance.user_id) %>
+    </li>
+  <% end %>
+</ul>

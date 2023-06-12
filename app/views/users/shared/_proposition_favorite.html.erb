@@ -1,0 +1,7 @@
+<%= link_to 'お気に入り登録',
+  users_proposition_favorites_path(proposition_id: proposition.id),
+  id: "js-favorite-button-for-proposition-#{proposition.id}",
+  method: :post,
+  remote: true,
+  class: 'generalButton outlineBrown bgWhite textBrown favorite'
+%>

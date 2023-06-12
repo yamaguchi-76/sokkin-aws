@@ -1,0 +1,149 @@
+.applyModal {
+  &__background {
+    width: 100vw;
+    height: 140vh;
+    background: rgba(#000, .3);
+  }
+
+  &__title {
+    color: $black;
+    font-family: Yu Gothic, YuGothic, 'ヒラギノ角ゴ Pro', 'Hiragino Kaku Gothic Pro', 'Hiragino Sans', Meiryo, メイリオ, 'MS P Gothic', sans-serif;
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  &__propositionTitle {
+    color: $black;
+    font-family: Yu Gothic, YuGothic, 'ヒラギノ角ゴ Pro', 'Hiragino Kaku Gothic Pro', 'Hiragino Sans', Meiryo, メイリオ, 'MS P Gothic', sans-serif;
+    font-size: 24px;
+    line-height: 1.5;
+    font-weight: bold;
+    margin: 20px 0;
+  }
+
+  &__text {
+    color: $black;
+    font-family: Yu Gothic, YuGothic, 'ヒラギノ角ゴ Pro', 'Hiragino Kaku Gothic Pro', 'Hiragino Sans', Meiryo, メイリオ, 'MS P Gothic', sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    font-weight: bold;
+    margin-bottom: 30px;
+  }
+
+  &__textarea {
+    width: 100%;
+    height: 172px;
+    background: $gray;
+    border: none;
+    border-radius: 3px;
+    resize: none;
+  }
+
+  &__select {
+    select {
+      width: 100%;
+      height: 30px;
+      color: $black;
+      font-size: 14px;
+      font-family: Yu Gothic, YuGothic, 'ヒラギノ角ゴ Pro', 'Hiragino Kaku Gothic Pro', 'Hiragino Sans', Meiryo, メイリオ, 'MS P Gothic', sans-serif;
+      border: 1px solid $brown;
+      border-radius: 3px;
+      margin-bottom: 20px;
+    }
+
+    .wrapper {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      .generalButton {
+        width: 49%;
+        height: 30px;
+        line-height: 30px;
+        font-size: 14px;
+        display: block;
+
+        &.back {
+          width: 100%;
+          height: 40px;
+          line-height: 40px;
+        }
+
+        &:not(:last-child) {
+          margin-left: 1%;
+        }
+      }
+    }
+  }
+
+  > .content {
+    width: 539px;
+    background: $white;
+    border-radius: 5px;
+    z-index: 10000000;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    padding: 20px 42px;
+
+    @include mq(tab) {
+      width: 100%;
+      padding: 15px 30px;
+    }
+
+    > .flexText {
+      margin: 10px 0 -10px;
+
+      .flexText__text {
+        margin-bottom: 10px;
+      }
+    }
+  }
+
+  &__bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 30px;
+
+    > .generalButton {
+      width: 220px;
+      height: 50px;
+      line-height: 50px;
+
+      @include mq(tab) {
+        width: 49%;
+        height: 40px;
+        line-height: 40px;
+        font-size: 16px;
+      }
+    }
+  }
+
+  .infoFormItem {
+    &:first-of-type .infoFormItem__title {
+      margin-right: 36px;
+    }
+
+    &:last-of-type {
+      margin-top: 30px;
+
+      > .infoFormItem__title {
+        @include mq(tab-min) {
+          margin-bottom: 10px;
+        }
+      }
+
+      > .applyModal__textarea {
+        @include mq(tab) {
+          height: 150px;
+        }
+      }
+    }
+  }
+}
