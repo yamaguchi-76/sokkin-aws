@@ -20,7 +20,7 @@ default: &default
 
 development:
   <<: *default
-#  database: work_development
+##  database: work_development
   host: <%= ENV['DB_HOSTNAME'] %>
   port: <%= ENV['DB_PORT'] %>
   username: <%= ENV['DB_USERNAME'] %>
